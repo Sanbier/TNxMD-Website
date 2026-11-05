@@ -91,7 +91,7 @@ export const GAMES: Game[] = [
       graphics: "Apple GPU Metal API",
       storage: "10 GB dung lượng bộ nhớ khả dụng",
     },
-    contactUrl: "https://t.me/tnxmd_gaming",
+    contactUrl: "https://apps.apple.com/vn/app/garena-li%C3%AAn-qu%C3%A2n-mobile/id1150301244",
     contactChannels: {
       telegram: "https://t.me/tnxmd_gaming",
       discord: "https://discord.gg/tnxmd",
@@ -136,7 +136,7 @@ export const GAMES: Game[] = [
       graphics: "Apple 4-Core GPU / Metal 3",
       storage: "16 GB bộ nhớ khả dụng",
     },
-    contactUrl: "https://zalo.me/0987654321",
+    contactUrl: "https://apps.apple.com/vn/app/pubg-mobile-vn/id1438396625",
     contactChannels: {
       zalo: "https://zalo.me/0987654321",
       telegram: "https://t.me/tnxmd_gaming",
@@ -180,7 +180,7 @@ export const GAMES: Game[] = [
       graphics: "Apple 4-Core GPU / MetalFX",
       storage: "30 GB dung lượng bộ nhớ khả dụng",
     },
-    contactUrl: "https://discord.gg/tnxmd",
+    contactUrl: "https://apps.apple.com/vn/app/genshin-impact/id1517783697",
     contactChannels: {
       discord: "https://discord.gg/tnxmd",
       telegram: "https://t.me/tnxmd_gaming",
@@ -223,7 +223,7 @@ export const GAMES: Game[] = [
       graphics: "Apple GPU Metal API",
       storage: "12 GB bộ nhớ khả dụng",
     },
-    contactUrl: "https://facebook.com/tnxmd.gaming",
+    contactUrl: "https://apps.apple.com/vn/app/li%C3%AAn-minh-huy%E1%BB%81n-tho%E1%BA%A1i-t%E1%BB%91c-chi%E1%BA%BFn/id1480649002",
     contactChannels: {
       facebook: "https://facebook.com/tnxmd.gaming",
       telegram: "https://t.me/tnxmd_gaming",
@@ -266,7 +266,7 @@ export const GAMES: Game[] = [
       graphics: "Apple GPU MetalFX Hardware Upscaling",
       storage: "15 GB dung lượng bộ nhớ trống khả dụng",
     },
-    contactUrl: "https://t.me/tnxmd_gaming",
+    contactUrl: "https://apps.apple.com/vn/app/call-of-duty-warzone-mobile/id1638368439",
     contactChannels: {
       telegram: "https://t.me/tnxmd_gaming",
       discord: "https://discord.gg/tnxmd",
@@ -309,7 +309,7 @@ export const GAMES: Game[] = [
       graphics: "Apple GPU Metal API",
       storage: "18 GB dung lượng bộ nhớ khả dụng",
     },
-    contactUrl: "https://discord.gg/tnxmd",
+    contactUrl: "https://apps.apple.com/vn/app/honkai-star-rail/id1599719154",
     contactChannels: {
       discord: "https://discord.gg/tnxmd",
       telegram: "https://t.me/tnxmd_gaming",
@@ -352,7 +352,7 @@ export const GAMES: Game[] = [
       graphics: "Apple GPU Metal API",
       storage: "6 GB dung lượng bộ nhớ khả dụng",
     },
-    contactUrl: "https://discord.gg/tnxmd",
+    contactUrl: "https://apps.apple.com/vn/app/free-fire-max/id1536531981",
     contactChannels: {
       discord: "https://discord.gg/tnxmd",
       telegram: "https://t.me/tnxmd_gaming",

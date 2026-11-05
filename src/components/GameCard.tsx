@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Star, MessageCircle, ArrowRight, Eye, Smartphone } from "lucide-react";
+import { Star, MessageCircle, ArrowRight, Eye, Smartphone, Apple } from "lucide-react";
 import { Game } from "@/types/game";
 import { Badge } from "./Badge";
 import { ContactModal } from "./ContactModal";
@@ -112,16 +112,17 @@ export const GameCard: React.FC<GameCardProps> = ({ game }) => {
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
-                {/* Direct Contact Button */}
-                <button
-                  type="button"
-                  onClick={handleContactClick}
-                  className="px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] font-bold text-gray-300 bg-white/[0.05] hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-400/50 hover:text-cyan-300 transition-all flex items-center gap-1"
-                  title="Liên hệ tựa game này"
+                {/* AppStore Direct Link Button */}
+                <a
+                  href={game.contactUrl || "https://apps.apple.com"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] font-bold text-gray-200 bg-white/[0.06] hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-400/50 hover:text-cyan-300 transition-all flex items-center gap-1.5 shadow-sm"
+                  title="Chuyển đến App Store"
                 >
-                  <MessageCircle className="w-3 h-3 text-cyan-400" />
-                  <span>Liên Hệ</span>
-                </button>
+                  <Apple className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>AppStore</span>
+                </a>
 
                 {/* View Details Link */}
                 <Link

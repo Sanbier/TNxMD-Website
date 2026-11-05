@@ -16,6 +16,7 @@ import {
   MessageCircle,
   ShieldCheck,
   Zap,
+  Apple,
 } from "lucide-react";
 import { Game } from "@/types/game";
 import { Badge } from "@/components/Badge";
@@ -251,16 +252,17 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                 </p>
               </div>
 
-              {/* Prominent Gradient Contact Button */}
-              <button
-                type="button"
-                onClick={handleContactAction}
+              {/* Prominent Gradient App Store Button */}
+              <a
+                href={game.contactUrl || "https://apps.apple.com"}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full py-4 px-6 rounded-xl font-black text-sm sm:text-base text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:shadow-[0_0_40px_rgba(0,240,255,0.8)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 uppercase tracking-wider font-gaming"
               >
-                <MessageCircle className="w-5 h-5 text-cyan-200" />
-                <span>LIÊN HỆ VỀ TỰA GAME NÀY</span>
+                <Apple className="w-5 h-5 text-white" />
+                <span>MỞ TRÊN APP STORE</span>
                 <ExternalLink className="w-4 h-4 ml-1 opacity-80" />
-              </button>
+              </a>
 
               <div className="pt-2 border-t border-white/[0.08]">
                 <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider block mb-2">
