@@ -29,7 +29,7 @@ export const Header: React.FC = () => {
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">
-                <span className="text-xl sm:text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-cyan-300 font-gaming">
+                <span className="text-xl sm:text-2xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-cyan-300 font-gaming">
                   TN<span className="text-cyan-400">x</span>MD
                 </span>
                 <span className="text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/30">

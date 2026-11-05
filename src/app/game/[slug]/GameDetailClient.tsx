@@ -90,7 +90,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
             <Badge variant="status">{game.status}</Badge>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white font-gaming tracking-tight">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white font-gaming tracking-tight">
             {game.title}
           </h1>
 
@@ -162,7 +162,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
               <div className="flex items-center justify-between border-b border-white/[0.08] pb-2.5">
                 <div className="flex items-center gap-2">
                   <Zap className="w-5 h-5 text-cyan-400 animate-pulse" />
-                  <h2 className="text-base sm:text-lg font-black text-white font-gaming tracking-wide uppercase">
+                  <h2 className="text-base sm:text-lg font-bold text-white font-gaming tracking-wide uppercase">
                     Các Chức Năng Đặc Biệt
                   </h2>
                 </div>
@@ -219,7 +219,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                   <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
                   Kết Nối Trực Tiếp
                 </div>
-                <h3 className="text-xl font-black text-white font-gaming tracking-tight">
+                <h3 className="text-xl font-bold text-white font-gaming tracking-tight">
                   NHẬN TƯ VẤN & TRẢI NGHIỆM
                 </h3>
                 <p className="text-xs text-gray-300 mt-1">
@@ -232,7 +232,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                 href={game.contactUrl || "https://apps.apple.com"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-4 px-6 rounded-xl font-black text-sm sm:text-base text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:shadow-[0_0_40px_rgba(0,240,255,0.8)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 uppercase tracking-wider font-gaming"
+                className="w-full py-4 px-6 rounded-xl font-bold text-sm sm:text-base text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:shadow-[0_0_40px_rgba(0,240,255,0.8)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 uppercase tracking-wider font-gaming"
               >
                 <Apple className="w-5 h-5 text-white" />
                 <span>MỞ TRÊN APP STORE</span>
@@ -276,7 +276,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                 <span className="text-xs font-bold text-purple-400 uppercase tracking-wider">
                   Tựa Game Đề Xuất
                 </span>
-                <h3 className="text-xl sm:text-2xl font-black text-white font-gaming tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-gaming tracking-tight">
                   CÁC TỰA GAME TƯƠNG TỰ
                 </h3>
                 <p className="text-xs text-gray-400 mt-1 flex items-center gap-1.5">
@@ -364,7 +364,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
           href={game.contactUrl || "https://apps.apple.com"}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 py-3 px-4 rounded-xl font-black text-xs text-white bg-gradient-to-r from-purple-600 to-cyan-500 shadow-[0_0_20px_rgba(168,85,247,0.5)] active:scale-95 transition-transform flex items-center justify-center gap-1.5 uppercase font-gaming truncate"
+          className="flex-1 py-3 px-4 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-purple-600 to-cyan-500 shadow-[0_0_20px_rgba(168,85,247,0.5)] active:scale-95 transition-transform flex items-center justify-center gap-1.5 uppercase font-gaming truncate"
         >
           <Apple className="w-4 h-4 shrink-0" />
           <span className="truncate">MỞ APP STORE</span>

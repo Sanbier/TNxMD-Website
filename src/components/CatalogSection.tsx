@@ -31,7 +31,7 @@ export const CatalogSection: React.FC = () => {
               <Gamepad className="w-4 h-4 text-cyan-400" />
               <span>Thư Viện Game :</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white font-gaming tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white font-gaming tracking-tight">
               DANH SÁCH NHỮNG GAME MOD
             </h2>
           </div>

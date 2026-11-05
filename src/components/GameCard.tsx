@@ -86,7 +86,7 @@ export const GameCard: React.FC<GameCardProps> = ({ game }) => {
 
               {/* Title */}
               <Link href={`/game/${game.slug}`} className="block">
-                <h3 className="text-base sm:text-lg md:text-xl font-black text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-300 group-hover:via-white group-hover:to-cyan-300 transition-colors tracking-tight font-gaming leading-tight truncate">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-300 group-hover:via-white group-hover:to-cyan-300 transition-colors tracking-tight font-gaming leading-tight truncate">
                   {game.title}
                 </h3>
               </Link>

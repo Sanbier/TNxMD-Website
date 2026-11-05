@@ -36,7 +36,7 @@ export const Footer: React.FC = () => {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xl font-black text-white font-gaming tracking-wider">
+                    <span className="text-xl font-bold text-white font-gaming tracking-wider">
                       TN<span className="text-cyan-400">x</span>MD
                     </span>
                     <span className="text-[10px] px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 font-bold uppercase">

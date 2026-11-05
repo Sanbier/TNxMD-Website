@@ -43,30 +43,24 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
   const contactList = [
     {
-      name: "Telegram Kênh & Tin Nhắn",
+      name: "Shop Telegram",
       tag: "@tnxmd",
-      badge: "Nhanh nhất 24/7",
-      badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40",
       url: merged.telegram,
       icon: TelegramIcon,
       hoverClass: "hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(0,240,255,0.35)]",
       btnClass: "bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500 hover:text-black",
     },
     {
-      name: "Zalo Chính Thức",
-      tag: "Nhóm Hỗ Trợ Zalo",
-      badge: "Trực tiếp VN",
-      badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/40",
+      name: "Zalo Nhóm",
+      tag: "Cộng đồng hỗ trợ TNxMD",
       url: merged.zalo,
       icon: ZaloIcon,
       hoverClass: "hover:border-blue-400 hover:shadow-[0_0_20px_rgba(59,130,246,0.35)]",
       btnClass: "bg-blue-500/10 text-blue-300 hover:bg-blue-500 hover:text-white",
     },
     {
-      name: "Trang Facebook",
-      tag: "TNxMD Gaming Network",
-      badge: "Cập nhật",
-      badgeColor: "bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/40",
+      name: "Liên Hệ Quản Gia",
+      tag: "Hỗ trợ trực tiếp & trao đổi",
       url: merged.facebook,
       icon: FacebookIcon,
       hoverClass: "hover:border-fuchsia-400 hover:shadow-[0_0_20px_rgba(217,70,239,0.35)]",
@@ -133,11 +127,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                       <span className="font-semibold text-sm sm:text-base text-gray-100 group-hover:text-white truncate">
                         {item.name}
                       </span>
-                      <span
-                        className={`text-[10px] px-2 py-0.5 rounded-full border font-bold uppercase tracking-wider ${item.badgeColor}`}
-                      >
-                        {item.badge}
-                      </span>
+
                     </div>
                     <span className="text-xs text-gray-400 group-hover:text-gray-300 block truncate">
                       {item.tag}
