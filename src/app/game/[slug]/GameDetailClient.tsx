@@ -163,38 +163,33 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                 </div>
               </div>
 
-              {/* Scrollable list showing 4 items at a time */}
+              {/* Scrollable list showing 7 items at a time */}
               <div className="relative">
-                <div className="max-h-[220px] overflow-y-auto pr-1.5 space-y-2 scrollbar-thin scrollbar-thumb-purple-600/50 hover:scrollbar-thumb-cyan-400/60">
+                <div className="max-h-[345px] overflow-y-auto pr-1.5 space-y-2 scrollbar-thin scrollbar-thumb-purple-600/50 hover:scrollbar-thumb-cyan-400/60">
                   {game.features.map((feat, idx) => (
                     <div
                       key={idx}
-                      className="group/item p-2.5 px-3.5 rounded-xl bg-white/[0.025] hover:bg-white/[0.06] border border-white/[0.06] hover:border-cyan-400/50 transition-all duration-200 flex items-center justify-between gap-3"
+                      className="group/item p-2.5 px-3.5 rounded-xl bg-white/[0.025] hover:bg-white/[0.06] border border-white/[0.06] hover:border-cyan-400/50 transition-all duration-200 flex items-center gap-2.5"
                     >
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <span className="text-[10px] font-mono font-bold text-gray-400 group-hover/item:text-cyan-400 w-5 text-right shrink-0">
-                          {String(idx + 1).padStart(2, "0")}
-                        </span>
-                        <CheckCircle className="w-4 h-4 text-cyan-400 shrink-0" />
-                        <span className="text-xs sm:text-sm text-gray-200 font-semibold truncate group-hover/item:text-white">
-                          {feat}
-                        </span>
-                      </div>
-                      <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 shrink-0 font-bold">
-                        BẬT
+                      <span className="text-[10px] font-mono font-bold text-gray-400 group-hover/item:text-cyan-400 w-5 text-right shrink-0">
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
+                      <CheckCircle className="w-4 h-4 text-cyan-400 shrink-0" />
+                      <span className="text-xs sm:text-sm text-gray-200 font-semibold truncate group-hover/item:text-white">
+                        {feat}
                       </span>
                     </div>
                   ))}
                 </div>
 
                 {/* Subtle bottom indicator */}
-                {game.features.length > 4 && (
+                {game.features.length > 7 && (
                   <div className="mt-2.5 pt-2 border-t border-white/[0.04] flex items-center justify-between text-[11px] text-gray-400">
                     <span className="flex items-center gap-1 text-cyan-300/80 text-[11px]">
                       <span>↓ Cuộn chuột hoặc vuốt để xem tiếp các chức năng</span>
                     </span>
                     <span className="font-mono text-[10px] text-gray-400">
-                      Hiển thị 4/{game.features.length}
+                      Hiển thị 7/{game.features.length}
                     </span>
                   </div>
                 )}
