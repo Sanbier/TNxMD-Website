@@ -1,45 +1,25 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { Search, Filter, Sparkles, X, ChevronDown, Layers, Gamepad, Apple } from "lucide-react";
-import { GAMES, CATEGORIES } from "@/data/games";
+import { Search, X, Gamepad } from "lucide-react";
+import { GAMES } from "@/data/games";
 import { GameCard } from "./GameCard";
-import { GameCategory, Platform } from "@/types/game";
-
-const ALL_PLATFORMS: Platform[] = ["iOS", "iPadOS"];
 
 export const CatalogSection: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("Tất cả");
-  const [visibleCount, setVisibleCount] = useState<number>(6);
 
-  // Filter games based on search and category
+  // Filter games based purely on search query
   const filteredGames = useMemo(() => {
+    if (searchQuery.trim() === "") return GAMES;
+    const q = searchQuery.toLowerCase().trim();
     return GAMES.filter((game) => {
-      // Category filter
-      if (selectedCategory !== "Tất cả" && game.category !== selectedCategory) {
-        return false;
-      }
-      // Search query
-      if (searchQuery.trim() !== "") {
-        const q = searchQuery.toLowerCase().trim();
-        const matchTitle = game.title.toLowerCase().includes(q);
-        const matchGenre = game.genre.toLowerCase().includes(q);
-        const matchDesc = game.shortDescription.toLowerCase().includes(q);
-        const matchTags = game.tags.some((tag) => tag.toLowerCase().includes(q));
-        return matchTitle || matchGenre || matchDesc || matchTags;
-      }
-      return true;
+      const matchTitle = game.title.toLowerCase().includes(q);
+      const matchGenre = game.genre.toLowerCase().includes(q);
+      const matchDesc = game.shortDescription.toLowerCase().includes(q);
+      const matchTags = game.tags.some((tag) => tag.toLowerCase().includes(q));
+      return matchTitle || matchGenre || matchDesc || matchTags;
     });
-  }, [searchQuery, selectedCategory]);
-
-  const displayedGames = filteredGames.slice(0, visibleCount);
-  const hasMore = visibleCount < filteredGames.length;
-
-  const handleResetFilters = () => {
-    setSearchQuery("");
-    setSelectedCategory("Tất cả");
-  };
+  }, [searchQuery]);
 
   return (
     <section id="catalog" className="relative py-10 sm:py-16">
@@ -64,70 +44,33 @@ export const CatalogSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Filter & Search Bar Container */}
-        <div className="rounded-2xl bg-[#0b0b14] border border-white/[0.08] p-4 sm:p-5 shadow-[0_4px_24px_rgba(0,0,0,0.5)] mb-8 space-y-4">
-          {/* Top Row: Search input */}
+        {/* Search Bar Only */}
+        <div className="mb-8">
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Tìm theo tên game, thể loại, từ khóa (vd: Valorant, FPS, Sinh Tồn, MOBA, Mobile)..."
-              className="w-full pl-12 pr-10 py-3 sm:py-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_20px_rgba(0,240,255,0.25)] transition-all"
+              placeholder="Tìm theo tên game..."
+              className="w-full pl-12 pr-10 py-3.5 sm:py-4 rounded-2xl bg-[#0b0b14] border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_25px_rgba(0,240,255,0.25)] transition-all"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-white"
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-white"
                 aria-label="Xóa tìm kiếm"
               >
                 <X className="w-4 h-4" />
               </button>
             )}
           </div>
-
-          {/* Category Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-            <span className="text-xs font-bold text-gray-400 uppercase tracking-wider shrink-0 flex items-center gap-1 mr-1">
-              <Filter className="w-3.5 h-3.5 text-purple-400" />
-              Thể Loại:
-            </span>
-            {CATEGORIES.map((cat) => {
-              const active = selectedCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`shrink-0 px-3.5 py-1.5 rounded-lg text-xs font-bold tracking-wide transition-all ${
-                    active
-                      ? "bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-[0_0_15px_rgba(168,85,247,0.4)]"
-                      : "bg-white/[0.03] text-gray-300 hover:bg-white/[0.08] hover:text-white border border-white/[0.06]"
-                  }`}
-                >
-                  {cat}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Platform Selector Row */}
-          <div className="pt-2 border-t border-white/[0.06] flex items-center gap-2 overflow-x-auto pb-1">
-            <span className="text-xs font-bold text-gray-400 uppercase tracking-wider shrink-0 flex items-center gap-1.5 mr-1">
-              <Apple className="w-3.5 h-3.5 text-cyan-400" />
-              Hệ Điều Hành Apple:
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider bg-cyan-950/80 border border-cyan-400 text-cyan-300 shadow-[0_0_15px_rgba(0,240,255,0.6)] animate-pulse">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-              iOS
-            </span>
-          </div>
         </div>
 
         {/* Vertical Game List */}
         {filteredGames.length > 0 ? (
           <div className="space-y-4 sm:space-y-5">
-            {displayedGames.map((game) => (
+            {filteredGames.map((game) => (
               <GameCard key={game.id} game={game} />
             ))}
           </div>
@@ -138,30 +81,14 @@ export const CatalogSection: React.FC = () => {
             </div>
             <h3 className="text-lg font-bold text-white">Không tìm thấy tựa game phù hợp</h3>
             <p className="text-xs sm:text-sm text-gray-400 mt-1 max-w-sm mx-auto">
-              Thử tìm kiếm với từ khóa khác hoặc đặt lại bộ lọc thể loại và nền tảng.
+              Không có kết quả nào khớp với &quot;{searchQuery}&quot;. Thử tìm kiếm với tên game khác.
             </p>
             <button
-              onClick={handleResetFilters}
-              className="mt-4 px-4 py-2 rounded-xl text-xs font-bold text-white bg-purple-600 hover:bg-purple-500 transition-colors"
+              onClick={() => setSearchQuery("")}
+              className="mt-4 px-4 py-2 rounded-xl text-xs font-semibold text-cyan-300 bg-white/[0.04] border border-cyan-500/30 hover:bg-cyan-500/10 transition-colors"
             >
-              Đặt Lại Bộ Lọc
+              Xem Toàn Bộ Game
             </button>
-          </div>
-        )}
-
-        {/* Load More Button */}
-        {hasMore && (
-          <div className="mt-10 text-center">
-            <button
-              onClick={() => setVisibleCount((prev) => prev + 4)}
-              className="px-6 py-3 rounded-xl font-bold text-xs sm:text-sm text-gray-200 bg-white/[0.05] border border-purple-500/30 hover:border-cyan-400/60 hover:bg-white/[0.08] hover:text-white transition-all shadow-[0_0_20px_rgba(168,85,247,0.2)] inline-flex items-center gap-2"
-            >
-              <span>Xem Thêm Tựa Game</span>
-              <ChevronDown className="w-4 h-4 text-cyan-400 animate-bounce" />
-            </button>
-            <span className="block text-[11px] text-gray-500 mt-2">
-              Đang xem {displayedGames.length} trên {filteredGames.length} tựa game có sẵn
-            </span>
           </div>
         )}
       </div>
