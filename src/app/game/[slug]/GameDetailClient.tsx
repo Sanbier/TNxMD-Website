@@ -402,9 +402,6 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                     <h4 className="font-bold text-white group-hover:text-cyan-300 transition-colors truncate">
                       {rg.title}
                     </h4>
-                    <p className="text-xs text-gray-400 line-clamp-2 mt-1">
-                      {rg.shortDescription}
-                    </p>
                   </div>
 
                   <div className="mt-3 pt-2.5 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-cyan-400 font-semibold group-hover:text-cyan-300">
