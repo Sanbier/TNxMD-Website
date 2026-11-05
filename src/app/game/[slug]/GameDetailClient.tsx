@@ -355,6 +355,31 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
         )}
       </div>
 
+      {/* Sticky Mobile Bottom Bar (Thumb-Zone Optimized for iPhone) */}
+      <div
+        className="fixed bottom-3 left-3 right-3 z-40 sm:hidden backdrop-blur-2xl bg-[#0b0b14]/95 border border-purple-500/40 p-2.5 rounded-2xl flex items-center gap-2 shadow-[0_12px_40px_rgba(0,0,0,0.9),0_0_20px_rgba(168,85,247,0.3)]"
+        style={{ paddingBottom: "max(0.6rem, env(safe-area-inset-bottom))" }}
+      >
+        <a
+          href={game.contactUrl || "https://apps.apple.com"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 py-3 px-4 rounded-xl font-black text-xs text-white bg-gradient-to-r from-purple-600 to-cyan-500 shadow-[0_0_20px_rgba(168,85,247,0.5)] active:scale-95 transition-transform flex items-center justify-center gap-1.5 uppercase font-gaming truncate"
+        >
+          <Apple className="w-4 h-4 shrink-0" />
+          <span className="truncate">MỞ APP STORE</span>
+        </a>
+
+        <button
+          type="button"
+          onClick={() => setContactOpen(true)}
+          className="py-3 px-4 rounded-xl font-bold text-xs text-gray-200 bg-white/[0.08] hover:bg-white/[0.12] border border-white/10 active:scale-95 transition-transform flex items-center justify-center gap-1.5 shrink-0"
+        >
+          <MessageCircle className="w-4 h-4 text-cyan-400" />
+          <span>Tư Vấn</span>
+        </button>
+      </div>
+
       <ContactModal
         isOpen={contactOpen}
         onClose={() => setContactOpen(false)}
