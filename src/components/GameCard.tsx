@@ -136,10 +136,10 @@ export const GameCard: React.FC<GameCardProps> = ({ game }) => {
                   type="button"
                   onClick={handleContactClick}
                   className="flex-1 sm:flex-initial px-3.5 py-2 rounded-xl text-xs font-bold text-gray-200 bg-white/[0.06] hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-400/50 hover:text-cyan-300 transition-all flex items-center justify-center gap-1.5"
-                  title="Contact for this game"
+                  title="Liên hệ tựa game này"
                 >
                   <MessageCircle className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Contact</span>
+                  <span>Liên Hệ</span>
                 </button>
 
                 {/* View Details Link */}
@@ -147,7 +147,7 @@ export const GameCard: React.FC<GameCardProps> = ({ game }) => {
                   href={`/game/${game.slug}`}
                   className="flex-1 sm:flex-initial px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:shadow-[0_0_18px_rgba(0,240,255,0.5)] transition-all flex items-center justify-center gap-1.5"
                 >
-                  <span>View Details</span>
+                  <span>Xem Chi Tiết</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
               </div>

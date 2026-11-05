@@ -38,13 +38,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!game) {
     return {
-      title: "Game Not Found | TNXMD",
-      description: "The requested title is not present in the TNXMD library.",
+      title: "Không Tìm Thấy Tựa Game | TNXMD",
+      description: "Tựa game yêu cầu hiện không có trong thư viện TNXMD.",
     };
   }
 
   return {
-    title: `${game.title} - Specs, Features & Access | TNXMD`,
+    title: `${game.title} - Cấu Hình, Đặc Điểm & Trải Nghiệm | TNXMD`,
     description: game.shortDescription,
     openGraph: {
       title: `${game.title} | TNXMD Gaming Hub`,

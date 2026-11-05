@@ -15,7 +15,6 @@ import {
   Calendar,
   Eye,
   MessageCircle,
-  Flame,
   ShieldCheck,
   Zap,
 } from "lucide-react";
@@ -70,14 +69,14 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
             className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-black/60 hover:bg-purple-900/40 border border-white/10 hover:border-purple-500/50 text-xs sm:text-sm font-bold text-gray-200 hover:text-white backdrop-blur-md transition-all shadow-[0_4px_16px_rgba(0,0,0,0.6)]"
           >
             <ArrowLeft className="w-4 h-4 text-cyan-400" />
-            <span>Back to Catalog</span>
+            <span>Quay Lại Kho Game</span>
           </Link>
         </div>
 
         {/* Banner Overlay Content: Game Title & Meta */}
         <div className="absolute bottom-6 left-4 sm:left-8 right-4 sm:right-8 z-10 max-w-7xl mx-auto">
           <div className="flex items-center gap-2 flex-wrap mb-2">
-            {game.isHot && <Badge variant="hot">HOT TITLE</Badge>}
+            {game.isHot && <Badge variant="hot">GAME HOT</Badge>}
             <Badge variant="category">{game.category}</Badge>
             <Badge variant="status">{game.status}</Badge>
             <span className="text-xs font-mono text-cyan-300 bg-black/60 px-2 py-0.5 rounded border border-cyan-500/30">
@@ -92,7 +91,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
           <div className="flex items-center gap-4 mt-2 text-xs sm:text-sm text-gray-300 flex-wrap">
             <span className="text-purple-300 font-semibold">{game.genre}</span>
             <span>•</span>
-            <span className="text-gray-400">Developer: <strong className="text-gray-200">{game.developer}</strong></span>
+            <span className="text-gray-400">Nhà phát triển: <strong className="text-gray-200">{game.developer}</strong></span>
             <span>•</span>
             <div className="flex items-center gap-1 text-yellow-400 font-bold">
               <Star className="w-4 h-4 fill-yellow-400" />
@@ -134,7 +133,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                     >
                       <Image
                         src={img}
-                        alt={`Screenshot ${idx + 1}`}
+                        alt={`Ảnh chụp màn hình ${idx + 1}`}
                         fill
                         sizes="96px"
                         className="object-cover object-center"
@@ -150,7 +149,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
               <div className="flex items-center gap-2 border-b border-white/[0.08] pb-3">
                 <Layers className="w-5 h-5 text-purple-400" />
                 <h2 className="text-lg sm:text-xl font-black text-white font-gaming tracking-wide uppercase">
-                  Overview & Mechanics
+                  Tổng Quan & Lối Chơi
                 </h2>
               </div>
               <p className="text-sm sm:text-base text-gray-300 leading-relaxed whitespace-pre-line">
@@ -163,7 +162,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
               <div className="flex items-center gap-2 border-b border-white/[0.08] pb-3">
                 <Zap className="w-5 h-5 text-cyan-400" />
                 <h2 className="text-lg sm:text-xl font-black text-white font-gaming tracking-wide uppercase">
-                  Engine & Profile Highlights
+                  Đặc Điểm & Tối Ưu Cấu Hình
                 </h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
@@ -187,13 +186,13 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                 <div className="flex items-center gap-2 border-b border-white/[0.08] pb-3">
                   <Cpu className="w-5 h-5 text-purple-400" />
                   <h2 className="text-lg sm:text-xl font-black text-white font-gaming tracking-wide uppercase">
-                    System Hardware Requirements
+                    Yêu Cầu Cấu Hình Phần Cứng
                   </h2>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
                   <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                     <span className="text-gray-400 block text-[11px] uppercase tracking-wider mb-1">
-                      Operating System
+                      Hệ Điều Hành
                     </span>
                     <span className="text-white font-semibold">
                       {game.systemRequirements.os}
@@ -201,7 +200,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                   </div>
                   <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                     <span className="text-gray-400 block text-[11px] uppercase tracking-wider mb-1">
-                      Processor
+                      Bộ Xử Lý (CPU)
                     </span>
                     <span className="text-white font-semibold">
                       {game.systemRequirements.processor}
@@ -209,7 +208,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                   </div>
                   <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                     <span className="text-gray-400 block text-[11px] uppercase tracking-wider mb-1">
-                      Memory
+                      Bộ Nhớ (RAM)
                     </span>
                     <span className="text-white font-semibold">
                       {game.systemRequirements.memory}
@@ -217,7 +216,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                   </div>
                   <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                     <span className="text-gray-400 block text-[11px] uppercase tracking-wider mb-1">
-                      Graphics Card
+                      Card Đồ Họa (GPU)
                     </span>
                     <span className="text-white font-semibold">
                       {game.systemRequirements.graphics}
@@ -225,7 +224,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                   </div>
                   <div className="sm:col-span-2 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                     <span className="text-gray-400 block text-[11px] uppercase tracking-wider mb-1">
-                      Storage Space
+                      Dung Lượng Trống (Ổ Cứng)
                     </span>
                     <span className="text-white font-semibold">
                       {game.systemRequirements.storage}
@@ -243,13 +242,13 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
               <div>
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-950/70 border border-purple-500/40 text-purple-300 text-xs font-bold uppercase tracking-wider mb-2">
                   <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
-                  Direct Operator Access
+                  Kết Nối Trực Tiếp
                 </div>
                 <h3 className="text-xl font-black text-white font-gaming tracking-tight">
-                  GET ACCESS & SUPPORT
+                  NHẬN TƯ VẤN & TRẢI NGHIỆM
                 </h3>
                 <p className="text-xs text-gray-300 mt-1">
-                  Connect immediately with our team for configurations, inquiries, and platform access.
+                  Kết nối ngay với đội ngũ hỗ trợ để nhận cấu hình chuẩn và hỗ trợ kỹ thuật chi tiết.
                 </p>
               </div>
 
@@ -260,13 +259,13 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                 className="w-full py-4 px-6 rounded-xl font-black text-sm sm:text-base text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:shadow-[0_0_40px_rgba(0,240,255,0.8)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 uppercase tracking-wider font-gaming"
               >
                 <MessageCircle className="w-5 h-5 text-cyan-200" />
-                <span>Contact For This Game</span>
+                <span>LIÊN HỆ VỀ TỰA GAME NÀY</span>
                 <ExternalLink className="w-4 h-4 ml-1 opacity-80" />
               </button>
 
               <div className="pt-2 border-t border-white/[0.08]">
                 <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider block mb-2">
-                  Direct Channels:
+                  Kênh Trực Tiếp:
                 </span>
                 <SocialLinks
                   channels={game.contactChannels}
@@ -277,7 +276,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
               </div>
 
               <div className="bg-black/40 rounded-xl p-3 border border-white/[0.06] text-[11px] text-gray-400 flex items-center justify-between">
-                <span>Verified Domain:</span>
+                <span>Tên miền chính thức:</span>
                 <span className="text-cyan-300 font-mono font-bold">tnxmd.io.vn</span>
               </div>
             </div>
@@ -285,16 +284,16 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
             {/* Game Information Section */}
             <div className="rounded-2xl bg-[#0b0b14] border border-white/[0.08] p-5 space-y-3.5">
               <h4 className="text-xs font-bold text-gray-300 uppercase tracking-wider font-mono border-b border-white/[0.08] pb-2">
-                Game Information
+                Thông Tin Tựa Game
               </h4>
 
               <div className="space-y-2.5 text-xs">
                 <div className="flex items-center justify-between py-1 border-b border-white/[0.04]">
-                  <span className="text-gray-400">Category</span>
+                  <span className="text-gray-400">Thể loại</span>
                   <span className="text-purple-300 font-semibold">{game.category}</span>
                 </div>
                 <div className="flex items-center justify-between py-1 border-b border-white/[0.04]">
-                  <span className="text-gray-400">Supported Platforms</span>
+                  <span className="text-gray-400">Nền tảng hỗ trợ</span>
                   <div className="flex items-center gap-1">
                     {game.platforms.map((p) => (
                       <span
@@ -307,19 +306,19 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                   </div>
                 </div>
                 <div className="flex items-center justify-between py-1 border-b border-white/[0.04]">
-                  <span className="text-gray-400">Version</span>
+                  <span className="text-gray-400">Phiên bản</span>
                   <span className="text-cyan-400 font-mono font-bold">{game.version}</span>
                 </div>
                 <div className="flex items-center justify-between py-1 border-b border-white/[0.04]">
-                  <span className="text-gray-400">Release Cycle</span>
+                  <span className="text-gray-400">Thời gian cập nhật</span>
                   <span className="text-gray-200">{game.releaseDate}</span>
                 </div>
                 <div className="flex items-center justify-between py-1 border-b border-white/[0.04]">
-                  <span className="text-gray-400">Status</span>
+                  <span className="text-gray-400">Trạng thái</span>
                   <span className="text-emerald-400 font-bold">{game.status}</span>
                 </div>
                 <div className="flex items-center justify-between py-1">
-                  <span className="text-gray-400">Audience Views</span>
+                  <span className="text-gray-400">Lượt quan tâm</span>
                   <span className="text-gray-300 font-mono">{game.views || "12.4K"}</span>
                 </div>
               </div>
@@ -328,7 +327,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
             {/* Tags Pill Box */}
             <div className="rounded-2xl bg-[#0b0b14] border border-white/[0.08] p-5 space-y-3">
               <h4 className="text-xs font-bold text-gray-300 uppercase tracking-wider font-mono">
-                Tags & Descriptors
+                Từ Khóa & Thẻ Phân Loại
               </h4>
               <div className="flex items-center gap-1.5 flex-wrap">
                 {game.tags.map((tag) => (
@@ -348,7 +347,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
               className="w-full py-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-bold text-gray-300 hover:text-white flex items-center justify-center gap-2 transition-colors"
             >
               <ArrowLeft className="w-4 h-4 text-purple-400" />
-              <span>Back to All Titles</span>
+              <span>Quay Lại Danh Sách Game</span>
             </Link>
           </div>
         </div>
@@ -359,17 +358,17 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
             <div className="flex items-center justify-between mb-6">
               <div>
                 <span className="text-xs font-bold text-purple-400 uppercase tracking-wider">
-                  Recommended Titles
+                  Tựa Game Đề Xuất
                 </span>
                 <h3 className="text-xl sm:text-2xl font-black text-white font-gaming tracking-tight">
-                  SIMILAR GAME ARCHIVES
+                  CÁC TỰA GAME TƯƠNG TỰ
                 </h3>
               </div>
               <Link
                 href="/#catalog"
                 className="text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
               >
-                View Full Catalog →
+                Xem Toàn Bộ Kho Game →
               </Link>
             </div>
 

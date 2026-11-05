@@ -17,7 +17,7 @@ interface ContactModalProps {
 export const ContactModal: React.FC<ContactModalProps> = ({
   isOpen,
   onClose,
-  title = "Direct Support & Inquiries",
+  title = "Hỗ Trợ & Trao Đổi Trực Tiếp",
   gameTitle,
   channels = DEFAULT_CONTACT_CHANNELS,
 }) => {
@@ -43,9 +43,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
   const contactList = [
     {
-      name: "Telegram Channel & DM",
+      name: "Telegram Kênh & Tin Nhắn",
       tag: "@tnxmd_gaming",
-      badge: "Fastest 24/7",
+      badge: "Nhanh nhất 24/7",
       badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40",
       url: merged.telegram,
       icon: TelegramIcon,
@@ -53,9 +53,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
       btnClass: "bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500 hover:text-black",
     },
     {
-      name: "Discord Community",
+      name: "Discord Cộng Đồng",
       tag: "TNXMD Gaming Hub",
-      badge: "Community",
+      badge: "Cộng đồng",
       badgeColor: "bg-indigo-500/20 text-indigo-300 border-indigo-500/40",
       url: merged.discord,
       icon: DiscordIcon,
@@ -63,9 +63,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
       btnClass: "bg-indigo-500/10 text-indigo-300 hover:bg-indigo-500 hover:text-white",
     },
     {
-      name: "Zalo Official",
-      tag: "Hotline Support",
-      badge: "Direct VN",
+      name: "Zalo Chính Thức",
+      tag: "Hotline Hỗ Trợ",
+      badge: "Trực tiếp VN",
       badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/40",
       url: merged.zalo,
       icon: ZaloIcon,
@@ -73,9 +73,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
       btnClass: "bg-blue-500/10 text-blue-300 hover:bg-blue-500 hover:text-white",
     },
     {
-      name: "Facebook Page",
+      name: "Trang Facebook",
       tag: "TNXMD Gaming Network",
-      badge: "Updates",
+      badge: "Cập nhật",
       badgeColor: "bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/40",
       url: merged.facebook,
       icon: FacebookIcon,
@@ -98,7 +98,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         <button
           onClick={onClose}
           className="absolute top-5 right-5 p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/[0.08] transition-colors"
-          aria-label="Close modal"
+          aria-label="Đóng cửa sổ"
         >
           <X className="w-5 h-5" />
         </button>
@@ -107,18 +107,18 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         <div className="mb-6">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/40 text-purple-300 text-xs font-semibold uppercase tracking-wider mb-2.5">
             <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
-            Verified Channel: tnxmd.io.vn
+            Kênh Đã Xác Minh: tnxmd.io.vn
           </div>
           <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
             {title}
           </h3>
           {gameTitle && (
             <p className="text-sm text-cyan-300 font-medium mt-1">
-              Inquiry regarding: <span className="text-white font-semibold">{gameTitle}</span>
+              Liên hệ về tựa game: <span className="text-white font-semibold">{gameTitle}</span>
             </p>
           )}
           <p className="text-xs sm:text-sm text-gray-400 mt-1">
-            Choose your preferred support channel. Our team is active 24/7 to assist you.
+            Chọn kênh liên hệ bạn yêu thích. Đội ngũ kỹ thuật của chúng tôi túc trực 24/7 để phản hồi bạn.
           </p>
         </div>
 
@@ -158,7 +158,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 <div
                   className={`ml-3 shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${item.btnClass}`}
                 >
-                  <span>Connect</span>
+                  <span>Kết Nối</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </div>
               </a>
@@ -168,10 +168,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
         {/* Security & Verification Note */}
         <div className="mt-6 pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-gray-500">
-          <span>Official Domain: <strong className="text-gray-300">tnxmd.io.vn</strong></span>
+          <span>Tên miền chính thức: <strong className="text-gray-300">tnxmd.io.vn</strong></span>
           <span className="text-emerald-400 flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Support Online
+            Hỗ Trợ Đang Online
           </span>
         </div>
       </div>

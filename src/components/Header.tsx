@@ -31,7 +31,7 @@ export const Header: React.FC = () => {
                 </span>
               </div>
               <span className="text-[10px] text-gray-400 tracking-widest uppercase font-medium">
-                Premium Gaming Hub
+                Nền Tảng Gaming Cao Cấp
               </span>
             </div>
           </Link>
@@ -43,14 +43,14 @@ export const Header: React.FC = () => {
               className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
             >
               <Compass className="w-4 h-4 text-purple-400" />
-              Catalog
+              Kho Game
             </Link>
             <Link
               href="/#catalog"
               className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"
             >
               <Sparkles className="w-4 h-4 text-yellow-400" />
-              Featured Games
+              Game Nổi Bật
             </Link>
             <a
               href="#support"
@@ -60,7 +60,7 @@ export const Header: React.FC = () => {
               }}
               className="hover:text-cyan-400 transition-colors"
             >
-              Direct Support
+              Hỗ Trợ Trực Tiếp
             </a>
             <span className="text-xs px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-gray-400">
               tnxmd.io.vn
@@ -75,7 +75,7 @@ export const Header: React.FC = () => {
             >
               <div className="flex items-center gap-2 relative z-10">
                 <MessageSquare className="w-4 h-4 text-cyan-200" />
-                <span>Contact Channels</span>
+                <span>Kênh Liên Hệ</span>
               </div>
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             </button>
@@ -86,14 +86,14 @@ export const Header: React.FC = () => {
             <button
               onClick={() => setContactModalOpen(true)}
               className="p-2 rounded-lg bg-white/[0.05] border border-white/10 text-cyan-400"
-              aria-label="Contact channels"
+              aria-label="Kênh liên hệ"
             >
               <MessageSquare className="w-5 h-5" />
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-lg bg-white/[0.05] border border-white/10 text-gray-300 hover:text-white"
-              aria-label="Toggle menu"
+              aria-label="Đóng/Mở menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -109,15 +109,15 @@ export const Header: React.FC = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-xl bg-white/[0.03] text-gray-200 font-semibold text-sm hover:bg-white/[0.08]"
               >
-                <span>Game Catalog</span>
-                <span className="text-xs text-purple-400 font-mono">Live</span>
+                <span>Kho Game</span>
+                <span className="text-xs text-purple-400 font-mono">Trực tuyến</span>
               </Link>
               <Link
                 href="/#catalog"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between p-3 rounded-xl bg-white/[0.03] text-gray-200 font-semibold text-sm hover:bg-white/[0.08]"
               >
-                <span>Featured & Hot Titles</span>
+                <span>Tựa Game Nổi Bật & Hot</span>
                 <span className="text-xs text-yellow-400 font-mono">HOT</span>
               </Link>
               <button
@@ -129,14 +129,14 @@ export const Header: React.FC = () => {
               >
                 <span className="flex items-center gap-2">
                   <MessageSquare className="w-4 h-4 text-cyan-400" />
-                  Direct Contact Channels
+                  Kênh Liên Hệ Trực Tiếp
                 </span>
-                <span className="text-xs text-cyan-300">Open</span>
+                <span className="text-xs text-cyan-300">Mở</span>
               </button>
             </nav>
 
             <div className="pt-2 border-t border-white/[0.06]">
-              <span className="text-xs text-gray-400 block mb-2 font-medium">Quick Connect:</span>
+              <span className="text-xs text-gray-400 block mb-2 font-medium">Kết nối nhanh:</span>
               <SocialLinks size="sm" showLabel={true} />
             </div>
           </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sparkles, Shield, Zap, ArrowDown, ExternalLink, Headphones } from "lucide-react";
+import { Sparkles, Shield, Zap, ArrowDown, Headphones } from "lucide-react";
 import { ContactModal } from "./ContactModal";
 
 export const Hero: React.FC = () => {
@@ -29,7 +29,7 @@ export const Hero: React.FC = () => {
 
           {/* Main Title */}
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white uppercase font-gaming leading-[1.1]">
-            Trải nghiệm chơi game đỉnh cao <br className="hidden sm:inline" />
+            Trải nghiệm game đỉnh cao <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-300 to-cyan-400 drop-shadow-[0_0_35px_rgba(168,85,247,0.45)]">
               & Truy cập trực tiếp
             </span>
@@ -41,7 +41,7 @@ export const Hero: React.FC = () => {
               href="#catalog"
               className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 shadow-[0_0_25px_rgba(168,85,247,0.5)] hover:shadow-[0_0_35px_rgba(0,240,255,0.7)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
             >
-              <span>Explore Game Catalog</span>
+              <span>Khám Phá Kho Game</span>
               <ArrowDown className="w-4 h-4 text-cyan-200 animate-bounce" />
             </a>
 
@@ -50,7 +50,7 @@ export const Hero: React.FC = () => {
               className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-sm text-gray-200 bg-white/[0.05] border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.09] hover:text-white transition-all flex items-center justify-center gap-2"
             >
               <Headphones className="w-4 h-4 text-cyan-400" />
-              <span>Contact Support Team</span>
+              <span>Liên Hệ Đội Ngũ Hỗ Trợ</span>
             </button>
           </div>
 
@@ -59,25 +59,25 @@ export const Hero: React.FC = () => {
             <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.07] backdrop-blur-sm">
               <div className="flex items-center gap-2 text-cyan-400 mb-1">
                 <Zap className="w-4 h-4" />
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-300">Fast Deploy</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-gray-300">Kết Nối Siêu Tốc</span>
               </div>
-              <span className="text-base sm:text-lg font-black text-white">Direct Access</span>
+              <span className="text-base sm:text-lg font-black text-white">Truy Cập Trực Tiếp</span>
             </div>
 
             <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.07] backdrop-blur-sm">
               <div className="flex items-center gap-2 text-purple-400 mb-1">
                 <Shield className="w-4 h-4" />
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-300">Verified</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-gray-300">Đã Kiểm Định</span>
               </div>
-              <span className="text-base sm:text-lg font-black text-white">100% Tested</span>
+              <span className="text-base sm:text-lg font-black text-white">100% Ổn Định</span>
             </div>
 
             <div className="col-span-2 sm:col-span-1 p-3 rounded-xl bg-white/[0.03] border border-white/[0.07] backdrop-blur-sm">
               <div className="flex items-center gap-2 text-emerald-400 mb-1">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-300">Channels</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-gray-300">Kênh Trực Tuyến</span>
               </div>
-              <span className="text-base sm:text-lg font-black text-white">24/7 Available</span>
+              <span className="text-base sm:text-lg font-black text-white">Hỗ Trợ 24/7</span>
             </div>
           </div>
         </div>

@@ -1,14 +1,14 @@
 export type Platform = "PC" | "iOS" | "Android" | "Steam" | "PlayStation" | "Xbox";
 
 export type GameCategory =
-  | "All"
-  | "Action"
+  | "Tất cả"
+  | "Hành động"
   | "FPS"
-  | "RPG"
+  | "Nhập vai"
   | "MOBA"
-  | "Survival"
-  | "Strategy"
-  | "Mobile";
+  | "Sinh tồn"
+  | "Chiến thuật"
+  | "Di động";
 
 export interface ContactChannels {
   discord?: string;
@@ -42,7 +42,7 @@ export interface Game {
   version: string;
   releaseDate: string;
   developer: string;
-  status: "Active" | "Updated" | "Featured" | "Hot";
+  status: "Đang Hoạt Động" | "Mới Cập Nhật" | "Nổi Bật" | "HOT";
   features: string[];
   systemRequirements?: SystemRequirements;
   contactUrl?: string;

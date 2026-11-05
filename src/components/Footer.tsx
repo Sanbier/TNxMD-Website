@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Gamepad2, Shield, Heart, ExternalLink, ArrowUp, MessageSquare } from "lucide-react";
+import { Gamepad2, ArrowUp, MessageSquare } from "lucide-react";
 import { SocialLinks } from "./SocialLinks";
 import { ContactModal } from "./ContactModal";
 
@@ -39,18 +39,18 @@ export const Footer: React.FC = () => {
                     </span>
                   </div>
                   <span className="text-xs text-gray-400 font-medium">
-                    Next-Generation Gaming Architecture
+                    Kiến Trúc & Nền Tảng Gaming Thế Hệ Mới
                   </span>
                 </div>
               </div>
 
               <p className="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-md">
-                TNXMD provides an elite catalog of verified game profiles, configuration updates, and direct support integration. Zero cart friction, zero checkout gates, direct communication.
+                TNXMD cung cấp danh mục game chọn lọc với cấu hình tối ưu, kiểm định ổn định và kết nối hỗ trợ trực tiếp. Không giỏ hàng rườm rà, không cổng thanh toán, liên hệ trực tiếp.
               </p>
 
               <div className="pt-2">
                 <span className="text-xs font-semibold text-gray-300 uppercase tracking-wider block mb-2">
-                  Official Communication Channels:
+                  Kênh Liên Lạc Chính Thức:
                 </span>
                 <SocialLinks size="sm" showLabel={true} />
               </div>
@@ -59,17 +59,17 @@ export const Footer: React.FC = () => {
             {/* Col 2: Navigation */}
             <div className="space-y-3">
               <h4 className="text-xs font-bold text-gray-200 uppercase tracking-wider font-mono">
-                Platform Sections
+                Danh Mục Nền Tảng
               </h4>
               <ul className="space-y-2 text-xs text-gray-400">
                 <li>
                   <Link href="/" className="hover:text-cyan-400 transition-colors">
-                    Game Catalog Home
+                    Trang Chủ Kho Game
                   </Link>
                 </li>
                 <li>
                   <Link href="/#catalog" className="hover:text-cyan-400 transition-colors">
-                    Featured Titles
+                    Tựa Game Nổi Bật
                   </Link>
                 </li>
                 <li>
@@ -81,11 +81,11 @@ export const Footer: React.FC = () => {
                     }}
                     className="hover:text-cyan-400 transition-colors"
                   >
-                    24/7 Direct Contact
+                    Hỗ Trợ Trực Tiếp 24/7
                   </a>
                 </li>
                 <li>
-                  <span className="text-gray-500">Domain: tnxmd.io.vn</span>
+                  <span className="text-gray-500">Tên miền: tnxmd.io.vn</span>
                 </li>
               </ul>
             </div>
@@ -93,17 +93,17 @@ export const Footer: React.FC = () => {
             {/* Col 3: Direct Connect */}
             <div className="space-y-3">
               <h4 className="text-xs font-bold text-gray-200 uppercase tracking-wider font-mono">
-                Direct Contact
+                Liên Hệ Trực Tiếp
               </h4>
               <p className="text-xs text-gray-400 leading-relaxed">
-                Connect directly with our engineering and support leads for game inquiries and custom configs.
+                Kết nối trực tiếp với đội ngũ kỹ thuật để nhận thông tin cấu hình và hướng dẫn trải nghiệm mượt mà nhất.
               </p>
               <button
                 onClick={() => setContactOpen(true)}
                 className="w-full px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-cyan-600 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all flex items-center justify-center gap-2"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
-                <span>Launch Channel Selector</span>
+                <span>Mở Bảng Chọn Kênh Liên Hệ</span>
               </button>
             </div>
           </div>
@@ -111,14 +111,14 @@ export const Footer: React.FC = () => {
           {/* Bottom disclaimer & copyright */}
           <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
             <div className="flex items-center gap-1.5 text-center sm:text-left">
-              <span>© 2026 TNXMD (tnxmd.io.vn). All game trademarks belong to their respective publishers.</span>
+              <span>© 2026 TNXMD (tnxmd.io.vn). Mọi thương hiệu và bản quyền tựa game thuộc về các nhà phát hành tương ứng.</span>
             </div>
 
             <button
               onClick={scrollToTop}
               className="flex items-center gap-1.5 text-gray-400 hover:text-cyan-400 transition-colors"
             >
-              <span>Back to Top</span>
+              <span>Về Đầu Trang</span>
               <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>
