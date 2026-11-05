@@ -29,9 +29,9 @@ export const Hero: React.FC = () => {
 
           {/* Main Title */}
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white uppercase font-gaming leading-[1.1]">
-            Elite Gaming Catalog <br className="hidden sm:inline" />
+            Trải nghiệm chơi game đỉnh cao <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-300 to-cyan-400 drop-shadow-[0_0_35px_rgba(168,85,247,0.45)]">
-              & Direct Access
+              & Truy cập trực tiếp
             </span>
           </h1>
 
