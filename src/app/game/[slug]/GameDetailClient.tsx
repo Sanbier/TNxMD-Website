@@ -144,31 +144,60 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
               )}
             </div>
 
-            {/* Features Highlight Grid */}
-            <div className="rounded-2xl bg-[#0b0b14] border border-white/[0.08] p-5 sm:p-6 space-y-4 shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
-              <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
+            {/* Features Scrollable List (4 items visible, scrollable) */}
+            <div className="rounded-2xl bg-[#0b0b14] border border-white/[0.08] p-4 sm:p-5 space-y-3 shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
+              <div className="flex items-center justify-between border-b border-white/[0.08] pb-2.5">
                 <div className="flex items-center gap-2">
-                  <Zap className="w-5 h-5 text-cyan-400" />
-                  <h2 className="text-lg sm:text-xl font-black text-white font-gaming tracking-wide uppercase">
+                  <Zap className="w-5 h-5 text-cyan-400 animate-pulse" />
+                  <h2 className="text-base sm:text-lg font-black text-white font-gaming tracking-wide uppercase">
                     Các Chức Năng Đặc Biệt
                   </h2>
                 </div>
-                <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-purple-950/60 border border-purple-500/40 text-purple-300">
-                  {game.features.length} Chức Năng
-                </span>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-purple-950/70 border border-purple-500/40 text-purple-300">
+                    {game.features.length} Chức Năng
+                  </span>
+                  <span className="text-[10px] text-gray-400 hidden sm:inline">
+                    (Cuộn ↕ xem đủ)
+                  </span>
+                </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                {game.features.map((feat, idx) => (
-                  <div
-                    key={idx}
-                    className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-cyan-500/40 hover:bg-cyan-950/10 transition-colors flex items-start gap-3"
-                  >
-                    <CheckCircle className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                    <span className="text-xs sm:text-sm text-gray-200 font-medium">
-                      {feat}
+
+              {/* Scrollable list showing 4 items at a time */}
+              <div className="relative">
+                <div className="max-h-[220px] overflow-y-auto pr-1.5 space-y-2 scrollbar-thin scrollbar-thumb-purple-600/50 hover:scrollbar-thumb-cyan-400/60">
+                  {game.features.map((feat, idx) => (
+                    <div
+                      key={idx}
+                      className="group/item p-2.5 px-3.5 rounded-xl bg-white/[0.025] hover:bg-white/[0.06] border border-white/[0.06] hover:border-cyan-400/50 transition-all duration-200 flex items-center justify-between gap-3"
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <span className="text-[10px] font-mono font-bold text-gray-400 group-hover/item:text-cyan-400 w-5 text-right shrink-0">
+                          {String(idx + 1).padStart(2, "0")}
+                        </span>
+                        <CheckCircle className="w-4 h-4 text-cyan-400 shrink-0" />
+                        <span className="text-xs sm:text-sm text-gray-200 font-semibold truncate group-hover/item:text-white">
+                          {feat}
+                        </span>
+                      </div>
+                      <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 shrink-0 font-bold">
+                        BẬT
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Subtle bottom indicator */}
+                {game.features.length > 4 && (
+                  <div className="mt-2.5 pt-2 border-t border-white/[0.04] flex items-center justify-between text-[11px] text-gray-400">
+                    <span className="flex items-center gap-1 text-cyan-300/80 text-[11px]">
+                      <span>↓ Cuộn chuột hoặc vuốt để xem tiếp các chức năng</span>
+                    </span>
+                    <span className="font-mono text-[10px] text-gray-400">
+                      Hiển thị 4/{game.features.length}
                     </span>
                   </div>
-                ))}
+                )}
               </div>
             </div>
 
