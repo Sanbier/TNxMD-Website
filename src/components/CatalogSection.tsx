@@ -11,21 +11,13 @@ const ALL_PLATFORMS: Platform[] = ["iOS", "iPadOS"];
 export const CatalogSection: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("Tất cả");
-  const [selectedPlatform, setSelectedPlatform] = useState<string>("Tất cả");
   const [visibleCount, setVisibleCount] = useState<number>(6);
 
-  // Filter games based on search, category, and platform
+  // Filter games based on search and category
   const filteredGames = useMemo(() => {
     return GAMES.filter((game) => {
       // Category filter
       if (selectedCategory !== "Tất cả" && game.category !== selectedCategory) {
-        return false;
-      }
-      // Platform filter
-      if (
-        selectedPlatform !== "Tất cả" &&
-        !game.platforms.includes(selectedPlatform as Platform)
-      ) {
         return false;
       }
       // Search query
@@ -39,7 +31,7 @@ export const CatalogSection: React.FC = () => {
       }
       return true;
     });
-  }, [searchQuery, selectedCategory, selectedPlatform]);
+  }, [searchQuery, selectedCategory]);
 
   const displayedGames = filteredGames.slice(0, visibleCount);
   const hasMore = visibleCount < filteredGames.length;
@@ -47,7 +39,6 @@ export const CatalogSection: React.FC = () => {
   const handleResetFilters = () => {
     setSearchQuery("");
     setSelectedCategory("Tất cả");
-    setSelectedPlatform("Tất cả");
   };
 
   return (
@@ -126,22 +117,10 @@ export const CatalogSection: React.FC = () => {
               <Apple className="w-3.5 h-3.5 text-cyan-400" />
               Hệ Điều Hành Apple:
             </span>
-            {["Tất cả", ...ALL_PLATFORMS].map((plt) => {
-              const active = selectedPlatform === plt;
-              return (
-                <button
-                  key={plt}
-                  onClick={() => setSelectedPlatform(plt)}
-                  className={`shrink-0 px-3 py-1 rounded-md text-[11px] font-semibold transition-all ${
-                    active
-                      ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-[0_0_10px_rgba(0,240,255,0.25)]"
-                      : "bg-white/[0.02] text-gray-400 hover:text-gray-200 border border-white/[0.05]"
-                  }`}
-                >
-                  {plt}
-                </button>
-              );
-            })}
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider bg-cyan-950/80 border border-cyan-400 text-cyan-300 shadow-[0_0_15px_rgba(0,240,255,0.6)] animate-pulse">
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+              iOS
+            </span>
           </div>
         </div>
 
