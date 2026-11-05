@@ -35,13 +35,8 @@ export const Hero: React.FC = () => {
             </span>
           </h1>
 
-          {/* Subtitle */}
-          <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto">
-            Browse our curated library of top-tier gaming titles with verified specs, high-frame-rate profiles, and instant contact channels via Discord, Telegram, Zalo, and Facebook.
-          </p>
-
           {/* CTA Buttons */}
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
             <a
               href="#catalog"
               className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 shadow-[0_0_25px_rgba(168,85,247,0.5)] hover:shadow-[0_0_35px_rgba(0,240,255,0.7)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
