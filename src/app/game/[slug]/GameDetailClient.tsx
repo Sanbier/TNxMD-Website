@@ -23,6 +23,8 @@ import { Game } from "@/types/game";
 import { Badge } from "@/components/Badge";
 import { ContactModal } from "@/components/ContactModal";
 import { SocialLinks } from "@/components/SocialLinks";
+import { ImageLightbox } from "@/components/ImageLightbox";
+import { useToast } from "@/components/Toast";
 
 interface GameDetailClientProps {
   game: Game;
@@ -37,6 +39,10 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
     game.gallery && game.gallery.length > 0 ? game.gallery[0] : game.coverImage
   );
   const [contactOpen, setContactOpen] = useState<boolean>(false);
+  const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
+  const { showToast } = useToast();
+  const allImages = game.gallery && game.gallery.length > 0 ? game.gallery : [game.coverImage];
+  const activeImageIndex = Math.max(0, allImages.indexOf(selectedImage));
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const scrollCarousel = (direction: "left" | "right") => {
@@ -119,16 +125,22 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left 2 Cols: Gallery, Description, Features, Specs */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Interactive Image Gallery */}
+            {/* Interactive Image Gallery with Lucian Touch Lightbox (Element #061) */}
             <div className="rounded-2xl bg-[#0b0b14] border border-white/[0.08] p-4 sm:p-5 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
-              <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden bg-black mb-3">
+              <div
+                onClick={() => setLightboxOpen(true)}
+                className="relative w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden bg-black mb-3 cursor-zoom-in group/img"
+              >
                 <Image
                   src={selectedImage}
                   alt={game.title}
                   fill
                   sizes="(max-width: 1024px) 100vw, 800px"
-                  className="object-cover object-center transition-all duration-300"
+                  className="object-cover object-center transition-all duration-300 group-hover/img:scale-105"
                 />
+                <div className="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md text-[11px] font-semibold text-cyan-300 border border-white/10 flex items-center gap-1.5 shadow-md">
+                  <span>🔍 Chạm xem ảnh toàn màn hình</span>
+                </div>
               </div>
 
               {/* Thumbnails */}
@@ -232,6 +244,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                 href={game.contactUrl || "https://apps.apple.com"}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => showToast("Đang mở App Store...", "Chuyển tiếp đến trang chính thức", "info")}
                 className="w-full py-4 px-6 rounded-xl font-bold text-sm sm:text-base text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:shadow-[0_0_40px_rgba(0,240,255,0.8)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 uppercase tracking-wider font-gaming"
               >
                 <Apple className="w-5 h-5 text-white" />
@@ -379,6 +392,14 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
           <span>Tư Vấn</span>
         </button>
       </div>
+
+            <ImageLightbox
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        images={allImages}
+        initialIndex={activeImageIndex}
+        title={game.title}
+      />
 
       <ContactModal
         isOpen={contactOpen}

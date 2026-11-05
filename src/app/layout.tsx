@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileBottomDock } from "@/components/MobileBottomDock";
+import { ToastProvider } from "@/components/Toast";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -66,10 +67,12 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-[#07070a] pb-20 sm:pb-0 text-gray-100 flex flex-col antialiased selection:bg-purple-600 selection:text-white bg-ambient-grid">
-        <Header />
-        {children}
-        <Footer />
-        <MobileBottomDock />
+        <ToastProvider>
+          <Header />
+          {children}
+          <Footer />
+          <MobileBottomDock />
+        </ToastProvider>
       </body>
     </html>
   );
