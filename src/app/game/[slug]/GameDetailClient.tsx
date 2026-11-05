@@ -9,7 +9,6 @@ import {
   Smartphone,
   CheckCircle,
   ExternalLink,
-  Cpu,
   Layers,
   Calendar,
   Eye,
@@ -88,8 +87,15 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
             {game.title}
           </h1>
 
-          <div className="flex items-center gap-4 mt-2 text-xs sm:text-sm text-gray-300 flex-wrap">
+          <div className="flex items-center gap-3.5 mt-2 text-xs sm:text-sm text-gray-300 flex-wrap">
             <span className="text-purple-300 font-semibold">{game.genre}</span>
+            <span>•</span>
+            <span className="text-gray-300 font-medium flex items-center gap-1.5">
+              <span>Version App Store:</span>
+              <span className="font-mono text-cyan-300 font-bold bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/30">
+                {game.version}
+              </span>
+            </span>
             <span>•</span>
             <span className="text-gray-400">Nhà phát triển: <strong className="text-gray-200">{game.developer}</strong></span>
             <span>•</span>
@@ -195,60 +201,6 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                 )}
               </div>
             </div>
-
-            {/* System Requirements Section */}
-            {game.systemRequirements && (
-              <div className="rounded-2xl bg-[#0b0b14] border border-white/[0.08] p-5 sm:p-6 space-y-4">
-                <div className="flex items-center gap-2 border-b border-white/[0.08] pb-3">
-                  <Cpu className="w-5 h-5 text-purple-400" />
-                  <h2 className="text-lg sm:text-xl font-black text-white font-gaming tracking-wide uppercase">
-                    Yêu Cầu Cấu Hình Phần Cứng
-                  </h2>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
-                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                    <span className="text-gray-400 block text-[11px] uppercase tracking-wider mb-1">
-                      Hệ Điều Hành
-                    </span>
-                    <span className="text-white font-semibold">
-                      {game.systemRequirements.os}
-                    </span>
-                  </div>
-                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                    <span className="text-gray-400 block text-[11px] uppercase tracking-wider mb-1">
-                      Bộ Xử Lý (CPU)
-                    </span>
-                    <span className="text-white font-semibold">
-                      {game.systemRequirements.processor}
-                    </span>
-                  </div>
-                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                    <span className="text-gray-400 block text-[11px] uppercase tracking-wider mb-1">
-                      Bộ Nhớ (RAM)
-                    </span>
-                    <span className="text-white font-semibold">
-                      {game.systemRequirements.memory}
-                    </span>
-                  </div>
-                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                    <span className="text-gray-400 block text-[11px] uppercase tracking-wider mb-1">
-                      Card Đồ Họa (GPU)
-                    </span>
-                    <span className="text-white font-semibold">
-                      {game.systemRequirements.graphics}
-                    </span>
-                  </div>
-                  <div className="sm:col-span-2 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                    <span className="text-gray-400 block text-[11px] uppercase tracking-wider mb-1">
-                      Dung Lượng Trống (Ổ Cứng)
-                    </span>
-                    <span className="text-white font-semibold">
-                      {game.systemRequirements.storage}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Right Col: Prominent Contact Card & Meta Info */}

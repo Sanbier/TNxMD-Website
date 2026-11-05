@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Gamepad2, Menu, X, MessageSquare, Sparkles, Compass } from "lucide-react";
+import Image from "next/image";
+import { Menu, X, MessageSquare, Sparkles, Compass } from "lucide-react";
 import { ContactModal } from "./ContactModal";
 import { SocialLinks } from "./SocialLinks";
 
@@ -16,10 +17,15 @@ export const Header: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-3">
-            <div className="relative flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-purple-600 via-indigo-600 to-cyan-500 p-0.5 shadow-[0_0_20px_rgba(168,85,247,0.4)] group-hover:shadow-[0_0_25px_rgba(0,240,255,0.6)] transition-all">
-              <div className="w-full h-full bg-[#0a0a12] rounded-[10px] flex items-center justify-center">
-                <Gamepad2 className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400 group-hover:text-purple-300 transition-colors" />
-              </div>
+            <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(0,240,255,0.4)] group-hover:shadow-[0_0_25px_rgba(0,240,255,0.7)] group-hover:scale-105 transition-all shrink-0 border border-cyan-400/40">
+              <Image
+                src="/logo.png"
+                alt="TNXMD Logo"
+                fill
+                priority
+                sizes="44px"
+                className="object-cover"
+              />
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">

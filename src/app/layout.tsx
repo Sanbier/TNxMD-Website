@@ -24,7 +24,8 @@ export const metadata: Metadata = {
   creator: "TNXMD",
   publisher: "TNXMD",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/logo.png",
+    apple: "/logo.png",
   },
   openGraph: {
     title: "TNXMD | Elite Gaming Catalog & Direct Support",

@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Gamepad2, ArrowUp, MessageSquare } from "lucide-react";
+import Image from "next/image";
+import { ArrowUp, MessageSquare } from "lucide-react";
 import { SocialLinks } from "./SocialLinks";
 import { ContactModal } from "./ContactModal";
 
@@ -24,10 +25,14 @@ export const Footer: React.FC = () => {
             {/* Col 1: Brand & Domain */}
             <div className="md:col-span-2 space-y-4">
               <div className="flex items-center gap-3">
-                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 via-indigo-600 to-cyan-500 p-0.5 shadow-[0_0_15px_rgba(168,85,247,0.4)]">
-                  <div className="w-full h-full bg-[#0a0a12] rounded-[10px] flex items-center justify-center">
-                    <Gamepad2 className="w-5 h-5 text-cyan-400" />
-                  </div>
+                <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(0,240,255,0.4)] shrink-0 border border-cyan-400/40">
+                  <Image
+                    src="/logo.png"
+                    alt="TNXMD Logo"
+                    fill
+                    sizes="44px"
+                    className="object-cover"
+                  />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
