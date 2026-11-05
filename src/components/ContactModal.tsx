@@ -44,7 +44,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   const contactList = [
     {
       name: "Telegram Kênh & Tin Nhắn",
-      tag: "@tnxmd_gaming",
+      tag: "@tnxmd",
       badge: "Nhanh nhất 24/7",
       badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40",
       url: merged.telegram,
