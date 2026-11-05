@@ -58,14 +58,11 @@ export const CatalogSection: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-purple-400 mb-1">
               <Gamepad className="w-4 h-4 text-cyan-400" />
-              <span>Thư Viện Game Toàn Diện</span>
+              <span>Thư Viện Game :</span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white font-gaming tracking-tight">
-              DANH SÁCH GAME & NỀN TẢNG
+              DANH SÁCH NHỮNG GAME MOD
             </h2>
-            <p className="text-xs sm:text-sm text-gray-400 mt-1">
-              Tổng hợp các bản phát hành hiệu năng cao với cấu hình chuẩn và liên hệ trực tiếp.
-            </p>
           </div>
 
           <div className="flex items-center gap-2 self-start md:self-auto text-xs font-mono text-gray-400 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10">

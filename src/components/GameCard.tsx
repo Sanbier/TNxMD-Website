@@ -73,18 +73,14 @@ export const GameCard: React.FC<GameCardProps> = ({ game }) => {
           {/* Right: Condensed Game Info */}
           <div className="flex-1 flex flex-col justify-between min-w-0">
             <div>
-              {/* Category, Genre & iOS badge row */}
-              <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap mb-1.5">
-                <Badge variant="category" size="sm">
-                  {game.category}
-                </Badge>
-                <span className="text-[11px] text-purple-300/80 font-medium truncate max-w-[140px] sm:max-w-none">
-                  {game.genre}
-                </span>
-                <span className="text-gray-600 hidden sm:inline">•</span>
-                <span className="inline-flex items-center gap-1 rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-white/[0.05] border border-white/10 text-cyan-300">
+              {/* iOS badge first, followed by genre */}
+              <div className="flex items-center gap-2 flex-wrap mb-1.5">
+                <span className="inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-cyan-950/70 border border-cyan-500/50 text-cyan-300 shadow-[0_0_10px_rgba(0,240,255,0.25)]">
                   <Smartphone className="w-3 h-3 text-cyan-400" />
                   iOS
+                </span>
+                <span className="text-xs text-purple-300/90 font-medium truncate max-w-[200px] sm:max-w-none">
+                  {game.genre}
                 </span>
               </div>
 
@@ -94,11 +90,6 @@ export const GameCard: React.FC<GameCardProps> = ({ game }) => {
                   {game.title}
                 </h3>
               </Link>
-
-              {/* Condensed Short Description (trimmed, maximum 2 lines) */}
-              <p className="mt-1 text-xs text-gray-400 leading-relaxed line-clamp-1 sm:line-clamp-2">
-                {game.shortDescription}
-              </p>
             </div>
 
             {/* Bottom Bar: Metadata & Action Buttons */}
