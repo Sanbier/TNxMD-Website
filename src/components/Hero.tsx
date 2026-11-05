@@ -22,7 +22,7 @@ export const Hero: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/60 border border-purple-500/40 shadow-[0_0_20px_rgba(168,85,247,0.3)] mb-6 animate-pulse">
             <span className="w-2 h-2 rounded-full bg-cyan-400" />
             <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-cyan-300 to-white">
-              Official Hub: tnxmd.io.vn
+              Cổng Mua/Bán Uy Tín : TNxMD.IO.VN
             </span>
             <Sparkles className="w-3.5 h-3.5 text-yellow-400" />
           </div>
