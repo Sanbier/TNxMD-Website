@@ -257,66 +257,6 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
               </div>
             </div>
 
-            {/* Game Information Section */}
-            <div className="rounded-2xl bg-[#0b0b14] border border-white/[0.08] p-5 space-y-3.5">
-              <h4 className="text-xs font-bold text-gray-300 uppercase tracking-wider font-mono border-b border-white/[0.08] pb-2">
-                Thông Tin Tựa Game
-              </h4>
-
-              <div className="space-y-2.5 text-xs">
-                <div className="flex items-center justify-between py-1 border-b border-white/[0.04]">
-                  <span className="text-gray-400">Thể loại</span>
-                  <span className="text-purple-300 font-semibold">{game.category}</span>
-                </div>
-                <div className="flex items-center justify-between py-1 border-b border-white/[0.04]">
-                  <span className="text-gray-400">Nền tảng hỗ trợ</span>
-                  <div className="flex items-center gap-1">
-                    {game.platforms.map((p) => (
-                      <span
-                        key={p}
-                        className="px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.08] text-gray-300 font-medium text-[10px]"
-                      >
-                        {p}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex items-center justify-between py-1 border-b border-white/[0.04]">
-                  <span className="text-gray-400">Phiên bản</span>
-                  <span className="text-cyan-400 font-mono font-bold">{game.version}</span>
-                </div>
-                <div className="flex items-center justify-between py-1 border-b border-white/[0.04]">
-                  <span className="text-gray-400">Thời gian cập nhật</span>
-                  <span className="text-gray-200">{game.releaseDate}</span>
-                </div>
-                <div className="flex items-center justify-between py-1 border-b border-white/[0.04]">
-                  <span className="text-gray-400">Trạng thái</span>
-                  <span className="text-emerald-400 font-bold">{game.status}</span>
-                </div>
-                <div className="flex items-center justify-between py-1">
-                  <span className="text-gray-400">Lượt quan tâm</span>
-                  <span className="text-gray-300 font-mono">{game.views || "12.4K"}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Tags Pill Box */}
-            <div className="rounded-2xl bg-[#0b0b14] border border-white/[0.08] p-5 space-y-3">
-              <h4 className="text-xs font-bold text-gray-300 uppercase tracking-wider font-mono">
-                Từ Khóa & Thẻ Phân Loại
-              </h4>
-              <div className="flex items-center gap-1.5 flex-wrap">
-                {game.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[11px] px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-gray-300 hover:text-cyan-300 hover:border-cyan-500/40 transition-colors"
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
             {/* Back to Catalog Bottom Button */}
             <Link
               href="/#catalog"
