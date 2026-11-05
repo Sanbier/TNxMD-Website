@@ -11,7 +11,6 @@ export type GameCategory =
   | "Di động";
 
 export interface ContactChannels {
-  discord?: string;
   telegram?: string;
   zalo?: string;
   facebook?: string;

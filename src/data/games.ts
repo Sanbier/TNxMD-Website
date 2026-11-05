@@ -1,9 +1,8 @@
 import { Game } from "@/types/game";
 
 export const DEFAULT_CONTACT_CHANNELS = {
-  discord: "https://discord.gg/tnxmd",
   telegram: "https://t.me/tnxmd",
-  zalo: "https://zalo.me/0987654321",
+  zalo: "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
   facebook: "https://facebook.com/tnxmd.gaming",
 };
 
@@ -65,8 +64,7 @@ export const GAMES: Game[] = [
     contactUrl: "https://apps.apple.com/us/app/ballistic-hero-vng/id6739907881?l=vi",
     contactChannels: {
       telegram: "https://t.me/tnxmd",
-      discord: "https://discord.gg/tnxmd",
-      zalo: "https://zalo.me/0987654321",
+      zalo: "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
       facebook: "https://facebook.com/tnxmd.gaming",
     },
     tags: ["Ballistic Hero", "VNG", "Bắn Súng Tọa Độ", "iOS Exclusive", "Gunny"],
@@ -120,8 +118,7 @@ export const GAMES: Game[] = [
     contactUrl: "https://apps.apple.com/vn/app/tokyo-ghoul-th%E1%BB%A9c-t%E1%BB%89nh/id6751103382",
     contactChannels: {
       telegram: "https://t.me/tnxmd",
-      discord: "https://discord.gg/tnxmd",
-      zalo: "https://zalo.me/0987654321",
+      zalo: "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
       facebook: "https://facebook.com/tnxmd.gaming",
     },
     tags: ["Tokyo Ghoul", "Anime 3D", "Nhập Vai", "iOS Exclusive", "Apple"],
@@ -165,8 +162,7 @@ export const GAMES: Game[] = [
     contactUrl: "https://apps.apple.com/vn/app/garena-li%C3%AAn-qu%C3%A2n-mobile/id1150301244",
     contactChannels: {
       telegram: "https://t.me/tnxmd",
-      discord: "https://discord.gg/tnxmd",
-      zalo: "https://zalo.me/0987654321",
+      zalo: "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
       facebook: "https://facebook.com/tnxmd.gaming",
     },
     tags: ["MOBA", "5v5", "Esports", "Liên Quân", "iOS"],
@@ -209,7 +205,7 @@ export const GAMES: Game[] = [
     },
     contactUrl: "https://apps.apple.com/vn/app/pubg-mobile-vn/id1438396625",
     contactChannels: {
-      zalo: "https://zalo.me/0987654321",
+      zalo: "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
       telegram: "https://t.me/tnxmd",
       facebook: "https://facebook.com/tnxmd.gaming",
     },
@@ -253,9 +249,8 @@ export const GAMES: Game[] = [
     },
     contactUrl: "https://apps.apple.com/vn/app/genshin-impact/id1517783697",
     contactChannels: {
-      discord: "https://discord.gg/tnxmd",
       telegram: "https://t.me/tnxmd",
-      zalo: "https://zalo.me/0987654321",
+      zalo: "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
     },
     tags: ["Thế Giới Mở", "Anime", "Hành Động", "iOS 120FPS", "iPad"],
     views: "54.2K",
@@ -298,7 +293,6 @@ export const GAMES: Game[] = [
     contactChannels: {
       facebook: "https://facebook.com/tnxmd.gaming",
       telegram: "https://t.me/tnxmd",
-      discord: "https://discord.gg/tnxmd",
     },
     tags: ["MOBA", "Chiến Thuật", "5v5", "Đối Kháng", "iOS"],
     views: "41.1K",
@@ -340,7 +334,6 @@ export const GAMES: Game[] = [
     contactUrl: "https://apps.apple.com/vn/app/call-of-duty-warzone-mobile/id1638368439",
     contactChannels: {
       telegram: "https://t.me/tnxmd",
-      discord: "https://discord.gg/tnxmd",
       facebook: "https://facebook.com/tnxmd.gaming",
     },
     tags: ["FPS", "Warzone", "Sinh Tồn", "iOS Pro", "Verdansk"],
@@ -382,9 +375,8 @@ export const GAMES: Game[] = [
     },
     contactUrl: "https://apps.apple.com/vn/app/honkai-star-rail/id1599719154",
     contactChannels: {
-      discord: "https://discord.gg/tnxmd",
       telegram: "https://t.me/tnxmd",
-      zalo: "https://zalo.me/0987654321",
+      zalo: "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
     },
     tags: ["Theo Lượt", "Nhập Vai", "Vũ Trụ", "Anime", "iOS"],
     views: "39.5K",
@@ -425,9 +417,8 @@ export const GAMES: Game[] = [
     },
     contactUrl: "https://apps.apple.com/vn/app/free-fire-max/id1536531981",
     contactChannels: {
-      discord: "https://discord.gg/tnxmd",
       telegram: "https://t.me/tnxmd",
-      zalo: "https://zalo.me/0987654321",
+      zalo: "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
     },
     tags: ["Sinh Tồn", "Free Fire MAX", "Kéo Tâm", "iOS", "iPhone"],
     views: "48.7K",

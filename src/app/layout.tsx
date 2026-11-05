@@ -10,15 +10,14 @@ export const metadata: Metadata = {
     template: "%s | TNxMD",
   },
   description:
-    "TNxMD is a premium dark gaming catalog featuring verified high-performance title profiles, 24/7 direct operator contact via Discord, Telegram, Zalo, and Facebook.",
+    "TNxMD is a premium dark gaming catalog featuring verified high-performance title profiles, 24/7 direct operator contact via Telegram, Zalo, and Facebook.",
   keywords: [
     "TNxMD",
     "tnxmd.io.vn",
     "gaming catalog",
     "game library",
     "tactical gaming",
-    "discord gaming",
-    "telegram gaming support",
+        "telegram gaming support",
   ],
   authors: [{ name: "TNxMD Engineering Team" }],
   creator: "TNxMD",

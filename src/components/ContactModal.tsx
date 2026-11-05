@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { X, Send, MessageSquare, ExternalLink, ShieldCheck } from "lucide-react";
 import { ContactChannels } from "@/types/game";
 import { DEFAULT_CONTACT_CHANNELS } from "@/data/games";
-import { DiscordIcon, TelegramIcon, ZaloIcon, FacebookIcon } from "./SocialLinks";
+import { TelegramIcon, ZaloIcon, FacebookIcon } from "./SocialLinks";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -53,18 +53,8 @@ export const ContactModal: React.FC<ContactModalProps> = ({
       btnClass: "bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500 hover:text-black",
     },
     {
-      name: "Discord Cộng Đồng",
-      tag: "TNXMD Gaming Hub",
-      badge: "Cộng đồng",
-      badgeColor: "bg-indigo-500/20 text-indigo-300 border-indigo-500/40",
-      url: merged.discord,
-      icon: DiscordIcon,
-      hoverClass: "hover:border-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.35)]",
-      btnClass: "bg-indigo-500/10 text-indigo-300 hover:bg-indigo-500 hover:text-white",
-    },
-    {
       name: "Zalo Chính Thức",
-      tag: "Hotline Hỗ Trợ",
+      tag: "Nhóm Hỗ Trợ Zalo",
       badge: "Trực tiếp VN",
       badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/40",
       url: merged.zalo,
@@ -74,7 +64,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     },
     {
       name: "Trang Facebook",
-      tag: "TNXMD Gaming Network",
+      tag: "TNxMD Gaming Network",
       badge: "Cập nhật",
       badgeColor: "bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/40",
       url: merged.facebook,
