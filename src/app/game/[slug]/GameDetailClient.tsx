@@ -6,7 +6,6 @@ import Link from "next/link";
 import {
   ArrowLeft,
   Star,
-  Monitor,
   Smartphone,
   CheckCircle,
   ExternalLink,

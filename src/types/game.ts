@@ -1,4 +1,4 @@
-export type Platform = "PC" | "iOS" | "Android" | "Steam" | "PlayStation" | "Xbox";
+export type Platform = "iOS" | "iPadOS";
 
 export type GameCategory =
   | "Tất cả"

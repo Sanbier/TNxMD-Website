@@ -6,7 +6,6 @@ import type { Metadata } from "next";
 import {
   ArrowLeft,
   Star,
-  Monitor,
   Smartphone,
   CheckCircle,
   ExternalLink,

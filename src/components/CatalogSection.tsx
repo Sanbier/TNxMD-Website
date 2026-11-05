@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { Search, Filter, Sparkles, X, ChevronDown, Layers, Gamepad } from "lucide-react";
+import { Search, Filter, Sparkles, X, ChevronDown, Layers, Gamepad, Apple } from "lucide-react";
 import { GAMES, CATEGORIES } from "@/data/games";
 import { GameCard } from "./GameCard";
 import { GameCategory, Platform } from "@/types/game";
 
-const ALL_PLATFORMS: Platform[] = ["PC", "iOS", "Android", "Steam", "PlayStation", "Xbox"];
+const ALL_PLATFORMS: Platform[] = ["iOS", "iPadOS"];
 
 export const CatalogSection: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -125,9 +125,9 @@ export const CatalogSection: React.FC = () => {
 
           {/* Platform Selector Row */}
           <div className="pt-2 border-t border-white/[0.06] flex items-center gap-2 overflow-x-auto pb-1">
-            <span className="text-xs font-bold text-gray-400 uppercase tracking-wider shrink-0 flex items-center gap-1 mr-1">
-              <Layers className="w-3.5 h-3.5 text-cyan-400" />
-              Nền Tảng:
+            <span className="text-xs font-bold text-gray-400 uppercase tracking-wider shrink-0 flex items-center gap-1.5 mr-1">
+              <Apple className="w-3.5 h-3.5 text-cyan-400" />
+              Hệ Điều Hành Apple:
             </span>
             {["Tất cả", ...ALL_PLATFORMS].map((plt) => {
               const active = selectedPlatform === plt;
