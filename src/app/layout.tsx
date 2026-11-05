@@ -6,13 +6,13 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://tnxmd.io.vn"),
   title: {
-    default: "TNXMD | Elite Gaming Catalog & Direct Support",
-    template: "%s | TNXMD",
+    default: "TNxMD | Elite Gaming Catalog & Direct Support",
+    template: "%s | TNxMD",
   },
   description:
-    "TNXMD is a premium dark gaming catalog featuring verified high-performance title profiles, 24/7 direct operator contact via Discord, Telegram, Zalo, and Facebook.",
+    "TNxMD is a premium dark gaming catalog featuring verified high-performance title profiles, 24/7 direct operator contact via Discord, Telegram, Zalo, and Facebook.",
   keywords: [
-    "TNXMD",
+    "TNxMD",
     "tnxmd.io.vn",
     "gaming catalog",
     "game library",
@@ -20,19 +20,19 @@ export const metadata: Metadata = {
     "discord gaming",
     "telegram gaming support",
   ],
-  authors: [{ name: "TNXMD Engineering Team" }],
-  creator: "TNXMD",
-  publisher: "TNXMD",
+  authors: [{ name: "TNxMD Engineering Team" }],
+  creator: "TNxMD",
+  publisher: "TNxMD",
   icons: {
     icon: "/logo.png",
     apple: "/logo.png",
   },
   openGraph: {
-    title: "TNXMD | Elite Gaming Catalog & Direct Support",
+    title: "TNxMD | Elite Gaming Catalog & Direct Support",
     description:
       "Explore verified game titles, high-performance profiles, and instant direct access channels at tnxmd.io.vn.",
     url: "https://tnxmd.io.vn",
-    siteName: "TNXMD",
+    siteName: "TNxMD",
     type: "website",
     locale: "en_US",
   },

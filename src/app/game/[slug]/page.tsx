@@ -74,8 +74,8 @@ export default async function GameDetailPage({ params }: Props) {
     notFound();
   }
 
-  // Related games from same category or featured
-  const relatedGames = GAMES.filter((g) => g.id !== game.id).slice(0, 3);
+  // Related games from other titles
+  const relatedGames = GAMES.filter((g) => g.id !== game.id);
 
   return (
     <GameDetailClient game={game} relatedGames={relatedGames} />

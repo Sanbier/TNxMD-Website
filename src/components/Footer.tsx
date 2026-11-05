@@ -25,19 +25,19 @@ export const Footer: React.FC = () => {
             {/* Col 1: Brand & Domain */}
             <div className="md:col-span-2 space-y-4">
               <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(0,240,255,0.4)] shrink-0 border border-cyan-400/40">
+                <div className="relative w-10 h-10 sm:w-11 sm:h-11 drop-shadow-[0_0_12px_rgba(0,240,255,0.45)] shrink-0">
                   <Image
                     src="/logo.png"
-                    alt="TNXMD Logo"
+                    alt="TNxMD Logo"
                     fill
                     sizes="44px"
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="text-xl font-black text-white font-gaming tracking-wider">
-                      TNXMD
+                      TN<span className="text-cyan-400">x</span>MD
                     </span>
                     <span className="text-[10px] px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 font-bold uppercase">
                       tnxmd.io.vn
@@ -50,7 +50,7 @@ export const Footer: React.FC = () => {
               </div>
 
               <p className="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-md">
-                TNXMD cung cấp danh mục game chọn lọc với cấu hình tối ưu, kiểm định ổn định và kết nối hỗ trợ trực tiếp. Không giỏ hàng rườm rà, không cổng thanh toán, liên hệ trực tiếp.
+                TNxMD cung cấp danh mục game chọn lọc với cấu hình tối ưu, kiểm định ổn định và kết nối hỗ trợ trực tiếp. Không giỏ hàng rườm rà, không cổng thanh toán, liên hệ trực tiếp.
               </p>
 
               <div className="pt-2">
@@ -116,7 +116,7 @@ export const Footer: React.FC = () => {
           {/* Bottom disclaimer & copyright */}
           <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
             <div className="flex items-center gap-1.5 text-center sm:text-left">
-              <span>© 2026 TNXMD (tnxmd.io.vn). Mọi thương hiệu và bản quyền tựa game thuộc về các nhà phát hành tương ứng.</span>
+              <span>© 2026 TNxMD (tnxmd.io.vn). Mọi thương hiệu và bản quyền tựa game thuộc về các nhà phát hành tương ứng.</span>
             </div>
 
             <button

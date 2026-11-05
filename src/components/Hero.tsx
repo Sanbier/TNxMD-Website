@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sparkles, Shield, Zap, ArrowDown, Headphones } from "lucide-react";
+import { Sparkles, ArrowDown, Headphones } from "lucide-react";
 import { ContactModal } from "./ContactModal";
 
 export const Hero: React.FC = () => {
@@ -52,33 +52,6 @@ export const Hero: React.FC = () => {
               <Headphones className="w-4 h-4 text-cyan-400" />
               <span>Liên Hệ Đội Ngũ Hỗ Trợ</span>
             </button>
-          </div>
-
-          {/* Value Badges */}
-          <div className="mt-10 sm:mt-12 grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-xl mx-auto text-left">
-            <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.07] backdrop-blur-sm">
-              <div className="flex items-center gap-2 text-cyan-400 mb-1">
-                <Zap className="w-4 h-4" />
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-300">Kết Nối Siêu Tốc</span>
-              </div>
-              <span className="text-base sm:text-lg font-black text-white">Truy Cập Trực Tiếp</span>
-            </div>
-
-            <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.07] backdrop-blur-sm">
-              <div className="flex items-center gap-2 text-purple-400 mb-1">
-                <Shield className="w-4 h-4" />
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-300">Đã Kiểm Định</span>
-              </div>
-              <span className="text-base sm:text-lg font-black text-white">100% Ổn Định</span>
-            </div>
-
-            <div className="col-span-2 sm:col-span-1 p-3 rounded-xl bg-white/[0.03] border border-white/[0.07] backdrop-blur-sm">
-              <div className="flex items-center gap-2 text-emerald-400 mb-1">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-300">Kênh Trực Tuyến</span>
-              </div>
-              <span className="text-base sm:text-lg font-black text-white">Hỗ Trợ 24/7</span>
-            </div>
           </div>
         </div>
       </div>

@@ -17,20 +17,20 @@ export const Header: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-3">
-            <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(0,240,255,0.4)] group-hover:shadow-[0_0_25px_rgba(0,240,255,0.7)] group-hover:scale-105 transition-all shrink-0 border border-cyan-400/40">
+            <div className="relative w-10 h-10 sm:w-11 sm:h-11 drop-shadow-[0_0_12px_rgba(0,240,255,0.45)] group-hover:scale-105 transition-transform shrink-0">
               <Image
                 src="/logo.png"
-                alt="TNXMD Logo"
+                alt="TNxMD Logo"
                 fill
                 priority
                 sizes="44px"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">
                 <span className="text-xl sm:text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-cyan-300 font-gaming">
-                  TNXMD
+                  TN<span className="text-cyan-400">x</span>MD
                 </span>
                 <span className="text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/30">
                   IO.VN
