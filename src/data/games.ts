@@ -8,6 +8,134 @@ export const DEFAULT_CONTACT_CHANNELS = {
 
 export const GAMES: Game[] = [
   {
+    "id": "soul-knight-prequel",
+    "slug": "soul-knight-prequel",
+    "title": "Kỵ Sĩ Nguyên Khí Tiền Truyện",
+    "category": "Di động",
+    "genre": "Nhập Vai Hành Động ARPG Pixel",
+    "platforms": [
+      "iOS",
+      "iPadOS"
+    ],
+    "shortDescription": "Phiêu lưu hành động ARPG pixel đỉnh cao trong thế giới Soul Knight với bộ công cụ chiến đấu toàn diện, auto dungeon Pandora, loot đồ đỏ và tối ưu đồ họa.",
+    "fullDescription": "Kỵ Sĩ Nguyên Khí Tiền Truyện (Soul Knight Prequel) đưa người chơi vào thế giới pixel hoài cổ đầy cuốn hút với lối chơi cày cuốc ARPG chặt chém thời gian thực. Bản tích hợp cao cấp hỗ trợ đầy đủ 6 phân hệ tính năng: từ bất tử, no CD, one hit, tùy chỉnh sát thương đến tự động tele, auto đánh, tự nhặt trang bị Thái Cổ/Viễn Cổ/Tai Họa, vượt ải Pandora cấp tốc và công cụ tối ưu FPS mượt mà cho mọi dòng máy iOS.",
+    "coverImage": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/3e/1a/77/3e1a771e-f679-4d71-5140-b89060b34f4c/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "bannerImage": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/1a/6a/f9/1a6af976-cbd5-bf1f-121b-2ddf7c1435bb/ios_2796_1290__U82f1.jpg/320x480bb.jpg",
+    "gallery": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/1a/6a/f9/1a6af976-cbd5-bf1f-121b-2ddf7c1435bb/ios_2796_1290__U82f1.jpg/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/e9/22/46/e922460d-de1b-8bcf-99b5-f0c02e68bb9f/1.jpg/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f6/5b/81/f65b81d1-82b5-e3d9-5b67-cbffe46aee44/2.jpg/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/bb/97/4a/bb974aa6-8ae7-7866-783c-23f20f24e414/3.jpg/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/d5/62/1d/d5621d57-94fa-96ff-c27b-d3c603184440/6.jpg/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/49/cb/40/49cb40a8-5f11-2b40-8da5-9de335869d57/4.jpg/320x480bb.jpg"
+    ],
+    "isHot": true,
+    "rating": 4.9,
+    "version": "v1.13.0",
+    "releaseDate": "Mới Cập Nhật",
+    "developer": "ChillyRoom Inc. / Banking Technology",
+    "status": "HOT",
+    "features": [
+      "Chiến Đấu: Bất Tử, No CD, Tầm Đánh Toàn Màn Hình, Vô Hạn Mana",
+      "Chiến Đấu: Tùy Chỉnh Mức Dame, One Hit 1 HP, Tốc Đánh x100.0, Tốc Chạy x2.0, Tốc Game x2.0",
+      "Tự Động: Tự Tele Độc Lập (30ms), Tự Diệt Toàn Bộ Quái MAX Độc Lập",
+      "Tự Động: Tự Đánh (Nhịp 120ms, Giữ 40ms), Tự Xuất Kỹ Năng (Nhịp 2.0s)",
+      "Tự Động: Tự Nhặt & Bộ Lọc Loot Thông Minh (Chỉ Thu Thập Đồ Cam + Đỏ)",
+      "Tự Động: Phân Loại Cao Cấp Chỉ Loot Trang Bị Viễn Cổ / Thái Cổ / Tai Họa & Lưu Cài Đặt",
+      "Dungeon: Hiển Thị Quái Vật, Bộ Lọc Chỉ Hiện Boss, Tự Động Vượt Ải Nhanh (Pandora Lv6 1–1000 Lượt)",
+      "Dungeon: Tùy Chỉnh Trễ Dungeon (20.8s), Hỗ Trợ Map Thường (Đồng Cỏ Phía Nam), Tự Vào Map",
+      "Dungeon: Auto Bug Logic 2 (1–1000 Boss, Delay 0.1s), Auto Pandora & Auto Pandora VIP",
+      "Dungeon: Di Chuyển Xuyên Tường (Noclip), Dừng Sương Mù & Xóa Toàn Bộ Sương Che",
+      "Setup Duyên: Tự Thu Thập Duyên Thường, Kỹ Năng Duyên, Duyên Trong Mơ, Lọc Phẩm Cấp (Lam, Cam, Đỏ)",
+      "Setup Duyên: Quét Bộ Nhớ Danh Sách Duyên Thực Thời, Thu Thập Duyên Tai Họa 4 Ô Độc Quyền",
+      "Tối Ưu: Tự Động Theo Cấu Hình Máy, Chế Độ Máy Yếu, Giảm Render (0.6), Giảm Texture, Xóa Map, Ẩn Quái",
+      "Tối Ưu: Preset Wave Lớn (Low + 55% + 30 FPS + Mid1 + Ẩn), Kiểm Tra Sửa Lag, Quản Lý Hook Log & Log Vàng",
+      "Phòng Lab: Xả Trang Bị Scene Thực Tế, Tùy Biến Chu Kỳ Nguyên Liệu, Thử Nghiệm Số Lượng 999,999"
+    ],
+    "systemRequirements": {
+      "os": "iOS 13.0 trở lên / iPadOS 13.0+",
+      "processor": "Apple A11 Bionic trở lên",
+      "memory": "Tối thiểu 3 GB RAM",
+      "graphics": "Apple GPU tích hợp Metal",
+      "storage": "Tối thiểu 3.5 GB dung lượng trống"
+    },
+    "contactUrl": "https://apps.apple.com/vn/app/k%E1%BB%B5-s%C4%A9-nguy%C3%AAn-kh%C3%AD-ti%E1%BB%81n-truy%E1%BB%87n/id6742478967?l=vi",
+    "contactChannels": {
+      "telegram": "https://t.me/tnxmd",
+      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
+      "facebook": "https://facebook.com/tnxmd.gaming"
+    },
+    "tags": [
+      "Soul Knight",
+      "ARPG",
+      "Pixel Art",
+      "Chiến Đấu",
+      "Auto Loot",
+      "Pandora VIP",
+      "Setup Duyên",
+      "Tối Ưu FPS"
+    ],
+    "views": "112.4K"
+  },
+  {
+    "id": "fish-eat-fish",
+    "slug": "fish-eat-fish",
+    "title": "Fish Eat Fish (Cá Lớn Nuốt Cá Bé)",
+    "category": "Di động",
+    "genre": "Hành Động Sinh Tồn IO Đáy Biển",
+    "platforms": [
+      "iOS",
+      "iPadOS"
+    ],
+    "shortDescription": "Tựa game sinh tồn cá lớn nuốt cá bé kinh điển với tính năng Freeshop mở khóa toàn bộ cá hiếm, tăng cấp thần tốc và tăng cường sát thương săn mồi.",
+    "fullDescription": "Fish Eat Fish.io: Hunger Games đưa bạn vào đại dương sâu thẳm trong cuộc chiến sinh tồn cá lớn nuốt cá bé không khoan nhượng. Bản tích hợp đem đến trải nghiệm đỉnh cao với Freeshop mở khóa mọi loài cá và skin đại dương, đẩy nhanh tốc độ tăng cấp tiến hóa và khuếch đại sát thương săn mồi áp đảo toàn bộ đối thủ.",
+    "coverImage": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/7d/3b/32/7d3b3219-be6c-867d-4f64-7ea4db9da562/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "bannerImage": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/54/78/a1/5478a1fd-7c6d-b0af-02b4-f0f3a69fed35/f19525cf-c74b-4208-8d6d-4692b3229b72__U7ecf_U5178_U73a9_U6cd5__U5927_U9c7c_U5403_U5c0f_U9c7c_.jpg/406x228bb.jpg",
+    "gallery": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/54/78/a1/5478a1fd-7c6d-b0af-02b4-f0f3a69fed35/f19525cf-c74b-4208-8d6d-4692b3229b72__U7ecf_U5178_U73a9_U6cd5__U5927_U9c7c_U5403_U5c0f_U9c7c_.jpg/406x228bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/6d/33/7e/6d337e56-3705-e915-03d6-4fc3a37e79ce/3b5c778e-ce2c-4181-b0ee-9f70abd2e5d0__U8da3_U5473_U6536_U96c6__U4e86_U89e3_U5404_U79cd_U9c7c_U7c7b.jpg/406x228bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/12/92/77/129277b3-72a0-12ad-c981-081318f44111/73596611-e821-45a2-88af-ae3f8b9b569a__U541e_U98df_U8fdb_U5316__U6210_U4e3a_U9876_U5c16_U63a0_U98df_U8005.jpg/406x228bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/73/eb/7c/73eb7cc0-a835-5667-41e1-3f7d404dd2a2/3eaca2f7-311f-4ced-9caa-bd921306147b__U5168_U7403_U6d77_U57df__U968f_U610f_U63a2_U7d22_U6f2b_U6e38.jpg/406x228bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/64/e0/32/64e03221-46ea-f53c-a194-73bc6a791288/70af6415-5142-4ae6-83b7-858789c55697__U5168_U7403_U9c7c_U7c7b__U6280_U80fd_U5404_U4e0d_U540c.jpg/406x228bb.jpg"
+    ],
+    "isHot": false,
+    "rating": 4.8,
+    "version": "v1.1.36",
+    "releaseDate": "Mới Cập Nhật",
+    "developer": "MOBIBRAIN TECHNOLOGY PTE. LTD.",
+    "status": "Mới Cập Nhật",
+    "features": [
+      "Mua Sắm Miễn Phí Cửa Hàng (Freeshop Toàn Bộ Gói)",
+      "Tăng Cấp Cực Nhanh (Fast Level Up & Tiến Hóa Thần Tốc)",
+      "Khuếch Đại Sát Thương Săn Mồi (Dame Siêu Cấp)",
+      "Mở Khóa Toàn Bộ Loài Cá Hiếm & Trang Phục Biển Độc Quyền",
+      "Bảo Vệ Kết Nối Trực Tuyến & Ổn Định FPS"
+    ],
+    "systemRequirements": {
+      "os": "iOS 12.0 trở lên / iPadOS 12.0+",
+      "processor": "Apple A10 Fusion trở lên",
+      "memory": "Tối thiểu 2 GB RAM",
+      "graphics": "Apple GPU tích hợp Metal",
+      "storage": "Tối thiểu 1 GB dung lượng trống"
+    },
+    "contactUrl": "https://apps.apple.com/vn/app/fish-eat-fish-io-hunger-games/id6453700466?l=vi",
+    "contactChannels": {
+      "telegram": "https://t.me/tnxmd",
+      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
+      "facebook": "https://facebook.com/tnxmd.gaming"
+    },
+    "tags": [
+      "Fish Eat Fish",
+      "Cá Lớn Nuốt Cá Bé",
+      "Sinh Tồn IO",
+      "Freeshop",
+      "Tăng Cấp",
+      "Sát Thương",
+      "Mobile"
+    ],
+    "views": "45.8K"
+  },
+  {
     "id": "mini-world-royale",
     "slug": "mini-world-royale",
     "title": "Mini World Royale",
