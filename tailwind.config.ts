@@ -29,9 +29,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        gaming: ["var(--font-gaming)", "Montserrat", "Be Vietnam Pro", "sans-serif"],
-        sans: ["var(--font-sans)", "Be Vietnam Pro", "Inter", "sans-serif"],
-        mono: ["var(--font-mono)", "JetBrains Mono", "monospace"],
+        gaming: ["var(--font-gaming)", "var(--font-be-vietnam)", "Be Vietnam Pro", "sans-serif"],
+        sans: ["var(--font-sans)", "var(--font-be-vietnam)", "Be Vietnam Pro", "sans-serif"],
+        mono: ["var(--font-mono)", "var(--font-jetbrains-mono)", "JetBrains Mono", "monospace"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

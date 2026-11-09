@@ -1,9 +1,24 @@
 import type { Metadata, Viewport } from "next";
+import { Be_Vietnam_Pro, JetBrains_Mono } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileBottomDock } from "@/components/MobileBottomDock";
 import { ToastProvider } from "@/components/Toast";
 import "./globals.css";
+
+const beVietnamPro = Be_Vietnam_Pro({
+  weight: ["400", "500", "600", "700", "800", "900"],
+  subsets: ["vietnamese", "latin"],
+  display: "swap",
+  variable: "--font-be-vietnam",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  weight: ["500", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jetbrains-mono",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://tnxmd.io.vn"),
@@ -19,7 +34,7 @@ export const metadata: Metadata = {
     "gaming catalog",
     "game library",
     "tactical gaming",
-        "telegram gaming support",
+    "telegram gaming support",
   ],
   authors: [{ name: "TNxMD Engineering Team" }],
   creator: "TNxMD",
@@ -57,16 +72,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Montserrat:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="min-h-screen bg-[#07070a] pb-20 sm:pb-0 text-gray-100 flex flex-col antialiased selection:bg-purple-600 selection:text-white bg-ambient-grid">
+    <html
+      lang="vi"
+      className={`dark ${beVietnamPro.variable} ${jetbrainsMono.variable}`}
+    >
+      <body className="min-h-screen bg-[#07070a] pb-20 sm:pb-0 text-gray-100 flex flex-col antialiased selection:bg-purple-600 selection:text-white bg-ambient-grid font-sans">
         <ToastProvider>
           <Header />
           {children}
