@@ -20,7 +20,7 @@ export type GameCategory =
 export interface ContactChannels {
   telegram?: string;
   zalo?: string;
-  facebook?: string;
+  managerTelegram?: string;
 }
 
 export interface SystemRequirements {

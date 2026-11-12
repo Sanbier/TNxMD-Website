@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { X, ExternalLink, ShieldCheck } from "lucide-react";
 import { ContactChannels } from "@/types/game";
 import { DEFAULT_CONTACT_CHANNELS } from "@/config/contacts";
-import { TelegramIcon, ZaloIcon, FacebookIcon } from "./SocialLinks";
+import { TelegramIcon, ZaloIcon } from "./SocialLinks";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -373,9 +373,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     },
     {
       name: "Liên Hệ Quản Gia",
-      tag: "Hỗ trợ trực tiếp & trao đổi",
-      url: merged.facebook,
-      icon: FacebookIcon,
+      tag: "@BeoHuangB • Hỗ trợ trực tiếp",
+      url: merged.managerTelegram,
+      icon: TelegramIcon,
       hoverClass:
         "hover:border-fuchsia-300/60 hover:bg-fuchsia-400/[0.12] hover:shadow-[0_8px_24px_rgba(217,70,239,0.2)]",
       btnClass:
