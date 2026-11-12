@@ -6,14 +6,8 @@ import Link from "next/link";
 import {
   ArrowLeft,
   Star,
-  Smartphone,
   CheckCircle,
-  ExternalLink,
-  Layers,
-  Calendar,
-  Eye,
   MessageCircle,
-  ShieldCheck,
   Zap,
   Apple,
   ChevronLeft,
@@ -23,9 +17,7 @@ import {
 import { Game } from "@/types/game";
 import { Badge } from "@/components/Badge";
 import { ContactModal } from "@/components/ContactModal";
-import { SocialLinks } from "@/components/SocialLinks";
 import { ImageLightbox } from "@/components/ImageLightbox";
-import { useToast } from "@/components/Toast";
 
 interface GameDetailClientProps {
   game: Game;
@@ -41,9 +33,9 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
   );
   const [contactOpen, setContactOpen] = useState<boolean>(false);
   const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
-  const { showToast } = useToast();
   const isMaintenance = game.status === "Bảo Trì";
-  const allImages = game.gallery && game.gallery.length > 0 ? game.gallery : [game.coverImage];
+  const allImages =
+    game.gallery && game.gallery.length > 0 ? game.gallery : [game.coverImage];
   const activeImageIndex = Math.max(0, allImages.indexOf(selectedImage));
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -51,14 +43,6 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
     if (carouselRef.current) {
       const scrollAmount = direction === "left" ? -320 : 320;
       carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    }
-  };
-
-  const handleContactAction = () => {
-    if (game.contactUrl && game.contactUrl.startsWith("http")) {
-      window.open(game.contactUrl, "_blank", "noopener,noreferrer");
-    } else {
-      setContactOpen(true);
     }
   };
 
@@ -94,9 +78,13 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
         {/* Banner Overlay Content: Game Title & Meta */}
         <div className="absolute bottom-6 left-4 sm:left-8 right-4 sm:right-8 z-10 max-w-7xl mx-auto">
           <div className="flex items-center gap-2 flex-wrap mb-2">
-            {!isMaintenance && game.isHot && <Badge variant="hot">GAME HOT</Badge>}
+            {!isMaintenance && game.isHot && (
+              <Badge variant="hot">GAME HOT</Badge>
+            )}
             <Badge variant="category">{game.category}</Badge>
-            <Badge variant={isMaintenance ? "maintenance" : "status"}>{game.status}</Badge>
+            <Badge variant={isMaintenance ? "maintenance" : "status"}>
+              {game.status}
+            </Badge>
           </div>
 
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white font-gaming tracking-tight">
@@ -113,7 +101,10 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
               </span>
             </span>
             <span>•</span>
-            <span className="text-gray-400">Nhà phát triển: <strong className="text-gray-200">{game.developer}</strong></span>
+            <span className="text-gray-400">
+              Nhà phát triển:{" "}
+              <strong className="text-gray-200">{game.developer}</strong>
+            </span>
             <span>•</span>
             <div className="flex items-center gap-1 text-yellow-400 font-bold">
               <Star className="w-4 h-4 fill-yellow-400" />
@@ -135,71 +126,72 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                 Thông Báo: Tựa Game Đang Bảo Trì Nâng Cấp
               </h3>
               <p className="text-xs sm:text-sm text-amber-100/80 mt-0.5">
-                Phiên bản tích hợp của <strong>{game.title}</strong> hiện đang tạm dừng để bảo trì và đồng bộ bản cập nhật mới. Vui lòng theo dõi nhóm Zalo / Telegram để nhận thông báo sớm nhất khi mở lại.
+                Phiên bản tích hợp của <strong>{game.title}</strong> hiện đang
+                tạm dừng để bảo trì và đồng bộ bản cập nhật mới. Vui lòng theo
+                dõi nhóm Zalo / Telegram để nhận thông báo sớm nhất khi mở lại.
               </p>
             </div>
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left 2 Cols: Gallery, Description, Features, Specs */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Interactive Image Gallery with Lucian Touch Lightbox (Element #061) */}
-            <div className="rounded-2xl bg-[#0b0b14] border border-white/[0.08] p-4 sm:p-5 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
-              <div
-                onClick={() => setLightboxOpen(true)}
-                className="relative w-full h-80 sm:h-96 md:h-[460px] rounded-xl overflow-hidden bg-[#06060b] mb-3 cursor-pointer group/img"
-              >
-                {/* Ambient blurred backdrop so portrait & landscape screenshots both look full & crisp */}
-                <Image
-                  src={selectedImage}
-                  alt=""
-                  fill
-                  unoptimized
-                  aria-hidden="true"
-                  className="object-cover object-center blur-2xl opacity-35 scale-110 pointer-events-none"
-                />
-                <Image
-                  src={selectedImage}
-                  alt={game.title}
-                  fill
-                  unoptimized
-                  sizes="(max-width: 1024px) 100vw, 1200px"
-                  className="object-contain object-center relative z-10 p-1 sm:p-2 transition-transform duration-300"
-                />
-                <div className="absolute bottom-2.5 right-2.5 z-20 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md text-[11px] font-semibold text-cyan-300 border border-white/10 flex items-center gap-1.5 shadow-md">
-                  <span>Chạm xem toàn màn hình</span>
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left 7 Cols: Interactive Image Gallery */}
+          <div className="lg:col-span-7 rounded-2xl bg-[#0b0b14] border border-white/[0.08] p-4 sm:p-5 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
+            <div
+              onClick={() => setLightboxOpen(true)}
+              className="relative w-full h-80 sm:h-96 md:h-[460px] rounded-xl overflow-hidden bg-[#06060b] mb-3 cursor-pointer group/img"
+            >
+              {/* Ambient blurred backdrop so portrait & landscape screenshots both look full & crisp */}
+              <Image
+                src={selectedImage}
+                alt=""
+                fill
+                unoptimized
+                aria-hidden="true"
+                className="object-cover object-center blur-2xl opacity-35 scale-110 pointer-events-none"
+              />
+              <Image
+                src={selectedImage}
+                alt={game.title}
+                fill
+                unoptimized
+                sizes="(max-width: 1024px) 100vw, 1200px"
+                className="object-contain object-center relative z-10 p-1 sm:p-2 transition-transform duration-300"
+              />
+              <div className="absolute bottom-2.5 right-2.5 z-20 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md text-[11px] font-semibold text-cyan-300 border border-white/10 flex items-center gap-1.5 shadow-md">
+                <span>Chạm xem toàn màn hình</span>
               </div>
-
-              {/* Thumbnails */}
-              {game.gallery && game.gallery.length > 0 && (
-                <div className="flex items-center gap-2.5 overflow-x-auto pb-1">
-                  {game.gallery.map((img, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setSelectedImage(img)}
-                      className={`relative shrink-0 w-20 sm:w-24 h-14 sm:h-16 rounded-lg overflow-hidden border-2 transition-all ${
-                        selectedImage === img
-                          ? "border-cyan-400 shadow-[0_0_12px_rgba(0,240,255,0.4)] scale-105"
-                          : "border-white/10 opacity-75 hover:opacity-100"
-                      }`}
-                    >
-                      <Image
-                        src={img}
-                        alt={`Ảnh chụp màn hình ${idx + 1}`}
-                        fill
-                        unoptimized
-                        sizes="200px"
-                        className="object-cover object-center"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
             </div>
 
-            {/* Features Scrollable List (4 items visible, scrollable) */}
+            {/* Thumbnails */}
+            {game.gallery && game.gallery.length > 0 && (
+              <div className="flex items-center gap-2.5 overflow-x-auto pb-1">
+                {game.gallery.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setSelectedImage(img)}
+                    className={`relative shrink-0 w-20 sm:w-24 h-14 sm:h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                      selectedImage === img
+                        ? "border-cyan-400 shadow-[0_0_12px_rgba(0,240,255,0.4)] scale-105"
+                        : "border-white/10 opacity-75 hover:opacity-100"
+                    }`}
+                  >
+                    <Image
+                      src={img}
+                      alt={`Ảnh chụp màn hình ${idx + 1}`}
+                      fill
+                      unoptimized
+                      sizes="200px"
+                      className="object-cover object-center"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Right 5 Cols: Features Scrollable List + Back Link */}
+          <div className="lg:col-span-5 space-y-5">
             <div className="rounded-2xl bg-[#0b0b14] border border-white/[0.08] p-4 sm:p-5 space-y-3 shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
               <div className="flex items-center justify-between border-b border-white/[0.08] pb-2.5">
                 <div className="flex items-center gap-2">
@@ -212,15 +204,11 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                   <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-purple-950/70 border border-purple-500/40 text-purple-300">
                     {game.features.length} Chức Năng
                   </span>
-                  <span className="text-[10px] text-gray-400 hidden sm:inline">
-                    (Cuộn ↕ xem đủ)
-                  </span>
                 </div>
               </div>
 
-              {/* Scrollable list showing 7 items at a time */}
               <div className="relative">
-                <div className="max-h-[345px] overflow-y-auto pr-1.5 space-y-2 scrollbar-thin scrollbar-thumb-purple-600/50 hover:scrollbar-thumb-cyan-400/60">
+                <div className="max-h-[410px] overflow-y-auto pr-1.5 space-y-2 scrollbar-thin scrollbar-thumb-purple-600/50 hover:scrollbar-thumb-cyan-400/60">
                   {game.features.map((feat, idx) => (
                     <div
                       key={idx}
@@ -230,77 +218,26 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                         {String(idx + 1).padStart(2, "0")}
                       </span>
                       <CheckCircle className="w-4 h-4 text-cyan-400 shrink-0" />
-                      <span className="text-xs sm:text-sm text-gray-200 font-semibold truncate group-hover/item:text-white">
+                      <span className="text-xs sm:text-sm text-gray-200 font-semibold group-hover/item:text-white leading-snug">
                         {feat}
                       </span>
                     </div>
                   ))}
                 </div>
 
-                {/* Subtle bottom indicator */}
                 {game.features.length > 7 && (
                   <div className="mt-2.5 pt-2 border-t border-white/[0.04] flex items-center justify-between text-[11px] text-gray-400">
                     <span className="flex items-center gap-1 text-cyan-300/80 text-[11px]">
-                      <span>↓ Cuộn chuột hoặc vuốt để xem tiếp các chức năng</span>
+                      <span>↓ Cuộn hoặc vuốt để xem tiếp các chức năng</span>
                     </span>
                     <span className="font-mono text-[10px] text-gray-400">
-                      Hiển thị 7/{game.features.length}
+                      Tổng {game.features.length} mục
                     </span>
                   </div>
                 )}
               </div>
             </div>
-          </div>
 
-          {/* Right Col: Prominent Contact Card & Meta Info */}
-          <div className="space-y-6">
-            {/* Prominent Gradient Contact Action Card */}
-            <div className="rounded-2xl bg-gradient-to-br from-[#120f24] via-[#0d0d1a] to-[#070b16] border border-purple-500/40 p-6 shadow-[0_0_35px_rgba(168,85,247,0.3)] space-y-5">
-              <div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-950/70 border border-purple-500/40 text-purple-300 text-xs font-bold uppercase tracking-wider mb-2">
-                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
-                  Kết Nối Trực Tiếp
-                </div>
-                <h3 className="text-xl font-bold text-white font-gaming tracking-tight">
-                  NHẬN TƯ VẤN & TRẢI NGHIỆM
-                </h3>
-                <p className="text-xs text-gray-300 mt-1">
-                  Kết nối ngay với đội ngũ hỗ trợ để nhận cấu hình chuẩn và hỗ trợ kỹ thuật chi tiết.
-                </p>
-              </div>
-
-              {/* Prominent Gradient App Store Button */}
-              <a
-                href={game.contactUrl || "https://apps.apple.com"}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => showToast("Đang mở App Store...", "Chuyển tiếp đến trang chính thức", "info")}
-                className="w-full py-4 px-6 rounded-xl font-bold text-sm sm:text-base text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:shadow-[0_0_40px_rgba(0,240,255,0.8)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 uppercase tracking-wider font-gaming"
-              >
-                <Apple className="w-5 h-5 text-white" />
-                <span>MỞ TRÊN APP STORE</span>
-                <ExternalLink className="w-4 h-4 ml-1 opacity-80" />
-              </a>
-
-              <div className="pt-2 border-t border-white/[0.08]">
-                <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider block mb-2">
-                  Kênh Trực Tiếp:
-                </span>
-                <SocialLinks
-                  channels={game.contactChannels}
-                  size="md"
-                  showLabel={true}
-                  className="w-full justify-between"
-                />
-              </div>
-
-              <div className="bg-black/40 rounded-xl p-3 border border-white/[0.06] text-[11px] text-gray-400 flex items-center justify-between">
-                <span>Tên miền chính thức:</span>
-                <span className="text-cyan-300 font-mono font-bold">tnxmd.io.vn</span>
-              </div>
-            </div>
-
-            {/* Back to Catalog Bottom Button */}
             <Link
               href="/#catalog"
               className="w-full py-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-bold text-gray-300 hover:text-white flex items-center justify-center gap-2 transition-colors"
@@ -323,7 +260,9 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                   CÁC TỰA GAME TƯƠNG TỰ
                 </h3>
                 <p className="text-xs text-gray-400 mt-1 flex items-center gap-1.5">
-                  <span className="text-cyan-400 font-medium">← Vuốt ngang hoặc bấm phím mũi tên để chọn game →</span>
+                  <span className="text-cyan-400 font-medium">
+                    ← Vuốt ngang hoặc bấm phím mũi tên để chọn game →
+                  </span>
                 </p>
               </div>
 
@@ -385,7 +324,9 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                     </div>
                     <div className="flex items-center justify-between text-xs text-purple-300 mb-1">
                       <span>{rg.category}</span>
-                      <span className="font-mono text-gray-400">{rg.version}</span>
+                      <span className="font-mono text-gray-400">
+                        {rg.version}
+                      </span>
                     </div>
                     <h4 className="font-bold text-white group-hover:text-cyan-300 transition-colors truncate">
                       {rg.title}
@@ -394,7 +335,9 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
 
                   <div className="mt-3 pt-2.5 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-cyan-400 font-semibold group-hover:text-cyan-300">
                     <span>Xem Chi Tiết</span>
-                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    <span className="group-hover:translate-x-1 transition-transform">
+                      →
+                    </span>
                   </div>
                 </Link>
               ))}
@@ -428,7 +371,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
         </button>
       </div>
 
-            <ImageLightbox
+      <ImageLightbox
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
         images={allImages}
