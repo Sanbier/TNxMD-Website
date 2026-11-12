@@ -4,6 +4,10 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { X, ExternalLink, ShieldCheck } from "lucide-react";
 import { ContactChannels } from "@/types/game";
 import { DEFAULT_CONTACT_CHANNELS } from "@/config/contacts";
+import {
+  handleGlassSpotlightLeave,
+  handleGlassSpotlightMove,
+} from "@/lib/glassEffects";
 import { TelegramIcon, ZaloIcon } from "./SocialLinks";
 
 interface ContactModalProps {
@@ -32,6 +36,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
   const backdropRef = useRef<HTMLDivElement>(null);
   const sheetRef = useRef<HTMLDivElement>(null);
+  const handlePillRef = useRef<HTMLDivElement>(null);
   const onCloseRef = useRef(onClose);
   const closingRef = useRef(false);
   const closeTimerRef = useRef<number | null>(null);
@@ -71,11 +76,18 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     }
   }, []);
 
+  const resetHandlePill = useCallback(() => {
+    if (!handlePillRef.current) return;
+    handlePillRef.current.style.transform = "scaleX(1)";
+    handlePillRef.current.style.backgroundColor = "";
+  }, []);
+
   const animateClose = useCallback(
     (fromSwipe = false) => {
       if (closingRef.current) return;
       closingRef.current = true;
       clearTimers();
+      resetHandlePill();
 
       const sheet = sheetRef.current;
       const backdrop = backdropRef.current;
@@ -109,7 +121,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         onCloseRef.current();
       }, 235);
     },
-    [clearTimers]
+    [clearTimers, resetHandlePill]
   );
 
   useEffect(() => {
@@ -132,6 +144,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
           backdropRef.current.style.opacity = "";
           backdropRef.current.style.transition = "opacity 240ms ease";
         }
+        resetHandlePill();
         raf2 = requestAnimationFrame(() => {
           setEntered(true);
         });
@@ -147,7 +160,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
       setMounted(false);
       document.body.style.overflow = "";
     }
-  }, [isOpen, clearTimers]);
+  }, [isOpen, clearTimers, resetHandlePill]);
 
   useEffect(() => {
     return () => {
@@ -156,7 +169,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     };
   }, [clearTimers]);
 
-  // Native touch listeners with Instantaneous Release Velocity & zero layout thrashing
+  // Native touch listeners with Instantaneous Release Velocity, Rubber-Band Elasticity & Morphing Handle
   useEffect(() => {
     const sheet = sheetRef.current;
     if (!isOpen || !mounted || !sheet) return;
@@ -179,11 +192,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     };
 
     const recordTouchSample = (y: number, now: number) => {
-      const samples = stateRefSamples();
+      const samples = dragStateRef.current.samples;
       const prev =
         samples.length > 0 ? samples[samples.length - 1] : undefined;
 
-      // Nếu ngón tay đảo chiều chuyển động (turning point), đặt lại neo tại điểm đảo chiều
+      // Đặt lại neo tại điểm đảo chiều chuyển động (turning point)
       if (samples.length >= 2 && prev) {
         const prevPrev = samples[samples.length - 2];
         const prevStep = prev.y - prevPrev.y;
@@ -201,16 +214,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         samples.shift();
       }
 
-      // Nếu ngón tay dừng đọc (>85ms không có touchmove) rồi mới bắt đầu hất nhanh,
-      // chèn neo tĩnh ngay trước khung hình chuyển động để đo chuẩn vận tốc hất tức thời.
+      // Chèn neo tĩnh ngay trước khung hình chuyển động sau khi dừng đọc (>85ms)
       if (samples.length === 0 && prev) {
         samples.push({ y: prev.y, t: Math.max(prev.t, now - 32) });
       }
 
       samples.push({ y, t: now });
     };
-
-    const stateRefSamples = () => dragStateRef.current.samples;
 
     const onTouchMove = (e: TouchEvent) => {
       const state = dragStateRef.current;
@@ -240,6 +250,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({
           if (backdropRef.current) {
             backdropRef.current.style.transition = "none";
           }
+          if (handlePillRef.current) {
+            handlePillRef.current.style.transform = "scaleX(1.32)";
+            handlePillRef.current.style.backgroundColor = "rgba(103, 232, 249, 0.72)";
+          }
         } else {
           recordTouchSample(touch.clientY, now);
           return;
@@ -252,12 +266,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
       recordTouchSample(touch.clientY, now);
 
-      const offset = Math.max(0, dy);
-      state.currentOffset = offset;
-      sheet.style.transform = `translate3d(0, ${offset}px, 0)`;
+      // Giữ chuyển động mượt tự nhiên cả khi nảy nhẹ qua mốc 0 (rubber-band iOS damping)
+      const offset =
+        dy >= 0 ? dy : -Math.min(18, Math.abs(dy) * 0.16);
+      state.currentOffset = Math.max(0, dy);
+      sheet.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
 
       if (backdropRef.current) {
-        const progress = Math.min(1, offset / state.sheetHeight);
+        const progress = Math.min(1, state.currentOffset / state.sheetHeight);
         backdropRef.current.style.opacity = String(
           Math.max(0.12, 1 - progress * 0.88)
         );
@@ -273,12 +289,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
       if (!wasDragging) return;
 
+      resetHandlePill();
+
       const now = performance.now();
       const samples = state.samples;
       const latest = samples[samples.length - 1];
       let releaseVelocity = 0;
 
-      // Chỉ tính vận tốc hất tay tức thời trên các mẫu <= 85ms cuối cùng
       if (latest && now - latest.t <= 85 && samples.length >= 2) {
         let anchorIndex = 0;
         while (
@@ -289,7 +306,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         }
         const anchor = samples[anchorIndex];
         const dt = Math.max(1, latest.t - anchor.t);
-        releaseVelocity = (latest.y - anchor.y) / dt; // px/ms
+        releaseVelocity = (latest.y - anchor.y) / dt;
       }
 
       const dismissDistance = Math.min(
@@ -305,7 +322,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         animateClose(true);
       } else {
         sheet.style.transition =
-          "transform 280ms cubic-bezier(0.32, 0.72, 0, 1)";
+          "transform 300ms cubic-bezier(0.32, 0.72, 0, 1)";
         sheet.style.transform = "translate3d(0, 0, 0)";
         if (backdropRef.current) {
           backdropRef.current.style.transition = "opacity 240ms ease";
@@ -316,7 +333,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
           if (sheetRef.current && !closingRef.current) {
             sheetRef.current.style.transform = "";
           }
-        }, 290);
+        }, 310);
       }
     };
 
@@ -331,7 +348,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
       sheet.removeEventListener("touchend", onTouchEnd);
       sheet.removeEventListener("touchcancel", onTouchEnd);
     };
-  }, [isOpen, mounted, animateClose]);
+  }, [isOpen, mounted, animateClose, resetHandlePill]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -405,13 +422,15 @@ export const ContactModal: React.FC<ContactModalProps> = ({
       {/* 120Hz GPU-Composited Bottom Sheet / Modal */}
       <div
         ref={sheetRef}
+        onPointerMove={handleGlassSpotlightMove}
+        onPointerLeave={handleGlassSpotlightLeave}
         style={{
           paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))",
           transition:
             "transform 300ms cubic-bezier(0.32, 0.72, 0, 1), opacity 220ms ease",
         }}
         onClick={(e) => e.stopPropagation()}
-        className={`relative z-10 w-full max-w-lg rounded-t-3xl sm:rounded-3xl glass-modal-sheet p-5 sm:p-8 max-h-[90vh] overflow-y-auto overscroll-contain will-change-transform select-none ${
+        className={`relative z-10 w-full max-w-lg rounded-t-3xl sm:rounded-3xl glass-modal-sheet glass-spotlight p-5 sm:p-8 max-h-[90vh] overflow-y-auto overscroll-contain will-change-transform select-none ${
           entered
             ? "translate-y-0 opacity-100 sm:scale-100"
             : "translate-y-full sm:translate-y-3 opacity-100 sm:opacity-0 sm:scale-[0.97]"
@@ -420,12 +439,15 @@ export const ContactModal: React.FC<ContactModalProps> = ({
         {/* Specular Top Edge Highlight */}
         <div
           aria-hidden="true"
-          className="absolute top-0 left-[12%] right-[12%] h-[1px] bg-gradient-to-r from-transparent via-cyan-200/55 to-transparent pointer-events-none"
+          className="absolute top-0 left-[12%] right-[12%] h-[1px] bg-gradient-to-r from-transparent via-cyan-200/60 to-transparent pointer-events-none"
         />
 
-        {/* iOS Drag Handle Pill */}
+        {/* Morphing iOS Glass Drag Handle Pill */}
         <div className="sm:hidden py-1.5 -mt-2 mb-3 flex justify-center cursor-grab">
-          <div className="w-12 h-1.5 bg-white/35 rounded-full" />
+          <div
+            ref={handlePillRef}
+            className="w-12 h-1.5 bg-white/35 rounded-full transition-all duration-200 ease-out"
+          />
         </div>
 
         <button
@@ -465,7 +487,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group flex items-center justify-between p-3 sm:p-3.5 rounded-2xl bg-gradient-to-br from-white/[0.085] to-white/[0.03] border border-white/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] active:scale-[0.98] transition-all duration-200 ${item.hoverClass}`}
+                className={`group flex items-center justify-between p-3 sm:p-3.5 rounded-2xl bg-gradient-to-br from-white/[0.085] to-white/[0.03] border border-white/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] active:scale-[0.97] transition-all duration-200 ${item.hoverClass}`}
               >
                 <div className="flex items-center gap-3.5 min-w-0">
                   <div className="w-10 h-10 rounded-xl bg-white/[0.08] border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)] flex items-center justify-center group-hover:scale-105 transition-transform shrink-0">

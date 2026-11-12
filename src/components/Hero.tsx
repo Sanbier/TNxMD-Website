@@ -6,6 +6,10 @@ import { useRouter } from "next/navigation";
 import { Flame, ArrowUpRight } from "lucide-react";
 import { HeroGameItem } from "@/types/game";
 import { appleCdnLoader } from "@/lib/imageLoader";
+import {
+  handleGlassSpotlightLeave,
+  handleGlassSpotlightMove,
+} from "@/lib/glassEffects";
 
 interface HeroProps {
   items: HeroGameItem[];
@@ -19,6 +23,8 @@ export const Hero: React.FC<HeroProps> = ({ items }) => {
   const isInViewRef = useRef<boolean>(true);
   const isTabVisibleRef = useRef<boolean>(true);
   const manualPauseUntilRef = useRef<number>(0);
+  const swipeRef = useRef<{ x: number; y: number; t: number } | null>(null);
+  const suppressNextClickRef = useRef<number>(0);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -76,6 +82,7 @@ export const Hero: React.FC<HeroProps> = ({ items }) => {
 
   const handleClickCard = useCallback(
     (idx: number, slug: string) => {
+      if (performance.now() < suppressNextClickRef.current) return;
       if (idx !== activeIndex) {
         setActiveIndex(idx);
         manualPauseUntilRef.current = Date.now() + 8000;
@@ -86,6 +93,44 @@ export const Hero: React.FC<HeroProps> = ({ items }) => {
     [activeIndex, router]
   );
 
+  // Cử chỉ vuốt ngang (passive touch — không ảnh hưởng cuộn dọc 120Hz) để chuyển giữa Top 6
+  const handleTouchStartAccordion = useCallback((e: React.TouchEvent) => {
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    swipeRef.current = {
+      x: touch.clientX,
+      y: touch.clientY,
+      t: performance.now(),
+    };
+  }, []);
+
+  const handleTouchEndAccordion = useCallback(
+    (e: React.TouchEvent) => {
+      const start = swipeRef.current;
+      swipeRef.current = null;
+      if (!start || e.changedTouches.length === 0 || items.length <= 1) return;
+
+      const end = e.changedTouches[0];
+      const dx = end.clientX - start.x;
+      const dy = end.clientY - start.y;
+      const dt = Math.max(1, performance.now() - start.t);
+
+      // Vuốt ngang rõ ràng (kể cả vuốt nhanh ngắn >= 28px trong < 260ms hoặc kéo >= 40px)
+      const isHorizontal = Math.abs(dx) > Math.abs(dy) * 1.15;
+      const velocity = Math.abs(dx) / dt;
+      if (isHorizontal && (Math.abs(dx) > 38 || (Math.abs(dx) > 26 && velocity > 0.3))) {
+        suppressNextClickRef.current = performance.now() + 260;
+        manualPauseUntilRef.current = Date.now() + 8000;
+        if (dx < 0) {
+          setActiveIndex((prev) => (prev + 1) % items.length);
+        } else {
+          setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
+        }
+      }
+    },
+    [items.length]
+  );
+
   if (items.length === 0) return null;
 
   return (
@@ -94,12 +139,16 @@ export const Hero: React.FC<HeroProps> = ({ items }) => {
       className="relative overflow-hidden pt-5 pb-7 sm:pt-8 sm:pb-11"
     >
       <div className="relative max-w-5xl mx-auto px-3 sm:px-6 lg:px-8">
-        {/* Glassmorphism 2.0 Floating Showcase Stage */}
-        <div className="glass-panel-2 rounded-2xl sm:rounded-3xl p-2.5 sm:p-4">
+        {/* Glassmorphism 2.5 Floating Showcase Stage */}
+        <div
+          onPointerMove={handleGlassSpotlightMove}
+          onPointerLeave={handleGlassSpotlightLeave}
+          className="glass-panel-2 glass-spotlight rounded-2xl sm:rounded-3xl p-2.5 sm:p-4"
+        >
           {/* Compact Top 6 Header Bar */}
           <div className="flex items-center justify-between gap-3 px-1 pb-2.5 sm:pb-3.5">
             <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
-              <span className="inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-br from-orange-400/25 via-rose-500/20 to-purple-500/25 border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_0_14px_rgba(249,115,22,0.28)] shrink-0">
+              <span className="inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-br from-orange-400/25 via-rose-500/20 to-purple-500/25 border border-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_0_14px_rgba(249,115,22,0.28)] shrink-0">
                 <Flame className="w-4 h-4 text-orange-300 fill-orange-400/35" />
               </span>
               <h1 className="text-sm sm:text-xl md:text-2xl font-extrabold uppercase tracking-tight text-white font-gaming truncate">
@@ -125,8 +174,8 @@ export const Hero: React.FC<HeroProps> = ({ items }) => {
                     }}
                     className={`h-1.5 rounded-full transition-all duration-500 ${
                       isActive
-                        ? "w-5 sm:w-6 bg-gradient-to-r from-sky-300 to-cyan-300 shadow-[0_0_10px_rgba(56,189,248,0.75)]"
-                        : "w-1.5 bg-white/25 hover:bg-white/50"
+                        ? "w-5 sm:w-6 bg-gradient-to-r from-sky-300 to-cyan-300 shadow-[0_0_10px_rgba(56,189,248,0.8)]"
+                        : "w-1.5 bg-white/25 hover:bg-white/55"
                     }`}
                   />
                 );
@@ -134,11 +183,13 @@ export const Hero: React.FC<HeroProps> = ({ items }) => {
             </div>
           </div>
 
-          {/* Expanding Image Accordion (6 Slices) */}
+          {/* Expanding Image Accordion (6 Slices + Touch Horizontal Swipe) */}
           <div
             className="flex flex-row items-stretch justify-center gap-1.5 sm:gap-2.5 w-full h-[325px] sm:h-[405px] md:h-[435px] select-none"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            onTouchStart={handleTouchStartAccordion}
+            onTouchEnd={handleTouchEndAccordion}
           >
             {items.map((item, idx) => {
               const isActive = idx === activeIndex;
@@ -166,16 +217,20 @@ export const Hero: React.FC<HeroProps> = ({ items }) => {
                     transition:
                       "flex 700ms cubic-bezier(0.25, 1, 0.5, 1), border-color 450ms ease, box-shadow 450ms ease",
                   }}
-                  className={`group relative min-w-0 h-full rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer outline-none ${
+                  className={`group relative min-w-0 h-full rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer outline-none active:scale-[0.99] ${
                     isActive
-                      ? "border border-cyan-300/60 shadow-[0_14px_38px_-6px_rgba(0,0,0,0.7),0_0_24px_rgba(56,189,248,0.28)]"
+                      ? "border border-cyan-300/65 shadow-[0_14px_38px_-6px_rgba(0,0,0,0.7),0_0_26px_rgba(56,189,248,0.32)]"
                       : "border border-white/20 hover:border-sky-300/45 shadow-[0_6px_18px_rgba(0,0,0,0.45)]"
                   }`}
                 >
                   {/* Glass Specular Inner Rim Overlay */}
                   <div
                     aria-hidden="true"
-                    className="absolute inset-0 z-20 rounded-xl sm:rounded-2xl pointer-events-none shadow-[inset_0_1px_0_0_rgba(255,255,255,0.38),inset_1px_0_0_0_rgba(255,255,255,0.12)]"
+                    className={`absolute inset-0 z-20 rounded-xl sm:rounded-2xl pointer-events-none transition-shadow duration-500 ${
+                      isActive
+                        ? "shadow-[inset_0_1.5px_0_0_rgba(255,255,255,0.48),inset_1px_0_0_0_rgba(125,211,252,0.22),inset_0_-1px_0_0_rgba(56,189,248,0.18)]"
+                        : "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.32),inset_1px_0_0_0_rgba(255,255,255,0.1)]"
+                    }`}
                   />
 
                   {/* Retina Full-Bleed Artwork (GPU transform only, zero filter brightness pass) */}
@@ -197,7 +252,7 @@ export const Hero: React.FC<HeroProps> = ({ items }) => {
                     className="object-cover"
                   />
 
-                  {/* GPU-Composited Opacity Dimmer replacing expensive CSS filter:brightness() */}
+                  {/* GPU-Composited Opacity Dimmer */}
                   <div
                     aria-hidden="true"
                     className={`absolute inset-0 z-[5] bg-[#050814] pointer-events-none transition-opacity duration-500 ${
@@ -218,7 +273,7 @@ export const Hero: React.FC<HeroProps> = ({ items }) => {
                     }}
                   />
 
-                  {/* Top Glass Specular Badges (Flattened for 120Hz Accordion Expansion) */}
+                  {/* Top Glass Specular Badges */}
                   <div
                     className={`absolute top-2.5 left-2.5 right-2.5 sm:top-3.5 sm:left-3.5 sm:right-3.5 z-20 flex items-center justify-between gap-1.5 pointer-events-none transition-all duration-500 ${
                       isActive

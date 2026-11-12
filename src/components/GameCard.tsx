@@ -6,6 +6,10 @@ import Image from "next/image";
 import { Star, ArrowRight, Eye, Smartphone, Apple } from "lucide-react";
 import { CatalogGameItem } from "@/types/game";
 import { appleCdnLoader } from "@/lib/imageLoader";
+import {
+  handleGlassSpotlightLeave,
+  handleGlassSpotlightMove,
+} from "@/lib/glassEffects";
 import { Badge } from "./Badge";
 import { useToast } from "./Toast";
 
@@ -19,7 +23,9 @@ export const GameCard: React.FC<GameCardProps> = ({ game }) => {
 
   return (
     <div
-      className={`group rounded-2xl p-3 sm:p-4 active:scale-[0.99] ${
+      onPointerMove={handleGlassSpotlightMove}
+      onPointerLeave={handleGlassSpotlightLeave}
+      className={`group rounded-2xl glass-spotlight p-3 sm:p-4 active:scale-[0.985] ${
         isMaintenance ? "glass-card-amber" : "glass-card-2"
       }`}
     >
@@ -27,7 +33,7 @@ export const GameCard: React.FC<GameCardProps> = ({ game }) => {
         {/* Left: Crystal-Beveled Cover Image */}
         <Link
           href={`/game/${game.slug}`}
-          className="relative shrink-0 w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-xl sm:rounded-2xl overflow-hidden bg-slate-950/60 block ring-1 ring-white/20 shadow-[0_10px_25px_-6px_rgba(0,0,0,0.65)]"
+          className="relative shrink-0 w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 rounded-xl sm:rounded-2xl overflow-hidden bg-slate-950/60 block ring-1 ring-white/25 shadow-[0_10px_25px_-6px_rgba(0,0,0,0.65)]"
         >
           <Image
             loader={appleCdnLoader}

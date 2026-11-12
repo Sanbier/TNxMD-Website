@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -16,6 +16,10 @@ import {
 } from "lucide-react";
 import { GameDetailItem, RelatedGameItem } from "@/types/game";
 import { appleCdnLoader, getAppleThumbnailUrl } from "@/lib/imageLoader";
+import {
+  handleGlassSpotlightLeave,
+  handleGlassSpotlightMove,
+} from "@/lib/glassEffects";
 import { Badge } from "@/components/Badge";
 import { ContactModal } from "@/components/ContactModal";
 import { ImageLightbox } from "@/components/ImageLightbox";
@@ -35,11 +39,97 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
   const [contactOpen, setContactOpen] = useState<boolean>(false);
   const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
   const isMaintenance = game.status === "Bảo Trì";
-  const currentSelectedImage = allImages.includes(selectedImage)
-    ? selectedImage
-    : allImages[0];
-  const activeImageIndex = Math.max(0, allImages.indexOf(currentSelectedImage));
+  const matchedIndex = allImages.indexOf(selectedImage);
+  const activeImageIndex = matchedIndex >= 0 ? matchedIndex : 0;
+  const currentSelectedImage = allImages[activeImageIndex];
+
   const carouselRef = useRef<HTMLDivElement>(null);
+  const carouselThumbRef = useRef<HTMLDivElement>(null);
+  const gallerySwipeRef = useRef<{ x: number; y: number; t: number } | null>(
+    null
+  );
+  const suppressGalleryClickRef = useRef<number>(0);
+
+  const stepShowcaseImage = useCallback(
+    (delta: number) => {
+      if (allImages.length <= 1) return;
+      const nextIdx =
+        (activeImageIndex + delta + allImages.length) % allImages.length;
+      setSelectedImage(allImages[nextIdx]);
+    },
+    [allImages, activeImageIndex]
+  );
+
+  const handleGalleryTouchStart = useCallback((e: React.TouchEvent) => {
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    gallerySwipeRef.current = {
+      x: touch.clientX,
+      y: touch.clientY,
+      t: performance.now(),
+    };
+  }, []);
+
+  const handleGalleryTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      const start = gallerySwipeRef.current;
+      gallerySwipeRef.current = null;
+      if (!start || e.changedTouches.length === 0 || allImages.length <= 1) {
+        return;
+      }
+
+      const end = e.changedTouches[0];
+      const dx = end.clientX - start.x;
+      const dy = end.clientY - start.y;
+      const dt = Math.max(1, performance.now() - start.t);
+      const velocity = Math.abs(dx) / dt;
+
+      if (
+        Math.abs(dx) > Math.abs(dy) * 1.15 &&
+        (Math.abs(dx) > 36 || (Math.abs(dx) > 22 && velocity > 0.3))
+      ) {
+        suppressGalleryClickRef.current = performance.now() + 260;
+        stepShowcaseImage(dx < 0 ? 1 : -1);
+      }
+    },
+    [allImages.length, stepShowcaseImage]
+  );
+
+  // 120Hz GPU Carousel Scroll Progress Indicator
+  useEffect(() => {
+    const el = carouselRef.current;
+    const thumb = carouselThumbRef.current;
+    if (!el || !thumb) return;
+
+    let rafId = 0;
+
+    const updateProgress = () => {
+      rafId = 0;
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (maxScroll <= 8) {
+        thumb.style.opacity = "0";
+        return;
+      }
+      thumb.style.opacity = "1";
+      const ratio = el.scrollLeft / maxScroll;
+      thumb.style.transform = `translate3d(${(ratio * 200).toFixed(1)}%, 0, 0)`;
+    };
+
+    const onScroll = () => {
+      if (rafId !== 0) return;
+      rafId = window.requestAnimationFrame(updateProgress);
+    };
+
+    updateProgress();
+    el.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+
+    return () => {
+      if (rafId !== 0) window.cancelAnimationFrame(rafId);
+      el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [relatedGames.length]);
 
   const scrollCarousel = (direction: "left" | "right") => {
     if (carouselRef.current) {
@@ -69,7 +159,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
         <div className="absolute top-5 left-4 sm:left-8 z-20">
           <Link
             href="/#catalog"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-pill-2 hover:bg-white/[0.15] text-xs sm:text-sm font-bold text-white transition-all shadow-[0_6px_20px_rgba(0,0,0,0.5)]"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-pill-2 hover:bg-white/[0.15] text-xs sm:text-sm font-bold text-white transition-all shadow-[0_6px_20px_rgba(0,0,0,0.5)] active:scale-95"
           >
             <ArrowLeft className="w-4 h-4 text-cyan-300" />
             <span>Quay Lại Kho Game</span>
@@ -136,10 +226,19 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
-          {/* Left 7 Cols: Glassmorphism 2.0 Screenshot Gallery */}
-          <div className="lg:col-span-7 rounded-3xl glass-panel-2 p-4 sm:p-5">
+          {/* Left 7 Cols: Glassmorphism 2.5 Screenshot Gallery + Direct Swipe Gesture */}
+          <div
+            onPointerMove={handleGlassSpotlightMove}
+            onPointerLeave={handleGlassSpotlightLeave}
+            className="lg:col-span-7 rounded-3xl glass-panel-2 glass-spotlight p-4 sm:p-5"
+          >
             <div
-              onClick={() => setLightboxOpen(true)}
+              onTouchStart={handleGalleryTouchStart}
+              onTouchEnd={handleGalleryTouchEnd}
+              onClick={() => {
+                if (performance.now() < suppressGalleryClickRef.current) return;
+                setLightboxOpen(true);
+              }}
               className="relative w-full h-80 sm:h-96 md:h-[460px] rounded-2xl overflow-hidden bg-slate-950/65 ring-1 ring-white/15 mb-3.5 cursor-pointer group/img shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
             >
               {/* Lightweight 256px WebP Thumbnail (~14 KiB) for Ambient Blur Fill */}
@@ -159,6 +258,37 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                 sizes="(max-width: 640px) calc(100vw - 64px), (max-width: 1024px) calc(100vw - 88px), 680px"
                 className="object-contain object-center relative z-10 p-1 sm:p-2 transition-transform duration-300"
               />
+
+              {allImages.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    aria-label="Ảnh trước"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      stepShowcaseImage(-1);
+                    }}
+                    className="hidden sm:flex opacity-0 group-hover/img:opacity-100 absolute left-3 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-slate-950/75 border border-white/25 text-white hover:border-cyan-300/60 transition-all active:scale-90"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Ảnh kế tiếp"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      stepShowcaseImage(1);
+                    }}
+                    className="hidden sm:flex opacity-0 group-hover/img:opacity-100 absolute right-3 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-slate-950/75 border border-white/25 text-white hover:border-cyan-300/60 transition-all active:scale-90"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                  <div className="absolute top-3 left-3 z-20 px-2.5 py-0.5 rounded-full bg-slate-950/75 border border-white/20 text-[10px] font-mono font-bold text-cyan-200">
+                    {activeImageIndex + 1} / {allImages.length}
+                  </div>
+                </>
+              )}
+
               <div className="absolute bottom-3 right-3 z-20 px-3 py-1 rounded-full glass-pill-2 text-[11px] font-semibold text-cyan-200 flex items-center gap-1.5 shadow-lg">
                 <span>Chạm xem toàn màn hình</span>
               </div>
@@ -171,7 +301,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                     key={idx}
                     type="button"
                     onClick={() => setSelectedImage(img)}
-                    className={`relative shrink-0 w-20 sm:w-24 h-14 sm:h-16 rounded-xl overflow-hidden border transition-all ${
+                    className={`relative shrink-0 w-20 sm:w-24 h-14 sm:h-16 rounded-xl overflow-hidden border transition-all active:scale-95 ${
                       currentSelectedImage === img
                         ? "border-cyan-300 shadow-[0_0_14px_rgba(0,240,255,0.45)] scale-105"
                         : "border-white/15 opacity-75 hover:opacity-100"
@@ -191,9 +321,13 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
             )}
           </div>
 
-          {/* Right 5 Cols: Glassmorphism 2.0 Features Panel + Back Link */}
+          {/* Right 5 Cols: Glassmorphism 2.5 Features Panel + Back Link */}
           <div className="lg:col-span-5 space-y-5">
-            <div className="rounded-3xl glass-panel-2 p-4 sm:p-5 space-y-3.5">
+            <div
+              onPointerMove={handleGlassSpotlightMove}
+              onPointerLeave={handleGlassSpotlightLeave}
+              className="rounded-3xl glass-panel-2 glass-spotlight p-4 sm:p-5 space-y-3.5"
+            >
               <div className="flex items-center justify-between border-b border-white/[0.1] pb-3">
                 <div className="flex items-center gap-2">
                   <span className="p-1.5 rounded-lg bg-cyan-400/15 border border-cyan-300/35">
@@ -213,7 +347,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                   {game.features.map((feat, idx) => (
                     <div
                       key={idx}
-                      className="group/item p-2.5 px-3.5 rounded-xl bg-white/[0.045] hover:bg-white/[0.095] border border-white/[0.11] hover:border-cyan-300/45 shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] transition-all duration-200 flex items-center gap-2.5"
+                      className="group/item p-2.5 px-3.5 rounded-xl bg-white/[0.045] hover:bg-white/[0.095] border border-white/[0.11] hover:border-cyan-300/45 shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] transition-all duration-200 flex items-center gap-2.5 active:scale-[0.985]"
                     >
                       <span className="text-[10px] font-mono font-bold text-slate-400 group-hover/item:text-cyan-300 w-5 text-right shrink-0">
                         {String(idx + 1).padStart(2, "0")}
@@ -241,7 +375,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
 
             <Link
               href="/#catalog"
-              className="w-full py-3 rounded-2xl glass-btn-secondary text-xs font-bold text-slate-100 hover:text-white flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-2xl glass-btn-secondary text-xs font-bold text-slate-100 hover:text-white flex items-center justify-center gap-2 active:scale-[0.98]"
             >
               <ArrowLeft className="w-4 h-4 text-cyan-300" />
               <span>Quay Lại Danh Sách Game</span>
@@ -249,7 +383,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
           </div>
         </div>
 
-        {/* Related Games Frosted Glass Carousel (Vertical scroll unlocked — no touch-pan-x lock) */}
+        {/* Related Games Frosted Glass Carousel (Vertical scroll unlocked + 120Hz GPU scroll track) */}
         {relatedGames.length > 0 && (
           <div className="mt-14 pt-10 border-t border-white/[0.1]">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
@@ -301,7 +435,9 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                 <Link
                   key={rg.id}
                   href={`/game/${rg.slug}`}
-                  className="group snap-start shrink-0 w-[240px] sm:w-[280px] md:w-[310px] rounded-2xl glass-card-2 p-4 flex flex-col justify-between"
+                  onPointerMove={handleGlassSpotlightMove}
+                  onPointerLeave={handleGlassSpotlightLeave}
+                  className="group snap-start shrink-0 w-[240px] sm:w-[280px] md:w-[310px] rounded-2xl glass-card-2 glass-spotlight p-4 flex flex-col justify-between active:scale-[0.985]"
                 >
                   <div>
                     <div className="relative w-full h-36 sm:h-40 rounded-xl overflow-hidden bg-slate-950/60 ring-1 ring-white/15 mb-3">
@@ -340,6 +476,17 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                   </div>
                 </Link>
               ))}
+            </div>
+
+            {/* Frosted Glass Carousel Progress Indicator */}
+            <div className="mt-2 flex justify-center" aria-hidden="true">
+              <div className="w-24 h-1 rounded-full bg-white/[0.08] overflow-hidden">
+                <div
+                  ref={carouselThumbRef}
+                  style={{ opacity: 0, transform: "translate3d(0%, 0, 0)" }}
+                  className="w-1/3 h-full rounded-full bg-gradient-to-r from-sky-300 to-cyan-300 shadow-[0_0_8px_rgba(56,189,248,0.65)] transition-opacity duration-200 will-change-transform"
+                />
+              </div>
             </div>
           </div>
         )}
