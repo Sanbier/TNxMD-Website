@@ -1,10 +1,14 @@
-import { Game } from "@/types/game";
+import {
+  CatalogGameItem,
+  Game,
+  GameDetailItem,
+  HeroGameItem,
+  RelatedGameItem,
+} from "@/types/game";
+import { DEFAULT_CONTACT_CHANNELS } from "@/config/contacts";
+import { buildSearchIndex, normalizeVi } from "@/lib/search";
 
-export const DEFAULT_CONTACT_CHANNELS = {
-  telegram: "https://t.me/tnxmd",
-  zalo: "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-  facebook: "https://facebook.com/tnxmd.gaming",
-};
+export { DEFAULT_CONTACT_CHANNELS };
 
 export const GAMES: Game[] = [
   {
@@ -59,11 +63,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 8 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/zingspeed-mobile/id1435297178?l=vi",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "ZingSpeed Mobile",
       "Đua Xe 3D",
@@ -122,11 +121,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 2.5 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/gambit-hero-v%E1%BA%ADn-m%E1%BB%87nh-anh-h%C3%B9ng/id6760814949",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Gambit Hero",
       "Vận Mệnh Anh Hùng",
@@ -184,11 +178,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 2 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/magic-defense-ph%C3%A1p-s%C6%B0-co-op/id6778703795",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Magic Defense",
       "Pháp Sư Co-op",
@@ -245,11 +234,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 1.5 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/zawar-survival-vn/id6760102204?l=vi",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "ZAWar Survival",
       "Balo Chiến Thuật",
@@ -306,11 +290,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 1.5 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/pixel-defenders-merge-td-game/id6761761522?l=vi",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Pixel Defenders",
       "Merge TD",
@@ -361,11 +340,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 1 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/crab-life-rpg-sinh-t%E1%BB%93n/id6605932603?l=vi",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Crab Life",
       "RPG Sinh Tồn",
@@ -428,11 +402,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 3.5 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/k%E1%BB%B5-s%C4%A9-nguy%C3%AAn-kh%C3%AD-ti%E1%BB%81n-truy%E1%BB%87n/id6742478967?l=vi",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Soul Knight",
       "ARPG",
@@ -487,11 +456,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 1 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/fish-eat-fish-io-hunger-games/id6453700466?l=vi",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Fish Eat Fish",
       "Cá Lớn Nuốt Cá Bé",
@@ -551,11 +515,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 3 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/mini-world-royale/id6736969466",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Mini World",
       "Sinh Tồn",
@@ -622,11 +581,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 2 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/%C4%91%E1%BA%ADu-nh%E1%BB%8F-n%E1%BB%95i-gi%E1%BA%ADn/id6792679853?l=vi",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Đậu Nhỏ",
       "Thủ Thành",
@@ -678,11 +632,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 2.5 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/th%C3%BA-c%C6%B0ng-b%C3%A3o-%C4%91%E1%BA%A1n/id6762122743?l=vi",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Thú Cưng Bão Đạn",
       "Roguelite",
@@ -739,11 +688,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 4 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/th%C3%A1nh-%C4%91%E1%BB%8Ba-afk/id1632864098",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Thánh Địa AFK",
       "AFK Arena",
@@ -797,11 +741,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 10 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/garena-li%C3%AAn-qu%C3%A2n-mobile/id1150288115",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Liên Quân Mobile",
       "AOV",
@@ -855,11 +794,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 3 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/us/app/id1450397793",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Mech Wars",
       "Robot",
@@ -910,11 +844,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 2 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/otherworld-legends/id1439772060?l=vi",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Otherworld Legends",
       "ChillyRoom",
@@ -961,11 +890,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 2 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/banecraft-idle-rpg/id6757404400?l=vi",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Banecraft",
       "Idle RPG",
@@ -1024,11 +948,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 3 GB dung lượng trống"
     },
     "contactUrl": "https://apps.apple.com/vn/app/gale-knights-idle-rpg/id6757690255",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Gale Knights",
       "Idle RPG",
@@ -1088,11 +1007,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 5 GB dung lượng trống trên thiết bị"
     },
     "contactUrl": "https://apps.apple.com/vn/app/au-2-chu%E1%BA%A9n-audition-mobile/id1431610213",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Au 2",
       "Audition Mobile",
@@ -1149,11 +1063,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 4 GB dung lượng trống trên thiết bị"
     },
     "contactUrl": "https://apps.apple.com/us/app/soul-strike-t%E1%BA%ADn-th%E1%BA%BF/id6458981827?l=vi",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Soul Strike",
       "Com2uS",
@@ -1221,11 +1130,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 3 GB dung lượng trống trên thiết bị"
     },
     "contactUrl": "https://apps.apple.com/us/app/ballistic-hero-vng/id6739907881?l=vi",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Ballistic Hero",
       "VNG",
@@ -1284,11 +1188,6 @@ export const GAMES: Game[] = [
       "storage": "Tối thiểu 6 GB dung lượng trống trên thiết bị"
     },
     "contactUrl": "https://apps.apple.com/vn/app/tokyo-ghoul-th%E1%BB%A9c-t%E1%BB%89nh/id6751103382",
-    "contactChannels": {
-      "telegram": "https://t.me/tnxmd",
-      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
-      "facebook": "https://facebook.com/tnxmd.gaming"
-    },
     "tags": [
       "Tokyo Ghoul",
       "Anime 3D",
@@ -1306,4 +1205,178 @@ export function getGameBySlug(slug: string): Game | undefined {
 
 export function getAllGameSlugs(): string[] {
   return GAMES.map((g) => g.slug);
+}
+
+const TOP_6_HERO_CONFIG: Array<Omit<HeroGameItem, "coverImage" | "version">> = [
+  {
+    slug: "zingspeed-mobile",
+    displayTitle: "ZingSpeed Mobile",
+    collapsedPos: "50% 42%",
+    activePos: "50% 44%",
+    baseScale: 1.04,
+  },
+  {
+    slug: "mini-world-royale",
+    displayTitle: "Mini World Royale",
+    collapsedPos: "54% 45%",
+    activePos: "50% 48%",
+    baseScale: 1.04,
+  },
+  {
+    slug: "lien-quan-mobile",
+    displayTitle: "Liên Quân Mobile",
+    collapsedPos: "74% 42%",
+    activePos: "50% 46%",
+    baseScale: 1.04,
+  },
+  {
+    slug: "thu-cung-bao-dan",
+    displayTitle: "Thú Cưng Bão Đạn",
+    collapsedPos: "38% 44%",
+    activePos: "50% 48%",
+    baseScale: 1.04,
+  },
+  {
+    slug: "soul-knight-prequel",
+    displayTitle: "Kỵ Sĩ Nguyên Khí",
+    collapsedPos: "48% 48%",
+    activePos: "50% 48%",
+    baseScale: 1.05,
+  },
+  {
+    slug: "dau-nho-noi-gian",
+    displayTitle: "Đậu Nhỏ Nổi Giận",
+    collapsedPos: "45% 42%",
+    activePos: "50% 44%",
+    baseScale: 1.22,
+  },
+];
+
+export function getHeroGames(): HeroGameItem[] {
+  const result: HeroGameItem[] = [];
+  for (const cfg of TOP_6_HERO_CONFIG) {
+    const found = GAMES.find((g) => g.slug === cfg.slug);
+    if (found) {
+      result.push({
+        ...cfg,
+        coverImage: found.coverImage,
+        version: found.version,
+      });
+    }
+  }
+  return result;
+}
+
+export function getCatalogGames(): CatalogGameItem[] {
+  return GAMES.map((g) => ({
+    id: g.id,
+    slug: g.slug,
+    title: g.title,
+    genre: g.genre,
+    shortDescription: g.shortDescription,
+    coverImage: g.coverImage,
+    isHot: g.isHot,
+    rating: g.rating,
+    version: g.version,
+    releaseDate: g.releaseDate,
+    developer: g.developer,
+    status: g.status,
+    contactUrl: g.contactUrl,
+    views: g.views,
+    searchIndex: buildSearchIndex([
+      g.title,
+      g.slug.replace(/-/g, " "),
+      g.genre,
+      g.developer,
+      g.status,
+      ...g.tags,
+    ]),
+  }));
+}
+
+export function toGameDetailItem(g: Game): GameDetailItem {
+  return {
+    id: g.id,
+    slug: g.slug,
+    title: g.title,
+    category: g.category,
+    genre: g.genre,
+    coverImage: g.coverImage,
+    bannerImage: g.bannerImage,
+    gallery: g.gallery,
+    isHot: g.isHot,
+    rating: g.rating,
+    version: g.version,
+    developer: g.developer,
+    status: g.status,
+    features: g.features,
+    contactUrl: g.contactUrl,
+    ...(g.contactChannels ? { contactChannels: g.contactChannels } : {}),
+  };
+}
+
+const GENRE_STOP_WORDS = new Set(["va", "tren", "ios", "di", "dong", "game"]);
+
+function extractKeywords(text: string): Set<string> {
+  const words = normalizeVi(text)
+    .split(" ")
+    .filter((w) => w.length >= 2 && !GENRE_STOP_WORDS.has(w));
+  return new Set(words);
+}
+
+export function getRelatedGames(current: Game, limit = 8): RelatedGameItem[] {
+  const currentGenreWords = extractKeywords(current.genre);
+  const currentTags = new Set(current.tags.map((t) => normalizeVi(t)));
+  const currentTagWords = extractKeywords(current.tags.join(" "));
+  const currentDev = normalizeVi(current.developer);
+
+  return GAMES.filter((g) => g.id !== current.id)
+    .map((candidate) => {
+      let score = 0;
+
+      // Đưa game đang bảo trì xuống cuối danh sách gợi ý
+      if (candidate.status === "Bảo Trì") {
+        score -= 1000;
+      }
+
+      // Chấm điểm trùng khớp từ khóa trong genre
+      const candGenreWords = extractKeywords(candidate.genre);
+      for (const w of candGenreWords) {
+        if (currentGenreWords.has(w)) score += 6;
+      }
+
+      // Chấm điểm trùng khớp tags (chính xác & từ khóa con)
+      for (const rawTag of candidate.tags) {
+        const normTag = normalizeVi(rawTag);
+        if (currentTags.has(normTag)) {
+          score += 10;
+        }
+      }
+      const candTagWords = extractKeywords(candidate.tags.join(" "));
+      for (const w of candTagWords) {
+        if (currentTagWords.has(w)) score += 3;
+      }
+
+      // Cùng danh mục / nhà phát hành / độ HOT
+      if (candidate.category === current.category) score += 2;
+      if (currentDev && normalizeVi(candidate.developer) === currentDev) {
+        score += 4;
+      }
+      if (candidate.isHot) score += 3;
+      score += candidate.rating;
+
+      return { candidate, score };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map(({ candidate: g }) => ({
+      id: g.id,
+      slug: g.slug,
+      title: g.title,
+      category: g.category,
+      version: g.version,
+      coverImage: g.coverImage,
+      status: g.status,
+      isHot: g.isHot,
+    }));
 }

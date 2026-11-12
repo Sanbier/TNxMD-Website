@@ -2,23 +2,23 @@
 
 import React, { useState, useMemo } from "react";
 import { Search, X, Gamepad } from "lucide-react";
-import { GAMES } from "@/data/games";
+import { CatalogGameItem } from "@/types/game";
+import { matchesSearchQuery } from "@/lib/search";
 import { GameCard } from "./GameCard";
 
-export const CatalogSection: React.FC = () => {
+interface CatalogSectionProps {
+  games: CatalogGameItem[];
+}
+
+export const CatalogSection: React.FC<CatalogSectionProps> = ({ games }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredGames = useMemo(() => {
-    if (searchQuery.trim() === "") return GAMES;
-    const q = searchQuery.toLowerCase().trim();
-    return GAMES.filter((game) => {
-      const matchTitle = game.title.toLowerCase().includes(q);
-      const matchGenre = game.genre.toLowerCase().includes(q);
-      const matchDesc = game.shortDescription.toLowerCase().includes(q);
-      const matchTags = game.tags.some((tag) => tag.toLowerCase().includes(q));
-      return matchTitle || matchGenre || matchDesc || matchTags;
-    });
-  }, [searchQuery]);
+    if (searchQuery.trim() === "") return games;
+    return games.filter((game) =>
+      matchesSearchQuery(game.searchIndex, searchQuery)
+    );
+  }, [games, searchQuery]);
 
   return (
     <section id="catalog" className="relative py-8 sm:py-12">
@@ -39,11 +39,11 @@ export const CatalogSection: React.FC = () => {
             <span>Hiển thị:</span>
             <span className="text-cyan-300 font-bold">{filteredGames.length}</span>
             <span>trên</span>
-            <span className="text-white font-bold">{GAMES.length} Tựa Game</span>
+            <span className="text-white font-bold">{games.length} Tựa Game</span>
           </div>
         </div>
 
-        {/* Frosted Crystal Search Bar */}
+        {/* Frosted Crystal Search Bar (Supports Accented & Unaccented Vietnamese, Locked 16px on Mobile) */}
         <div className="mb-7 sm:mb-8">
           <div className="relative">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-xl bg-white/[0.07] border border-white/15 flex items-center justify-center pointer-events-none">
@@ -52,13 +52,17 @@ export const CatalogSection: React.FC = () => {
             <input
               id="game-search-input"
               type="text"
+              inputMode="search"
+              autoComplete="off"
+              spellCheck={false}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Tìm theo tên game..."
+              placeholder="Tìm theo tên game (có dấu hoặc không dấu)..."
               className="w-full pl-14 pr-11 py-3.5 sm:py-4 rounded-2xl glass-input-2 text-white placeholder-slate-400 text-base sm:text-sm focus:outline-none"
             />
             {searchQuery && (
               <button
+                type="button"
                 onClick={() => setSearchQuery("")}
                 className="absolute right-3.5 top-1/2 -translate-y-1/2 p-1.5 rounded-xl glass-pill-2 text-slate-300 hover:text-white transition-colors"
                 aria-label="Xóa tìm kiếm"
@@ -81,11 +85,14 @@ export const CatalogSection: React.FC = () => {
             <div className="w-12 h-12 rounded-2xl glass-pill-2 flex items-center justify-center mx-auto mb-3 text-cyan-300">
               <Search className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-white">Không tìm thấy tựa game phù hợp</h3>
+            <h3 className="text-lg font-bold text-white">
+              Không tìm thấy tựa game phù hợp
+            </h3>
             <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-sm mx-auto">
               Không có kết quả nào khớp với &quot;{searchQuery}&quot;. Thử tìm kiếm với tên game khác.
             </p>
             <button
+              type="button"
               onClick={() => setSearchQuery("")}
               className="mt-4 px-5 py-2.5 rounded-xl text-xs font-bold text-white glass-btn-primary"
             >

@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { appleCdnLoader } from "@/lib/imageLoader";
 
 interface ImageLightboxProps {
   isOpen: boolean;
@@ -20,58 +21,80 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
   title,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const onCloseRef = useRef(onClose);
 
   useEffect(() => {
-    setCurrentIndex(initialIndex);
-  }, [initialIndex]);
+    onCloseRef.current = onClose;
+  }, [onClose]);
 
   useEffect(() => {
+    if (isOpen) {
+      setCurrentIndex(initialIndex);
+    }
+  }, [isOpen, initialIndex]);
+
+  const prevImage = useCallback(() => {
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+  }, [images.length]);
+
+  const nextImage = useCallback(() => {
+    setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+  }, [images.length]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isOpen) return;
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft") {
-        setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
-      }
-      if (e.key === "ArrowRight") {
-        setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+      if (e.key === "Escape") onCloseRef.current();
+      if (images.length > 1) {
+        if (e.key === "ArrowLeft") prevImage();
+        if (e.key === "ArrowRight") nextImage();
       }
     };
 
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-      window.addEventListener("keydown", handleKeyDown);
-    }
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, onClose, images.length]);
+  }, [isOpen, images.length, prevImage, nextImage]);
 
   if (!isOpen || images.length === 0) return null;
 
-  const prevImage = () => {
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
-  };
-
-  const nextImage = () => {
-    setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
-  };
+  const safeIndex = Math.min(Math.max(0, currentIndex), images.length - 1);
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX);
+    if (e.targetTouches.length !== 1) return;
+    const t = e.targetTouches[0];
+    touchStartRef.current = { x: t.clientX, y: t.clientY };
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStart === null) return;
-    const touchEnd = e.changedTouches[0].clientX;
-    const diff = touchStart - touchEnd;
-    if (diff > 50) {
-      nextImage();
-    } else if (diff < -50) {
-      prevImage();
+    const start = touchStartRef.current;
+    touchStartRef.current = null;
+    if (!start || e.changedTouches.length === 0) return;
+
+    const end = e.changedTouches[0];
+    const dx = start.x - end.clientX;
+    const dy = end.clientY - start.y;
+
+    // Vuốt xuống để đóng nhanh trên điện thoại
+    if (dy > 70 && Math.abs(dy) > Math.abs(dx) * 1.2) {
+      onCloseRef.current();
+      return;
     }
-    setTouchStart(null);
+
+    // Vuốt ngang để chuyển ảnh
+    if (images.length > 1 && Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx > 0) {
+        nextImage();
+      } else {
+        prevImage();
+      }
+    }
   };
 
   return (
@@ -79,8 +102,10 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
       role="dialog"
       aria-modal="true"
       aria-label="Xem ảnh phóng to"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/88 backdrop-blur-3xl animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-2xl animate-lightbox-in touch-none"
       onClick={onClose}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       {/* Top Frosted Bar */}
       <div
@@ -88,9 +113,13 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill-2">
-          {title && <span className="font-bold text-xs sm:text-sm text-white truncate max-w-[200px] sm:max-w-xs">{title}</span>}
+          {title && (
+            <span className="font-bold text-xs sm:text-sm text-white truncate max-w-[200px] sm:max-w-xs">
+              {title}
+            </span>
+          )}
           <span className="text-xs font-mono text-cyan-200 font-semibold">
-            {currentIndex + 1} / {images.length}
+            {safeIndex + 1} / {images.length}
           </span>
         </div>
 
@@ -104,19 +133,17 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
         </button>
       </div>
 
-      {/* Main Image with Touch Swipe */}
+      {/* Main Image */}
       <div
         className="relative w-full h-full max-w-5xl max-h-[85vh] p-4 flex items-center justify-center select-none"
         onClick={(e) => e.stopPropagation()}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
       >
         <div className="relative w-full h-full">
           <Image
-            src={images[currentIndex]}
-            alt={`Ảnh ${currentIndex + 1}`}
+            loader={appleCdnLoader}
+            src={images[safeIndex]}
+            alt={`Ảnh ${safeIndex + 1}`}
             fill
-            unoptimized
             sizes="100vw"
             priority
             className="object-contain"
@@ -153,7 +180,9 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
 
       <div className="sm:hidden absolute bottom-5 left-0 right-0 text-center pointer-events-none">
         <span className="text-[11px] font-medium text-slate-200 glass-pill-2 px-3.5 py-1.5 rounded-full">
-          ← Vuốt trái / phải để đổi ảnh →
+          {images.length > 1
+            ? "← Vuốt ngang đổi ảnh • Vuốt xuống để đóng →"
+            : "↓ Vuốt xuống để đóng"}
         </span>
       </div>
     </div>

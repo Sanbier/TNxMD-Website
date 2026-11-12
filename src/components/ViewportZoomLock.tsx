@@ -2,39 +2,33 @@
 
 import { useEffect } from "react";
 
+/**
+ * Khóa thu phóng (pinch-zoom trên Safari iOS & Ctrl+Wheel trên máy tính)
+ * mà KHÔNG gắn listener `touchmove`/`touchend` `{ passive: false }` lên `document`,
+ * giúp luồng cuộn GPU 60/120Hz trên điện thoại hoàn toàn tự do và phản hồi chạm tức thì.
+ */
 export const ViewportZoomLock = () => {
   useEffect(() => {
     const preventGesture = (e: Event) => {
       e.preventDefault();
     };
 
-    const preventMultiTouchZoom = (e: TouchEvent) => {
-      if (e.touches.length > 1) {
+    const preventCtrlWheelZoom = (e: WheelEvent) => {
+      if (e.ctrlKey) {
         e.preventDefault();
       }
-    };
-
-    let lastTouchEnd = 0;
-    const preventDoubleTapZoom = (e: TouchEvent) => {
-      const now = Date.now();
-      if (now - lastTouchEnd <= 300) {
-        e.preventDefault();
-      }
-      lastTouchEnd = now;
     };
 
     document.addEventListener("gesturestart", preventGesture, { passive: false });
     document.addEventListener("gesturechange", preventGesture, { passive: false });
     document.addEventListener("gestureend", preventGesture, { passive: false });
-    document.addEventListener("touchmove", preventMultiTouchZoom, { passive: false });
-    document.addEventListener("touchend", preventDoubleTapZoom, { passive: false });
+    window.addEventListener("wheel", preventCtrlWheelZoom, { passive: false });
 
     return () => {
       document.removeEventListener("gesturestart", preventGesture);
       document.removeEventListener("gesturechange", preventGesture);
       document.removeEventListener("gestureend", preventGesture);
-      document.removeEventListener("touchmove", preventMultiTouchZoom);
-      document.removeEventListener("touchend", preventDoubleTapZoom);
+      window.removeEventListener("wheel", preventCtrlWheelZoom);
     };
   }, []);
 

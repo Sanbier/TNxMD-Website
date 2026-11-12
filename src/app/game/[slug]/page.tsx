@@ -1,25 +1,13 @@
 import React from "react";
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
 import {
-  ArrowLeft,
-  Star,
-  Smartphone,
-  CheckCircle,
-  ExternalLink,
-  ShieldAlert,
-  Cpu,
-  Layers,
-  Calendar,
-  Eye,
-  MessageCircle,
-  Flame,
-} from "lucide-react";
-import { getGameBySlug, getAllGameSlugs, GAMES } from "@/data/games";
-import { Badge } from "@/components/Badge";
-import { SocialLinks } from "@/components/SocialLinks";
+  getAllGameSlugs,
+  getGameBySlug,
+  getRelatedGames,
+  toGameDetailItem,
+} from "@/data/games";
+import { getAppleOgImageUrl } from "@/lib/imageLoader";
 import { GameDetailClient } from "./GameDetailClient";
 
 interface Props {
@@ -42,6 +30,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const ogImageUrl = getAppleOgImageUrl(game.bannerImage, 1200);
+
   return {
     title: `${game.title} - Chức Năng & Trải Nghiệm`,
     description: game.shortDescription,
@@ -53,13 +43,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: "vi_VN",
       images: [
         {
-          url: game.bannerImage,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
+          type: "image/jpeg",
           alt: game.title,
         },
       ],
       type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${game.title} | TNxMD`,
+      description: game.shortDescription,
+      images: [ogImageUrl],
     },
     alternates: {
       canonical: `https://tnxmd.io.vn/game/${game.slug}`,
@@ -75,10 +72,40 @@ export default async function GameDetailPage({ params }: Props) {
     notFound();
   }
 
-  // Related games from other titles
-  const relatedGames = GAMES.filter((g) => g.id !== game.id);
+  const detailItem = toGameDetailItem(game);
+  const relatedGames = getRelatedGames(game, 8);
+
+  const softwareJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: game.title,
+    applicationCategory: "GameApplication",
+    applicationSubCategory: game.genre,
+    operatingSystem: game.platforms.join(", "),
+    softwareVersion: game.version,
+    description: game.shortDescription,
+    url: `https://tnxmd.io.vn/game/${game.slug}`,
+    image: getAppleOgImageUrl(game.coverImage, 512),
+    author: {
+      "@type": "Organization",
+      name: game.developer,
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: game.rating.toFixed(1),
+      bestRating: "5.0",
+      worstRating: "1.0",
+      ratingCount: "120",
+    },
+  };
 
   return (
-    <GameDetailClient game={game} relatedGames={relatedGames} />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
+      />
+      <GameDetailClient game={detailItem} relatedGames={relatedGames} />
+    </>
   );
 }

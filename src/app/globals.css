@@ -17,6 +17,7 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
   background-color: #05070f;
   color: #f4f7fb;
   font-family: var(--font-sans);
@@ -33,6 +34,15 @@ body {
   touch-action: pan-x pan-y;
 }
 
+a,
+button,
+input,
+select,
+textarea,
+[role="button"] {
+  touch-action: pan-x pan-y;
+}
+
 /* Prevent iOS Safari auto-zoom on input focus (must be >= 16px) */
 @media screen and (max-width: 768px) {
   input,
@@ -46,49 +56,41 @@ body {
    GLASSMORPHISM 2.0 — LIQUID CRYSTAL & SPECULAR RIM SYSTEM
    ========================================================= */
 
-/* Subtle optical grid layered over the ambient aurora orbs */
-.bg-glass-mesh {
+/* Zero-Blur-Pass Multi-Radial Aurora Stage + Optical Grid (0 GPU Gaussian Blur Passes) */
+.bg-aurora-stage {
+  background-color: #05070f;
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
-  background-size: 56px 56px;
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    radial-gradient(640px circle at 6% 4%, rgba(14, 165, 233, 0.175) 0%, rgba(14, 165, 233, 0.05) 42%, transparent 74%),
+    radial-gradient(620px circle at 94% 16%, rgba(147, 51, 234, 0.185) 0%, rgba(147, 51, 234, 0.05) 44%, transparent 76%),
+    radial-gradient(580px circle at 22% 54%, rgba(6, 182, 212, 0.125) 0%, rgba(6, 182, 212, 0.035) 45%, transparent 75%),
+    radial-gradient(680px circle at 82% 92%, rgba(79, 70, 229, 0.165) 0%, rgba(79, 70, 229, 0.045) 44%, transparent 76%);
+  background-size: 56px 56px, 56px 56px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
 }
 
-@keyframes auroraDriftSlow {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
+@media (min-width: 640px) {
+  .bg-aurora-stage {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+      radial-gradient(840px circle at 8% 2%, rgba(14, 165, 233, 0.175) 0%, rgba(14, 165, 233, 0.05) 44%, transparent 74%),
+      radial-gradient(780px circle at 92% 18%, rgba(147, 51, 234, 0.185) 0%, rgba(147, 51, 234, 0.05) 45%, transparent 76%),
+      radial-gradient(720px circle at 24% 56%, rgba(6, 182, 212, 0.125) 0%, rgba(6, 182, 212, 0.035) 46%, transparent 75%),
+      radial-gradient(820px circle at 80% 94%, rgba(79, 70, 229, 0.165) 0%, rgba(79, 70, 229, 0.045) 45%, transparent 76%);
+    background-size: 56px 56px, 56px 56px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
   }
-  50% {
-    transform: translate3d(24px, -18px, 0) scale(1.06);
-  }
-}
-
-@keyframes auroraDriftReverse {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(-22px, 20px, 0) scale(1.05);
-  }
-}
-
-.aurora-orb-1 {
-  animation: auroraDriftSlow 16s ease-in-out infinite;
-}
-
-.aurora-orb-2 {
-  animation: auroraDriftReverse 20s ease-in-out infinite;
 }
 
 /* Frosted Top Navigation Header */
 .glass-header-2 {
   background: linear-gradient(
     180deg,
-    rgba(12, 17, 34, 0.72) 0%,
-    rgba(8, 12, 26, 0.62) 100%
+    rgba(12, 17, 34, 0.74) 0%,
+    rgba(8, 12, 26, 0.64) 100%
   );
-  backdrop-filter: blur(26px) saturate(190%);
-  -webkit-backdrop-filter: blur(26px) saturate(190%);
+  backdrop-filter: blur(24px) saturate(185%);
+  -webkit-backdrop-filter: blur(24px) saturate(185%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow:
     0 10px 36px -10px rgba(0, 0, 0, 0.65),
@@ -104,8 +106,8 @@ body {
     rgba(255, 255, 255, 0.03) 45%,
     rgba(12, 18, 38, 0.48) 100%
   );
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow:
     0 20px 48px -14px rgba(0, 0, 0, 0.7),
@@ -230,14 +232,17 @@ body {
     rgba(255, 255, 255, 0.075) 0%,
     rgba(255, 255, 255, 0.03) 100%
   );
-  backdrop-filter: blur(22px) saturate(180%);
-  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow:
     0 10px 30px -10px rgba(0, 0, 0, 0.55),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
     inset 0 -1px 0 0 rgba(0, 0, 0, 0.25);
-  transition: all 0.25s ease;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .glass-input-2:focus {
@@ -260,8 +265,8 @@ body {
     rgba(255, 255, 255, 0.09) 0%,
     rgba(255, 255, 255, 0.035) 100%
   );
-  backdrop-filter: blur(16px) saturate(170%);
-  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  backdrop-filter: blur(14px) saturate(170%);
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.24);
 }
@@ -270,18 +275,22 @@ body {
 .glass-btn-primary {
   background: linear-gradient(
     135deg,
-    rgba(99, 102, 241, 0.82) 0%,
-    rgba(59, 130, 246, 0.82) 48%,
-    rgba(6, 182, 212, 0.88) 100%
+    rgba(99, 102, 241, 0.86) 0%,
+    rgba(59, 130, 246, 0.86) 48%,
+    rgba(6, 182, 212, 0.9) 100%
   );
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
   border: 1px solid rgba(186, 230, 253, 0.42);
   box-shadow:
     0 8px 22px -4px rgba(14, 165, 233, 0.42),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.45),
     inset 0 -1px 0 0 rgba(0, 0, 0, 0.22);
-  transition: all 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    transform 0.24s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.24s ease,
+    box-shadow 0.24s ease,
+    filter 0.24s ease;
 }
 
 .glass-btn-primary:hover {
@@ -296,16 +305,20 @@ body {
 .glass-btn-secondary {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.04) 100%
+    rgba(255, 255, 255, 0.11) 0%,
+    rgba(255, 255, 255, 0.045) 100%
   );
-  backdrop-filter: blur(16px) saturate(175%);
-  -webkit-backdrop-filter: blur(16px) saturate(175%);
+  backdrop-filter: blur(14px) saturate(175%);
+  -webkit-backdrop-filter: blur(14px) saturate(175%);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow:
     0 4px 14px -2px rgba(0, 0, 0, 0.38),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.28);
-  transition: all 0.24s ease;
+  transition:
+    transform 0.24s ease,
+    background 0.24s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
 }
 
 .glass-btn-secondary:hover {
@@ -320,15 +333,34 @@ body {
     inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
 }
 
-/* Floating Dock & Modal Sheet (visionOS Ultra-Frosted Glass) */
+/* Flatten redundant nested backdrop-filter passes inside already-frosted glass containers */
+.glass-card-2 .glass-btn-primary,
+.glass-card-2 .glass-btn-secondary,
+.glass-card-2 .glass-pill-2,
+.glass-card-amber .glass-btn-primary,
+.glass-card-amber .glass-btn-secondary,
+.glass-card-amber .glass-pill-2,
+.glass-header-2 .glass-pill-2,
+.glass-header-2 .glass-btn-primary,
+.glass-header-2 .glass-btn-secondary,
+.glass-panel-2 .glass-pill-2,
+.glass-panel-2 .glass-btn-primary,
+.glass-panel-2 .glass-btn-secondary,
+.glass-dock-2 .glass-btn-primary,
+.glass-dock-2 .glass-btn-secondary {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Floating Dock (visionOS Ultra-Frosted Glass) */
 .glass-dock-2 {
   background: linear-gradient(
     135deg,
-    rgba(18, 25, 48, 0.74) 0%,
-    rgba(10, 14, 30, 0.68) 100%
+    rgba(18, 25, 48, 0.78) 0%,
+    rgba(10, 14, 30, 0.72) 100%
   );
-  backdrop-filter: blur(30px) saturate(200%);
-  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  backdrop-filter: blur(26px) saturate(195%);
+  -webkit-backdrop-filter: blur(26px) saturate(195%);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow:
     0 18px 45px -8px rgba(0, 0, 0, 0.82),
@@ -336,20 +368,106 @@ body {
     inset 0 1px 0 0 rgba(255, 255, 255, 0.32);
 }
 
-.glass-modal-2 {
+/* High-FPS Draggable Modal Sheet (120Hz GPU-safe on mobile touch drag, frosted on desktop) */
+.glass-modal-sheet {
   background: linear-gradient(
-    145deg,
-    rgba(22, 30, 58, 0.82) 0%,
-    rgba(11, 15, 32, 0.78) 55%,
-    rgba(8, 12, 26, 0.86) 100%
+    155deg,
+    rgba(24, 34, 66, 0.96) 0%,
+    rgba(13, 18, 38, 0.97) 55%,
+    rgba(9, 13, 28, 0.99) 100%
   );
-  backdrop-filter: blur(34px) saturate(200%);
-  -webkit-backdrop-filter: blur(34px) saturate(200%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
   box-shadow:
-    0 25px 60px -12px rgba(0, 0, 0, 0.88),
-    0 0 40px -8px rgba(56, 189, 248, 0.22),
+    0 -16px 48px -8px rgba(0, 0, 0, 0.85),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.34);
+}
+
+@media (min-width: 640px) {
+  .glass-modal-sheet {
+    background: linear-gradient(
+      145deg,
+      rgba(22, 30, 58, 0.82) 0%,
+      rgba(11, 15, 32, 0.78) 55%,
+      rgba(8, 12, 26, 0.86) 100%
+    );
+    backdrop-filter: blur(30px) saturate(195%);
+    -webkit-backdrop-filter: blur(30px) saturate(195%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+      0 25px 60px -12px rgba(0, 0, 0, 0.88),
+      0 0 40px -8px rgba(56, 189, 248, 0.22),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.34);
+  }
+}
+
+/* Mobile 120Hz Scroll & Touch Compositor Tuning */
+@media (max-width: 639px) {
+  .glass-card-2,
+  .glass-card-amber {
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+  }
+}
+
+/* GPU-Composited Animations for Toast & ImageLightbox */
+@keyframes toastSlideInMobile {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes toastSlideInDesktop {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-toast-in {
+  animation: toastSlideInMobile 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (min-width: 640px) {
+  .animate-toast-in {
+    animation: toastSlideInDesktop 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes lightboxFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-lightbox-in {
+  animation: lightboxFadeIn 180ms ease-out both;
+}
+
+/* Reduced Motion Accessibility & Battery Saver Support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Custom Scrollbar */

@@ -14,29 +14,31 @@ import {
   ChevronRight,
   Wrench,
 } from "lucide-react";
-import { Game } from "@/types/game";
+import { GameDetailItem, RelatedGameItem } from "@/types/game";
+import { appleCdnLoader, getAppleThumbnailUrl } from "@/lib/imageLoader";
 import { Badge } from "@/components/Badge";
 import { ContactModal } from "@/components/ContactModal";
 import { ImageLightbox } from "@/components/ImageLightbox";
 
 interface GameDetailClientProps {
-  game: Game;
-  relatedGames: Game[];
+  game: GameDetailItem;
+  relatedGames: RelatedGameItem[];
 }
 
 export const GameDetailClient: React.FC<GameDetailClientProps> = ({
   game,
   relatedGames,
 }) => {
-  const [selectedImage, setSelectedImage] = useState<string>(
-    game.gallery && game.gallery.length > 0 ? game.gallery[0] : game.coverImage
-  );
+  const allImages =
+    game.gallery && game.gallery.length > 0 ? game.gallery : [game.coverImage];
+  const [selectedImage, setSelectedImage] = useState<string>(allImages[0]);
   const [contactOpen, setContactOpen] = useState<boolean>(false);
   const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
   const isMaintenance = game.status === "Bảo Trì";
-  const allImages =
-    game.gallery && game.gallery.length > 0 ? game.gallery : [game.coverImage];
-  const activeImageIndex = Math.max(0, allImages.indexOf(selectedImage));
+  const currentSelectedImage = allImages.includes(selectedImage)
+    ? selectedImage
+    : allImages[0];
+  const activeImageIndex = Math.max(0, allImages.indexOf(currentSelectedImage));
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const scrollCarousel = (direction: "left" | "right") => {
@@ -47,15 +49,15 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
   };
 
   return (
-    <div className="min-h-screen text-slate-100 pb-20">
+    <div className="min-h-screen text-slate-100 pb-6 sm:pb-12">
       {/* 1. Large Immersive Banner with Frosted Glass Overlay */}
       <div className="relative w-full h-72 sm:h-96 md:h-[460px] overflow-hidden bg-slate-950">
         <Image
+          loader={appleCdnLoader}
           src={game.bannerImage}
           alt={game.title}
           fill
           priority
-          unoptimized
           sizes="100vw"
           className="object-cover object-center opacity-80"
         />
@@ -140,8 +142,9 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
               onClick={() => setLightboxOpen(true)}
               className="relative w-full h-80 sm:h-96 md:h-[460px] rounded-2xl overflow-hidden bg-slate-950/65 ring-1 ring-white/15 mb-3.5 cursor-pointer group/img shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
             >
+              {/* Lightweight 256px WebP Thumbnail (~14 KiB) for Ambient Blur Fill */}
               <Image
-                src={selectedImage}
+                src={getAppleThumbnailUrl(currentSelectedImage, 256)}
                 alt=""
                 fill
                 unoptimized
@@ -149,11 +152,11 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                 className="object-cover object-center blur-2xl opacity-40 scale-110 pointer-events-none"
               />
               <Image
-                src={selectedImage}
+                loader={appleCdnLoader}
+                src={currentSelectedImage}
                 alt={game.title}
                 fill
-                unoptimized
-                sizes="(max-width: 1024px) 100vw, 1200px"
+                sizes="(max-width: 640px) calc(100vw - 64px), (max-width: 1024px) calc(100vw - 88px), 680px"
                 className="object-contain object-center relative z-10 p-1 sm:p-2 transition-transform duration-300"
               />
               <div className="absolute bottom-3 right-3 z-20 px-3 py-1 rounded-full glass-pill-2 text-[11px] font-semibold text-cyan-200 flex items-center gap-1.5 shadow-lg">
@@ -166,19 +169,20 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                 {game.gallery.map((img, idx) => (
                   <button
                     key={idx}
+                    type="button"
                     onClick={() => setSelectedImage(img)}
                     className={`relative shrink-0 w-20 sm:w-24 h-14 sm:h-16 rounded-xl overflow-hidden border transition-all ${
-                      selectedImage === img
+                      currentSelectedImage === img
                         ? "border-cyan-300 shadow-[0_0_14px_rgba(0,240,255,0.45)] scale-105"
                         : "border-white/15 opacity-75 hover:opacity-100"
                     }`}
                   >
                     <Image
+                      loader={appleCdnLoader}
                       src={img}
                       alt={`Ảnh chụp màn hình ${idx + 1}`}
                       fill
-                      unoptimized
-                      sizes="200px"
+                      sizes="(max-width: 640px) 80px, 96px"
                       className="object-cover object-center"
                     />
                   </button>
@@ -245,7 +249,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
           </div>
         </div>
 
-        {/* Related Games Frosted Glass Carousel */}
+        {/* Related Games Frosted Glass Carousel (Vertical scroll unlocked — no touch-pan-x lock) */}
         {relatedGames.length > 0 && (
           <div className="mt-14 pt-10 border-t border-white/[0.1]">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
@@ -291,7 +295,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
 
             <div
               ref={carouselRef}
-              className="flex items-stretch gap-4 sm:gap-5 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0 touch-pan-x"
+              className="flex items-stretch gap-4 sm:gap-5 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-0"
             >
               {relatedGames.map((rg) => (
                 <Link
@@ -302,11 +306,11 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                   <div>
                     <div className="relative w-full h-36 sm:h-40 rounded-xl overflow-hidden bg-slate-950/60 ring-1 ring-white/15 mb-3">
                       <Image
+                        loader={appleCdnLoader}
                         src={rg.coverImage}
                         alt={rg.title}
                         fill
-                        unoptimized
-                        sizes="(max-width: 768px) 384px, 512px"
+                        sizes="(max-width: 640px) 208px, 278px"
                         className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute top-2 left-2 flex items-center gap-1">
