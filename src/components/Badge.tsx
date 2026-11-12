@@ -22,9 +22,9 @@ export const Badge: React.FC<BadgeProps> = ({
   if (variant === "hot") {
     return (
       <span
-        className={`inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-red-600 via-pink-600 to-purple-600 text-white font-extrabold shadow-[0_0_12px_rgba(236,72,153,0.6)] animate-pulse ${sizeClasses} ${className}`}
+        className={`inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-rose-500/85 via-pink-500/85 to-purple-600/85 backdrop-blur-md border border-white/35 text-white font-extrabold shadow-[0_4px_14px_rgba(244,63,94,0.45),inset_0_1px_0_rgba(255,255,255,0.45)] ${sizeClasses} ${className}`}
       >
-        <Flame className="w-3.5 h-3.5 text-yellow-300 fill-yellow-300" />
+        <Flame className="w-3.5 h-3.5 text-amber-200 fill-amber-200" />
         {children}
       </span>
     );
@@ -33,7 +33,7 @@ export const Badge: React.FC<BadgeProps> = ({
   if (variant === "platform") {
     return (
       <span
-        className={`inline-flex items-center gap-1 rounded-md bg-white/[0.06] border border-white/10 text-gray-300 backdrop-blur-sm ${sizeClasses} ${className}`}
+        className={`inline-flex items-center gap-1 rounded-full glass-pill-2 text-slate-200 ${sizeClasses} ${className}`}
       >
         {children}
       </span>
@@ -43,9 +43,9 @@ export const Badge: React.FC<BadgeProps> = ({
   if (variant === "neon") {
     return (
       <span
-        className={`inline-flex items-center gap-1 rounded-full bg-purple-950/70 border border-purple-500/50 text-purple-300 shadow-[0_0_10px_rgba(168,85,247,0.3)] ${sizeClasses} ${className}`}
+        className={`inline-flex items-center gap-1 rounded-full bg-purple-500/20 backdrop-blur-md border border-purple-300/40 text-purple-100 shadow-[0_0_14px_rgba(168,85,247,0.28),inset_0_1px_0_rgba(255,255,255,0.3)] ${sizeClasses} ${className}`}
       >
-        <Sparkles className="w-3 h-3 text-cyan-400" />
+        <Sparkles className="w-3 h-3 text-cyan-300" />
         {children}
       </span>
     );
@@ -54,9 +54,9 @@ export const Badge: React.FC<BadgeProps> = ({
   if (variant === "maintenance") {
     return (
       <span
-        className={`inline-flex items-center gap-1 rounded-full bg-amber-950/85 border border-amber-500/60 text-amber-300 font-bold shadow-[0_0_12px_rgba(245,158,11,0.45)] ${sizeClasses} ${className}`}
+        className={`inline-flex items-center gap-1 rounded-full bg-amber-500/25 backdrop-blur-md border border-amber-300/55 text-amber-200 font-bold shadow-[0_4px_14px_rgba(245,158,11,0.35),inset_0_1px_0_rgba(255,255,255,0.35)] ${sizeClasses} ${className}`}
       >
-        <Wrench className="w-3 h-3 text-amber-400 animate-pulse" />
+        <Wrench className="w-3 h-3 text-amber-300 animate-pulse" />
         {children}
       </span>
     );
@@ -65,18 +65,17 @@ export const Badge: React.FC<BadgeProps> = ({
   if (variant === "status") {
     return (
       <span
-        className={`inline-flex items-center gap-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-cyan-300 ${sizeClasses} ${className}`}
+        className={`inline-flex items-center gap-1.5 rounded-full bg-cyan-400/18 backdrop-blur-md border border-cyan-300/45 text-cyan-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)] ${sizeClasses} ${className}`}
       >
-        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+        <span className="w-1.5 h-1.5 rounded-full bg-cyan-300 animate-ping" />
         {children}
       </span>
     );
   }
 
-  // default category badge
   return (
     <span
-      className={`inline-flex items-center rounded-md bg-purple-900/30 border border-purple-500/30 text-purple-200 font-medium ${sizeClasses} ${className}`}
+      className={`inline-flex items-center rounded-full bg-white/[0.09] backdrop-blur-md border border-white/20 text-sky-100 font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.26)] ${sizeClasses} ${className}`}
     >
       {children}
     </span>

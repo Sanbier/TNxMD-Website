@@ -73,7 +73,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07070a",
+  themeColor: "#05070f",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
@@ -92,13 +92,27 @@ export default function RootLayout({
       lang="vi"
       className={`dark ${beVietnamPro.variable} ${orbitron.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-screen bg-[#07070a] pb-20 sm:pb-0 text-gray-100 flex flex-col antialiased selection:bg-purple-600 selection:text-white bg-ambient-grid font-sans">
+      <body className="min-h-screen bg-[#05070f] pb-20 sm:pb-0 text-slate-100 flex flex-col antialiased selection:bg-cyan-500/40 selection:text-white font-sans">
         <ViewportZoomLock />
+
+        {/* Fixed Multi-Orb Aurora Light Stage (powers real refraction behind Glassmorphism 2.0 surfaces) */}
+        <div
+          aria-hidden="true"
+          className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-glass-mesh"
+        >
+          <div className="aurora-orb-1 absolute -top-24 -left-20 w-[360px] sm:w-[560px] h-[360px] sm:h-[560px] rounded-full bg-sky-500/[0.17] blur-[120px]" />
+          <div className="aurora-orb-2 absolute top-[8%] -right-24 w-[340px] sm:w-[520px] h-[340px] sm:h-[520px] rounded-full bg-purple-600/[0.18] blur-[130px]" />
+          <div className="aurora-orb-1 absolute top-[46%] left-[12%] w-[320px] sm:w-[500px] h-[320px] sm:h-[500px] rounded-full bg-cyan-500/[0.12] blur-[130px]" />
+          <div className="aurora-orb-2 absolute bottom-[-10%] right-[15%] w-[360px] sm:w-[560px] h-[360px] sm:h-[560px] rounded-full bg-indigo-600/[0.16] blur-[135px]" />
+        </div>
+
         <ToastProvider>
-          <Header />
-          {children}
-          <Footer />
-          <MobileBottomDock />
+          <div className="relative z-10 flex flex-col min-h-screen">
+            <Header />
+            {children}
+            <Footer />
+            <MobileBottomDock />
+          </div>
         </ToastProvider>
       </body>
     </html>
