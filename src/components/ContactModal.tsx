@@ -491,13 +491,6 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             );
           })}
         </div>
-
-        <div className="mt-5 pt-3 border-t border-white/[0.1] flex items-center justify-between text-[11px] text-slate-300">
-          <span>
-            Tên miền chính thức: <strong className="text-white">tnxmd.io.vn</strong>
-          </span>
-          <span className="text-cyan-300 font-medium">Hỗ trợ trực tiếp</span>
-        </div>
       </div>
     </div>
   );

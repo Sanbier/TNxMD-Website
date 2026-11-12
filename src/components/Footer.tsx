@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div className="flex items-center gap-1.5 text-center sm:text-left">
             <span>
-              © 2026 TNxMD (tnxmd.io.vn). Mọi thương hiệu và bản quyền tựa game thuộc về các nhà phát hành tương ứng.
+              © 2026 TNxMD. Mọi thương hiệu và bản quyền tựa game thuộc về các nhà phát hành tương ứng.
             </span>
           </div>
 
