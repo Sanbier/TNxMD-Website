@@ -54,7 +54,7 @@ export const CatalogSection: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Tìm theo tên game..."
-              className="w-full pl-12 pr-10 py-3.5 sm:py-4 rounded-2xl bg-[#0b0b14] border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_25px_rgba(0,240,255,0.25)] transition-all"
+              className="w-full pl-12 pr-10 py-3.5 sm:py-4 rounded-2xl bg-[#0b0b14] border border-white/10 text-white placeholder-gray-500 text-base sm:text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_25px_rgba(0,240,255,0.25)] transition-all"
             />
             {searchQuery && (
               <button

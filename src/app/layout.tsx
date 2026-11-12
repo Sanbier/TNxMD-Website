@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileBottomDock } from "@/components/MobileBottomDock";
 import { ToastProvider } from "@/components/Toast";
+import { ViewportZoomLock } from "@/components/ViewportZoomLock";
 import "./globals.css";
 
 const beVietnamPro = Be_Vietnam_Pro({
@@ -63,7 +64,9 @@ export const viewport: Viewport = {
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5,
+  minimumScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
@@ -77,6 +80,7 @@ export default function RootLayout({
       className={`dark ${beVietnamPro.variable} ${jetbrainsMono.variable}`}
     >
       <body className="min-h-screen bg-[#07070a] pb-20 sm:pb-0 text-gray-100 flex flex-col antialiased selection:bg-purple-600 selection:text-white bg-ambient-grid font-sans">
+        <ViewportZoomLock />
         <ToastProvider>
           <Header />
           {children}

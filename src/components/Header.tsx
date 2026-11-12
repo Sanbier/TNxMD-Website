@@ -23,7 +23,8 @@ export const Header: React.FC = () => {
                 alt="TNxMD Logo"
                 fill
                 priority
-                sizes="44px"
+                quality={95}
+                sizes="128px"
                 className="object-contain"
               />
             </div>

@@ -30,7 +30,8 @@ export const Footer: React.FC = () => {
                     src="/logo.png"
                     alt="TNxMD Logo"
                     fill
-                    sizes="44px"
+                    quality={95}
+                    sizes="128px"
                     className="object-contain"
                   />
                 </div>

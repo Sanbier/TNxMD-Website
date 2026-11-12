@@ -112,6 +112,7 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
             src={images[currentIndex]}
             alt={`Ảnh ${currentIndex + 1}`}
             fill
+            unoptimized
             sizes="100vw"
             priority
             className="object-contain"

@@ -71,8 +71,9 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
           alt={game.title}
           fill
           priority
+          unoptimized
           sizes="100vw"
-          className="object-cover object-center opacity-70"
+          className="object-cover object-center opacity-75"
         />
 
         {/* Ambient Gradient Overlays */}
@@ -147,17 +148,27 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
             <div className="rounded-2xl bg-[#0b0b14] border border-white/[0.08] p-4 sm:p-5 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
               <div
                 onClick={() => setLightboxOpen(true)}
-                className="relative w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden bg-black mb-3 cursor-zoom-in group/img"
+                className="relative w-full h-80 sm:h-96 md:h-[460px] rounded-xl overflow-hidden bg-[#06060b] mb-3 cursor-pointer group/img"
               >
+                {/* Ambient blurred backdrop so portrait & landscape screenshots both look full & crisp */}
+                <Image
+                  src={selectedImage}
+                  alt=""
+                  fill
+                  unoptimized
+                  aria-hidden="true"
+                  className="object-cover object-center blur-2xl opacity-35 scale-110 pointer-events-none"
+                />
                 <Image
                   src={selectedImage}
                   alt={game.title}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 800px"
-                  className="object-cover object-center transition-all duration-300 group-hover/img:scale-105"
+                  unoptimized
+                  sizes="(max-width: 1024px) 100vw, 1200px"
+                  className="object-contain object-center relative z-10 p-1 sm:p-2 transition-transform duration-300"
                 />
-                <div className="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md text-[11px] font-semibold text-cyan-300 border border-white/10 flex items-center gap-1.5 shadow-md">
-                  <span>🔍 Chạm xem ảnh toàn màn hình</span>
+                <div className="absolute bottom-2.5 right-2.5 z-20 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md text-[11px] font-semibold text-cyan-300 border border-white/10 flex items-center gap-1.5 shadow-md">
+                  <span>Chạm xem toàn màn hình</span>
                 </div>
               </div>
 
@@ -171,14 +182,15 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                       className={`relative shrink-0 w-20 sm:w-24 h-14 sm:h-16 rounded-lg overflow-hidden border-2 transition-all ${
                         selectedImage === img
                           ? "border-cyan-400 shadow-[0_0_12px_rgba(0,240,255,0.4)] scale-105"
-                          : "border-white/10 opacity-70 hover:opacity-100"
+                          : "border-white/10 opacity-75 hover:opacity-100"
                       }`}
                     >
                       <Image
                         src={img}
                         alt={`Ảnh chụp màn hình ${idx + 1}`}
                         fill
-                        sizes="96px"
+                        unoptimized
+                        sizes="200px"
                         className="object-cover object-center"
                       />
                     </button>
@@ -359,7 +371,8 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                         src={rg.coverImage}
                         alt={rg.title}
                         fill
-                        sizes="(max-width: 768px) 240px, 310px"
+                        unoptimized
+                        sizes="(max-width: 768px) 384px, 512px"
                         className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute top-2 left-2 flex items-center gap-1">

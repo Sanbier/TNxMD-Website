@@ -50,7 +50,8 @@ export const GameCard: React.FC<GameCardProps> = ({ game }) => {
               src={game.coverImage}
               alt={game.title}
               fill
-              sizes="(max-width: 640px) 96px, 144px"
+              unoptimized
+              sizes="(max-width: 640px) 256px, 384px"
               className={`object-cover object-center group-hover:scale-105 transition-transform duration-500 ${
                 isMaintenance ? "opacity-75 grayscale-[30%]" : ""
               }`}
