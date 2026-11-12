@@ -37,19 +37,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!game) {
     return {
-      title: "Không Tìm Thấy Tựa Game | TNXMD",
-      description: "Tựa game yêu cầu hiện không có trong thư viện TNXMD.",
+      title: "Không Tìm Thấy Tựa Game",
+      description: "Tựa game yêu cầu hiện không có trong thư viện TNxMD.",
     };
   }
 
   return {
-    title: `${game.title} - Cấu Hình, Đặc Điểm & Trải Nghiệm | TNXMD`,
+    title: `${game.title} - Chức Năng & Trải Nghiệm`,
     description: game.shortDescription,
     openGraph: {
-      title: `${game.title} | TNXMD Gaming Hub`,
+      title: `${game.title} | TNxMD`,
       description: game.shortDescription,
       url: `https://tnxmd.io.vn/game/${game.slug}`,
-      siteName: "TNXMD",
+      siteName: "TNxMD",
+      locale: "vi_VN",
       images: [
         {
           url: game.bannerImage,

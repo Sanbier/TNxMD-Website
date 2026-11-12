@@ -31,20 +31,20 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://tnxmd.io.vn"),
   title: {
-    default: "TNxMD | Elite Gaming Catalog & Direct Support",
+    default: "TNxMD | Cổng Mua/Bán Mod Game Online",
     template: "%s | TNxMD",
   },
   description:
-    "TNxMD is a premium dark gaming catalog featuring verified high-performance title profiles, 24/7 direct operator contact via Telegram, Zalo, and Facebook.",
+    "Truy cập khám phá và trải nghiệm các chức năng thú vị đến từ đội ngũ siêu hạng",
   keywords: [
     "TNxMD",
     "tnxmd.io.vn",
-    "gaming catalog",
-    "game library",
-    "tactical gaming",
-    "telegram gaming support",
+    "cổng mua bán mod game online",
+    "mod game ios",
+    "kho game mod",
+    "hỗ trợ game trực tiếp",
   ],
-  authors: [{ name: "TNxMD Engineering Team" }],
+  authors: [{ name: "TNxMD" }],
   creator: "TNxMD",
   publisher: "TNxMD",
   icons: {
@@ -52,13 +52,19 @@ export const metadata: Metadata = {
     apple: "/logo.png",
   },
   openGraph: {
-    title: "TNxMD | Elite Gaming Catalog & Direct Support",
+    title: "TNxMD | Cổng Mua/Bán Mod Game Online",
     description:
-      "Explore verified game titles, high-performance profiles, and instant direct access channels at tnxmd.io.vn.",
+      "Truy cập khám phá và trải nghiệm các chức năng thú vị đến từ đội ngũ siêu hạng",
     url: "https://tnxmd.io.vn",
     siteName: "TNxMD",
     type: "website",
-    locale: "en_US",
+    locale: "vi_VN",
+  },
+  twitter: {
+    card: "summary",
+    title: "TNxMD | Cổng Mua/Bán Mod Game Online",
+    description:
+      "Truy cập khám phá và trải nghiệm các chức năng thú vị đến từ đội ngũ siêu hạng",
   },
   robots: {
     index: true,
