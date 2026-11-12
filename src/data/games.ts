@@ -8,6 +8,374 @@ export const DEFAULT_CONTACT_CHANNELS = {
 
 export const GAMES: Game[] = [
   {
+    "id": "zingspeed-mobile",
+    "slug": "zingspeed-mobile",
+    "title": "ZingSpeed Mobile",
+    "category": "Di động",
+    "genre": "Đua Xe Tốc Độ 3D Esports",
+    "platforms": [
+      "iOS",
+      "iPadOS"
+    ],
+    "shortDescription": "Đấu trường đua xe tốc độ 3D huyền thoại của VNG với bộ tinh chỉnh động cơ, auto CWW/WCW, mở khóa Cơ Giáp T-Series và auto đua 120 map replay.",
+    "fullDescription": "ZingSpeed Mobile mang đến những đường đua rực lửa đòi hỏi kỹ năng Drift và kiểm soát N2O điêu luyện. Bản tích hợp nâng cấp toàn diện hệ thống truyền động xe đua, hỗ trợ tự động bắn Boost CWW/WCW chuẩn xác, đồng bộ kho Siêu Xe và Cơ Giáp T-Series ra sảnh lẫn trong trận, kèm hệ thống Auto Replay 120 bản đồ cày trận tự động 24/7 trên iOS.",
+    "coverImage": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/b3/37/b6/b337b68e-aa18-c58f-27ad-10b2027b3d73/AppIcon-1x_U007emarketing-0-10-0-85-220-0.png/512x512bb.jpg",
+    "bannerImage": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/19/c8/54/19c85421-ca55-5a1a-f75e-a60efa6cdd62/1.jpg/320x480bb.jpg",
+    "gallery": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/19/c8/54/19c85421-ca55-5a1a-f75e-a60efa6cdd62/1.jpg/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/13/28/2a/13282a8f-5694-45a2-b3ee-3878b7e31491/2.jpg/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/36/b4/fd/36b4fd2d-92aa-356c-a605-3e2fe3ce4972/3.jpg/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/18/02/39/180239e0-9664-cf6c-f257-970e603eb61c/4.jpg/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/8c/19/46/8c1946e0-e02c-9a9b-054b-043dc6465d71/7.jpg/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/8d/93/0c/8d930c5f-6ff3-b9a2-95cb-bff7887c1b69/5.jpg/320x480bb.jpg"
+    ],
+    "isHot": true,
+    "rating": 4.9,
+    "version": "v1.55.027341",
+    "releaseDate": "Mới Cập Nhật",
+    "developer": "VNG CORPORATION",
+    "status": "HOT",
+    "features": [
+      "Động Cơ & Lái: Cường Hóa Động Cơ & Gia Tốc Xe (Tùy Chỉnh Hệ Số 1.0x – 2.5x)",
+      "Động Cơ & Lái: Giữ Tốc Độ Tối Đa Khi Vào Cua Gắt, Chống Tụt Tốc",
+      "Động Cơ & Lái: Chống Đứt Drift Khi Va Quệt & Tăng Độ Nhạy Đánh Lái",
+      "Boost Nhỏ & N2O Lớn: Mở Khóa Boost Nhỏ Liên Tục (Tiểu Phun / Không Phun / Song Phun / Lạc Địa)",
+      "Boost Nhỏ & N2O Lớn: Tự Động Bắn Boost Nhỏ & Kích Hoạt 1 Chạm Thành CWW / WCW",
+      "Boost Nhỏ & N2O Lớn: Tăng Tốc Tích Khí N2O Lớn Khi Drift (Tùy Chỉnh 1.0x – 5.0x)",
+      "Boost Nhỏ & N2O Lớn: Bảo Toàn 100% Thanh N2O Khi Va Tường & Tự Động Bơm Đầy Bình N2O Liên Tục",
+      "Siêu Xe & Cơ Giáp: Mở Khóa Toàn Bộ Siêu Xe, Cơ Giáp T-Series & Skin Hiếm Trong Kho Xe",
+      "Siêu Xe & Cơ Giáp: Tự Động Mang Xe & Skin Đang Xem Ra Sảnh Chính Và Vào Trận Đua",
+      "Siêu Xe & Cơ Giáp: Đồng Bộ Chỉ Số Động Cơ & Gia Tốc Theo Chuẩn Siêu Xe / Cơ Giáp Đang Chọn",
+      "Siêu Xe & Cơ Giáp: Biến Hình Robot Cơ Giáp / Giải Giáp Tức Thì, Bung Cánh Gió, Mở Cửa & Đèn Neon 7 Màu",
+      "Auto Đua .REP (Full 120 Map): Tích Hợp Sẵn Kho 120 Map Replay Chuẩn Top 1 Trong Bản Cài",
+      "Auto Đua .REP (Full 120 Map): Tự Động Đua Bám Đường, Tự Drift Tích N2O, Tự Bắn CWW Về Đích",
+      "Tự Động Cày Trận 24/7: Tự Tìm Trận, Tự Sẵn Sàng, Tự Đua Tiếp & Tự Ghép Lại (Đua Đơn / Đua Đội / Phòng Chờ)"
+    ],
+    "systemRequirements": {
+      "os": "iOS 13.0 trở lên / iPadOS 13.0+",
+      "processor": "Apple A12 Bionic trở lên",
+      "memory": "Tối thiểu 3 GB RAM (Khuyên dùng 4 GB+)",
+      "graphics": "Apple GPU tích hợp Metal",
+      "storage": "Tối thiểu 8 GB dung lượng trống"
+    },
+    "contactUrl": "https://apps.apple.com/vn/app/zingspeed-mobile/id1435297178?l=vi",
+    "contactChannels": {
+      "telegram": "https://t.me/tnxmd",
+      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
+      "facebook": "https://facebook.com/tnxmd.gaming"
+    },
+    "tags": [
+      "ZingSpeed Mobile",
+      "Đua Xe 3D",
+      "VNG",
+      "Cơ Giáp T-Series",
+      "Auto CWW",
+      "Auto Replay 120 Map"
+    ],
+    "views": "134.2K"
+  },
+  {
+    "id": "gambit-hero",
+    "slug": "gambit-hero",
+    "title": "Gambit Hero: Vận Mệnh Anh Hùng",
+    "category": "Di động",
+    "genre": "Chiến Thuật Đấu Trường Anh Hùng",
+    "platforms": [
+      "iOS",
+      "iPadOS"
+    ],
+    "shortDescription": "Đấu trường chiến thuật Gambit Hero với khả năng dọn quái 1 đòn, bạo kích 100%, gia tốc trận đấu x30, tự thắng PvP và rút thưởng miễn phí.",
+    "fullDescription": "Gambit Hero: Vận Mệnh Anh Hùng kết hợp chiều sâu chiến thuật dàn trận cùng nhịp độ giao tranh dồn dập. Bản tích hợp hỗ trợ tối đa sức mạnh đội hình với hệ số nhân sát thương x10, bạo kích tuyệt đối 100%, không hồi chiêu, tự động giành chiến thắng PvP, tốc độ trận đấu x30 và tính năng rút thưởng miễn phí siêu nổ hũ.",
+    "coverImage": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/19/47/09/19470939-13bf-69d0-d12b-52389877ebb5/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "bannerImage": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/29/06/5b/29065b82-d631-41f6-2e26-097681d3b956/5.png/320x480bb.jpg",
+    "gallery": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/29/06/5b/29065b82-d631-41f6-2e26-097681d3b956/5.png/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/58/a4/78/58a478ac-f4bb-3b18-3461-6c9c077f3db4/4.png/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/12/a8/9b/12a89b7a-c417-a4d2-0c99-6b3d428f4629/1.png/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/65/58/96/655896e5-6d64-9f4f-28e3-9d70cfe2ed69/3.png/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/eb/79/bb/eb79bb6e-bf30-151d-c2a4-5e42ee521d5b/2.png/320x480bb.jpg"
+    ],
+    "isHot": true,
+    "rating": 4.8,
+    "version": "v1.4.5",
+    "releaseDate": "Mới Cập Nhật",
+    "developer": "Gzone Group Company Limited",
+    "status": "HOT",
+    "features": [
+      "Hạ Gục Mục Tiêu 1 Đòn (Diệt Quái Tức Thì Với 1 Chạm)",
+      "Bật Tăng Sát Thương & Hệ Số Nhân Sát Thương (x10)",
+      "Luôn Bạo Kích 100% (Chí Mạng Tuyệt Đối Mọi Đòn Đánh)",
+      "Tăng Tốc Đánh Cực Đại & Xóa Thời Gian Hồi Chiêu",
+      "Chế Độ Bất Tử Toàn Đội Hình Trong Trận",
+      "Bất Tử Kết Hợp Tự Động Thắng Đấu Trường PvP",
+      "Bật Ghi Đè Tốc Độ Trận Đấu & Hệ Số Gia Tốc x30",
+      "[Nhấn] Thắng Trận Ngay Tức Thì",
+      "[Nhấn] Dọn Sạch Toàn Bộ Quái Trên Màn Hình",
+      "Rút Thưởng Miễn Phí (Rút Thưởng Không Tốn Lượt) & Mở Khóa VIP",
+      "Rút Thưởng Bùng Nổ (Tăng Tỷ Lệ Siêu Nổ Hũ)"
+    ],
+    "systemRequirements": {
+      "os": "iOS 13.0 trở lên / iPadOS 13.0+",
+      "processor": "Apple A11 Bionic trở lên",
+      "memory": "Tối thiểu 3 GB RAM",
+      "graphics": "Apple GPU tích hợp Metal",
+      "storage": "Tối thiểu 2.5 GB dung lượng trống"
+    },
+    "contactUrl": "https://apps.apple.com/vn/app/gambit-hero-v%E1%BA%ADn-m%E1%BB%87nh-anh-h%C3%B9ng/id6760814949",
+    "contactChannels": {
+      "telegram": "https://t.me/tnxmd",
+      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
+      "facebook": "https://facebook.com/tnxmd.gaming"
+    },
+    "tags": [
+      "Gambit Hero",
+      "Vận Mệnh Anh Hùng",
+      "Chiến Thuật",
+      "Auto PvP",
+      "Rút Thưởng Miễn Phí"
+    ],
+    "views": "64.7K"
+  },
+  {
+    "id": "magic-defense",
+    "slug": "magic-defense",
+    "title": "Magic Defense: Pháp Sư Co-op",
+    "category": "Di động",
+    "genre": "Thủ Thành Phép Thuật Co-op TD",
+    "platforms": [
+      "iOS",
+      "iPadOS"
+    ],
+    "shortDescription": "Bảo vệ Tháp Phép Thuật cùng đồng đội trong Magic Defense với sát thương x100, mở khóa toàn bộ tướng Lv15, phép thuật thức tỉnh và bộ skin đỏ.",
+    "fullDescription": "Magic Defense: Co-op Wizard TD đưa người chơi vào cuộc chiến bảo vệ tòa tháp ma thuật cuối cùng trước binh đoàn quái vật bóng tối. Bản tích hợp cung cấp sức mạnh toàn diện: nhân sát thương lên tới 100x, đóng băng quái, tự động thắng màn, mở khóa toàn bộ anh hùng cấp 15, thức tỉnh phép thuật tối đa, mở full skin cùng đặc quyền VVIP không quảng cáo.",
+    "coverImage": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/df/65/f3/df65f3a0-d07a-87b4-1279-b90e4619a932/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "bannerImage": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/45/51/b0/4551b07b-ca5e-4e82-81cb-bc411b9eed1e/ASO_EN_IOS_shot1.png/320x480bb.jpg",
+    "gallery": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/45/51/b0/4551b07b-ca5e-4e82-81cb-bc411b9eed1e/ASO_EN_IOS_shot1.png/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/db/38/6d/db386ded-50cc-859b-e20c-84b56df9e996/ASO_EN_IOS_shot2.png/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/1a/3a/f5/1a3af59c-ed4c-a4ad-a10f-aa225e8b181b/ASO_EN_IOS_shot3.png/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/42/b5/9b/42b59bb0-e72e-78d8-eaae-370015053b5d/ASO_EN_IOS_shot6.png/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/3d/09/66/3d09664d-a996-a48d-405d-a0dee700d7b8/ASO_EN_IOS_shot4.png/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/4c/99/a8/4c99a809-d1dd-4252-0fbb-7062ba951379/ASO_EN_IOS_shot5.png/320x480bb.jpg"
+    ],
+    "isHot": true,
+    "rating": 4.9,
+    "version": "v1.1.11",
+    "releaseDate": "Mới Cập Nhật",
+    "developer": "Teamsparta Inc.",
+    "status": "HOT",
+    "features": [
+      "Chiến Đấu & Phòng Thủ: Hạ Gục 1 Đòn & Hệ Số Nhân Sát Thương (1x–100x)",
+      "Chiến Đấu & Phòng Thủ: 100% Bạo Kích & Cường Hóa Kỹ Năng Phép Thuật",
+      "Chiến Đấu & Phòng Thủ: Bất Tử (God Mode) & Đóng Băng Toàn Bộ Quái Vật",
+      "Chiến Đấu & Phòng Thủ: Tăng Tốc Chiến Đấu & Tùy Chỉnh Tốc Độ Game (1x–10x)",
+      "Chiến Đấu & Phòng Thủ: Dọn Sạch Quái Toàn Màn & Tự Động Thắng (AutoWin)",
+      "Triệu Hồi & Phép Thuật: Mở Khóa Đầy Đủ Anh Hùng Triệu Hồi (Full Hero Summon)",
+      "Triệu Hồi & Phép Thuật: Mở Khóa Toàn Bộ Phép Thuật (Full Spells)",
+      "Mở Khóa & Nâng Cấp: Full Anh Hùng Cấp 15, Max Level & Thức Tỉnh Phép Thuật",
+      "Mở Khóa & Nâng Cấp: Mở Khóa Full Trang Phục (Skins) & Dòng Thuộc Tính Đỏ (Red Traits)",
+      "VIP & Tiện Ích: Mở Khóa VIP/VVIP, Loại Bỏ Quảng Cáo (Ad-Free) & Tối Ưu Cài Đặt IPA"
+    ],
+    "systemRequirements": {
+      "os": "iOS 13.0 trở lên / iPadOS 13.0+",
+      "processor": "Apple A11 Bionic trở lên",
+      "memory": "Tối thiểu 3 GB RAM",
+      "graphics": "Apple GPU tích hợp Metal",
+      "storage": "Tối thiểu 2 GB dung lượng trống"
+    },
+    "contactUrl": "https://apps.apple.com/vn/app/magic-defense-ph%C3%A1p-s%C6%B0-co-op/id6778703795",
+    "contactChannels": {
+      "telegram": "https://t.me/tnxmd",
+      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
+      "facebook": "https://facebook.com/tnxmd.gaming"
+    },
+    "tags": [
+      "Magic Defense",
+      "Pháp Sư Co-op",
+      "Tower Defense",
+      "Full Hero",
+      "VVIP Unlock"
+    ],
+    "views": "58.3K"
+  },
+  {
+    "id": "zawar-survival-vn",
+    "slug": "zawar-survival-vn",
+    "title": "ZAWar: Survival VN",
+    "category": "Di động",
+    "genre": "Sinh Tồn Tận Thế & Ghép Balo Chiến Thuật",
+    "platforms": [
+      "iOS",
+      "iPadOS"
+    ],
+    "shortDescription": "Sinh tồn giữa đại dịch đột biến bằng chiến thuật sắp xếp Balo vũ khí kết hợp 1 hit diệt quái, đóng băng mục tiêu, thêm vàng và auto ghép đồ.",
+    "fullDescription": "ZAWar: Survival VN đặt bạn vào vai chiến binh cuối cùng bảo vệ căn cứ nhân loại trước làn sóng quái vật cơ khí và đột biến. Bản tích hợp giúp tối ưu hoàn toàn trải nghiệm: 1 hit diệt quái, bất tử, đóng băng quái vật, không giới hạn hồi chiêu, mở rộng tầm bắn tối đa, cộng vàng trực tiếp trong trận, tự động chọn thẻ kỹ năng và tự ghép trang bị.",
+    "coverImage": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/b2/19/c8/b219c873-a232-53bc-7810-3344ccba22e8/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/512x512bb.jpg",
+    "bannerImage": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/34/96/01/34960132-9ad7-e20c-8b61-e974bb39547b/1242x2688_-_DO_HOA_CHIBI_TAN_THE__U2013_DA_TAY_U002c_DA_MAT__U200b_copy.jpg/320x480bb.jpg",
+    "gallery": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/34/96/01/34960132-9ad7-e20c-8b61-e974bb39547b/1242x2688_-_DO_HOA_CHIBI_TAN_THE__U2013_DA_TAY_U002c_DA_MAT__U200b_copy.jpg/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/0f/8b/2d/0f8b2d8c-c324-310f-c0b8-c1be68e1ff4c/1242x2688_-_BALO_CHIEN_THUAT_-_GHEP_VU_KHI_CUC_DA__U200b_copy.jpg/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/75/79/e7/7579e75a-591b-2536-a474-498fa29425b9/1242x2688_-_TIEN_HOA_ANH_HUNG_-_MO_KHOA_SUC_MANH_MOI__U200b_copy.jpg/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/f5/9f/b6/f59fb62e-edd8-9ca9-acff-85230e37b10e/1242x2688_-_RA_DON_THAN_TOC__U2013_QUYET_DINH_TRONG_TICH_TAC_copy.jpg/320x480bb.jpg"
+    ],
+    "isHot": false,
+    "rating": 4.8,
+    "version": "v5.0",
+    "releaseDate": "Mới Cập Nhật",
+    "developer": "ZIE VN COMPANY LIMITED",
+    "status": "Mới Cập Nhật",
+    "features": [
+      "Hạ Gục Quái Vật 1 Hit Tức Thì",
+      "Tùy Chỉnh Hệ Số Sát Thương Linh Hoạt",
+      "Chế Độ Bất Tử Bảo Vệ Cứ Điểm Tuyệt Đối",
+      "Tùy Chỉnh Gia Tốc Tốc Độ Trận Đấu",
+      "Đóng Băng Toàn Bộ Quái Vật Trên Bản Đồ",
+      "Tự Động Tiêu Diệt Quái Vật Liên Tục",
+      "Không Giới Hạn Thời Gian Hồi Chiêu Kỹ Năng",
+      "Tăng Tầm Kỹ Năng & Phạm Vi Tấn Công Tối Đa",
+      "Thêm Vàng Trực Tiếp Ngay Trong Trận Đấu",
+      "Auto Chọn Thẻ Kỹ Năng & Auto Ghép Trang Bị Trong Trận",
+      "Loại Bỏ Hoàn Toàn Quảng Cáo"
+    ],
+    "systemRequirements": {
+      "os": "iOS 13.0 trở lên / iPadOS 13.0+",
+      "processor": "Apple A11 Bionic trở lên",
+      "memory": "Tối thiểu 2 GB RAM",
+      "graphics": "Apple GPU tích hợp Metal",
+      "storage": "Tối thiểu 1.5 GB dung lượng trống"
+    },
+    "contactUrl": "https://apps.apple.com/vn/app/zawar-survival-vn/id6760102204?l=vi",
+    "contactChannels": {
+      "telegram": "https://t.me/tnxmd",
+      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
+      "facebook": "https://facebook.com/tnxmd.gaming"
+    },
+    "tags": [
+      "ZAWar Survival",
+      "Balo Chiến Thuật",
+      "Sinh Tồn",
+      "Auto Ghép Đồ",
+      "Thêm Vàng"
+    ],
+    "views": "49.1K"
+  },
+  {
+    "id": "pixel-defenders",
+    "slug": "pixel-defenders",
+    "title": "Pixel Defenders: Merge TD Game",
+    "category": "Di động",
+    "genre": "Thủ Thành Hợp Nhất Chiến Thuật Pixel",
+    "platforms": [
+      "iOS",
+      "iPadOS"
+    ],
+    "shortDescription": "Thủ thành hợp nhất anh hùng phong cách Pixel với 1 hit quái và boss, bội số sát thương x50, qua wave nhanh, thắng hoàn hảo 3 sao và tốc độ x10.",
+    "fullDescription": "Pixel Defenders: Merge TD Game mang đến thế giới thủ thành pixel đầy màu sắc lấy cảm hứng từ Fortias Saga, nơi bạn triệu hồi và hợp nhất đội hình anh hùng chống lại những đợt quái bất tận. Bản tích hợp hỗ trợ 1 hit hạ gục cả quái lẫn Boss, nhân sát thương x50, bất tử, chuyển wave tức thì, đạt chiến thắng hoàn hảo 3 sao và bỏ qua quảng cáo nhận thưởng.",
+    "coverImage": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ed/dd/31/eddd31db-8ed8-799e-d668-e18d3c32a727/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "bannerImage": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c8/49/81/c849811a-2c66-5a78-6454-60d1b40d4302/1.1290x2796.png/320x480bb.jpg",
+    "gallery": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c8/49/81/c849811a-2c66-5a78-6454-60d1b40d4302/1.1290x2796.png/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/71/12/01/71120114-1257-dd7a-0151-48db0da267fe/3.1290x2796.png/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/18/1c/83/181c838d-3029-98e7-b1fc-45ee5f25d909/4.1290x2796.png/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/04/c2/b1/04c2b168-d884-d21a-d7fb-7efbf57f3b86/7.1290x2796.png/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/12/5f/2b/125f2b30-0305-4335-1c04-2cf530f4d5d8/6.1290x2796.png/320x480bb.jpg",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/84/06/cf/8406cf93-1a20-4b90-dca9-61ac99b2e8ee/5.1290x2796.png/320x480bb.jpg"
+    ],
+    "isHot": false,
+    "rating": 4.8,
+    "version": "v1.0.13",
+    "releaseDate": "Mới Cập Nhật",
+    "developer": "ONDI TECHNOLOGY JSC",
+    "status": "Mới Cập Nhật",
+    "features": [
+      "1 Hit Hạ Gục Quái Vật & Boss Cấp Cao",
+      "Tùy Chỉnh Bội Số Sát Thương (x1 – x50)",
+      "Tự Động Diệt Sạch Toàn Bộ Quái Trên Màn Hình",
+      "Chế Độ Bất Tử Thành Lũy & Đội Hình",
+      "Tùy Chỉnh Chiến Thắng & Đẩy Nhanh Tiến Độ Ải",
+      "Chuyển Nhanh Qua Đợt Quái (Wave) Kế Tiếp",
+      "Đạt Thắng Hoàn Hảo 3 Sao Mọi Màn Chơi",
+      "Kích Hoạt Tăng Tốc Game & Tùy Chỉnh Tốc Độ (x1 – x10)",
+      "Bỏ Qua Quảng Cáo & Nhận Ngay Phần Thưởng Miễn Phí"
+    ],
+    "systemRequirements": {
+      "os": "iOS 13.0 trở lên / iPadOS 13.0+",
+      "processor": "Apple A11 Bionic trở lên",
+      "memory": "Tối thiểu 2 GB RAM",
+      "graphics": "Apple GPU tích hợp Metal",
+      "storage": "Tối thiểu 1.5 GB dung lượng trống"
+    },
+    "contactUrl": "https://apps.apple.com/vn/app/pixel-defenders-merge-td-game/id6761761522?l=vi",
+    "contactChannels": {
+      "telegram": "https://t.me/tnxmd",
+      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
+      "facebook": "https://facebook.com/tnxmd.gaming"
+    },
+    "tags": [
+      "Pixel Defenders",
+      "Merge TD",
+      "Thủ Thành Pixel",
+      "Thắng 3 Sao",
+      "Speed x10"
+    ],
+    "views": "43.6K"
+  },
+  {
+    "id": "crab-life",
+    "slug": "crab-life",
+    "title": "Crab Life: RPG Sinh Tồn",
+    "category": "Di động",
+    "genre": "Nhập Vai Sinh Tồn Đại Dương RPG",
+    "platforms": [
+      "iOS",
+      "iPadOS"
+    ],
+    "shortDescription": "Điều khiển chiến binh cua khổng lồ thống trị bờ biển trong Crab Life với Freeshop mua sắm miễn phí, tăng tốc di chuyển và full tài nguyên.",
+    "fullDescription": "Crab Life: RPG Survival đưa bạn hóa thân thành chiến binh cua dũng mãnh chiến đấu sinh tồn trên bờ biển đầy hiểm nguy. Nâng cấp đôi càng sắc bén, tiến hóa giáp xác và chinh phục những vùng biển mới dễ dàng hơn bao giờ hết với tính năng Freeshop toàn bộ cửa hàng, gia tốc di chuyển mượt mà và vô hạn đầy đủ mọi loại tài nguyên nâng cấp.",
+    "coverImage": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/56/0c/6b/560c6b9a-a68f-ca3d-9508-d3677c35213b/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "bannerImage": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/8f/bd/0d/8fbd0d68-8594-e15b-4dfa-4bee7ef20134/1.png/392x696bb.png",
+    "gallery": [
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/8f/bd/0d/8fbd0d68-8594-e15b-4dfa-4bee7ef20134/1.png/392x696bb.png",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/04/cf/f5/04cff562-0158-5460-186b-4d6ee545a2da/2.png/392x696bb.png",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/5e/9f/6b/5e9f6b73-60bb-3b8e-a77a-e3ed324a511f/3.png/392x696bb.png",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/29/59/45/295945ae-761e-b22e-67e9-17f9e1e1ce7a/4.png/392x696bb.png",
+      "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/d1/f3/c5/d1f3c5e2-b257-b956-8f35-2b6586f0d47a/5.png/392x696bb.png"
+    ],
+    "isHot": false,
+    "rating": 4.8,
+    "version": "v12.2.0",
+    "releaseDate": "Mới Cập Nhật",
+    "developer": "Supercent Inc.",
+    "status": "Mới Cập Nhật",
+    "features": [
+      "Mua Sắm Miễn Phí Cửa Hàng (Freeshop Toàn Bộ Vật Phẩm)",
+      "Tăng Tốc Độ Di Chuyển & Tấn Công (Speed Boost)",
+      "Full Toàn Bộ Tài Nguyên Nâng Cấp Không Giới Hạn",
+      "Tiến Hóa Tối Đa Giáp Cua & Kỹ Năng Săn Mồi"
+    ],
+    "systemRequirements": {
+      "os": "iOS 13.0 trở lên / iPadOS 13.0+",
+      "processor": "Apple A10 Fusion trở lên",
+      "memory": "Tối thiểu 2 GB RAM",
+      "graphics": "Apple GPU tích hợp Metal",
+      "storage": "Tối thiểu 1 GB dung lượng trống"
+    },
+    "contactUrl": "https://apps.apple.com/vn/app/crab-life-rpg-sinh-t%E1%BB%93n/id6605932603?l=vi",
+    "contactChannels": {
+      "telegram": "https://t.me/tnxmd",
+      "zalo": "https://zalo.me/g/d4xyfuzgvavdgjdjhpun",
+      "facebook": "https://facebook.com/tnxmd.gaming"
+    },
+    "tags": [
+      "Crab Life",
+      "RPG Sinh Tồn",
+      "Freeshop",
+      "Full Tài Nguyên",
+      "Speed"
+    ],
+    "views": "41.9K"
+  },
+  {
     "id": "soul-knight-prequel",
     "slug": "soul-knight-prequel",
     "title": "Kỵ Sĩ Nguyên Khí Tiền Truyện",
