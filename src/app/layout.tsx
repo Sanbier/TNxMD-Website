@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Be_Vietnam_Pro, JetBrains_Mono } from "next/font/google";
+import { Be_Vietnam_Pro, JetBrains_Mono, Orbitron } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileBottomDock } from "@/components/MobileBottomDock";
@@ -12,6 +12,13 @@ const beVietnamPro = Be_Vietnam_Pro({
   subsets: ["vietnamese", "latin"],
   display: "swap",
   variable: "--font-be-vietnam",
+});
+
+const orbitron = Orbitron({
+  weight: ["700", "800", "900"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-orbitron",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -77,7 +84,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`dark ${beVietnamPro.variable} ${jetbrainsMono.variable}`}
+      className={`dark ${beVietnamPro.variable} ${orbitron.variable} ${jetbrainsMono.variable}`}
     >
       <body className="min-h-screen bg-[#07070a] pb-20 sm:pb-0 text-gray-100 flex flex-col antialiased selection:bg-purple-600 selection:text-white bg-ambient-grid font-sans">
         <ViewportZoomLock />

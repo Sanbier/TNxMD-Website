@@ -5,6 +5,7 @@
 :root {
   --background: #07070a;
   --foreground: #f3f4f6;
+  --font-brand: var(--font-orbitron), 'Orbitron', sans-serif;
   --font-gaming: var(--font-be-vietnam), 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-sans: var(--font-be-vietnam), 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;

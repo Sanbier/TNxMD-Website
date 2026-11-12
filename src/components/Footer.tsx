@@ -13,13 +13,13 @@ export const Footer: React.FC = () => {
   return (
     <footer className="relative bg-[#050508] border-t border-white/[0.08] pt-10 pb-8 overflow-hidden">
       {/* Subtle bottom lighting */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-purple-600/10 blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-sky-600/10 blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-white/[0.06]">
-          {/* Brand & Domain */}
-          <div className="space-y-3 max-w-xl">
-            <div className="flex items-center gap-3">
+          {/* Brand & Domain (Matching Redesigned Header Lockup) */}
+          <div className="space-y-3.5 max-w-xl">
+            <div className="flex items-center gap-3 sm:gap-3.5">
               <div className="relative w-10 h-10 sm:w-11 sm:h-11 drop-shadow-[0_0_12px_rgba(0,240,255,0.45)] shrink-0">
                 <Image
                   src="/logo.png"
@@ -30,18 +30,40 @@ export const Footer: React.FC = () => {
                   className="object-contain"
                 />
               </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xl font-bold text-white font-gaming tracking-wider">
-                    TN<span className="text-cyan-400">x</span>MD
+
+              <span
+                aria-hidden="true"
+                className="h-7 sm:h-8 w-[1px] bg-gradient-to-b from-transparent via-cyan-300/35 to-transparent shrink-0"
+              />
+
+              <div className="flex flex-col justify-center">
+                <div className="flex items-center gap-2 leading-none">
+                  <span className="font-brand font-black text-[18px] sm:text-[21px] tracking-[0.07em] inline-flex items-baseline drop-shadow-[0_2px_12px_rgba(56,189,248,0.28)]">
+                    <span className="bg-gradient-to-b from-white via-sky-100 to-sky-300 bg-clip-text text-transparent">
+                      TN
+                    </span>
+                    <span className="mx-[1.5px] text-[0.76em] font-extrabold bg-gradient-to-b from-cyan-200 via-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(0,240,255,0.75)]">
+                      x
+                    </span>
+                    <span className="bg-gradient-to-b from-white via-sky-100 to-cyan-300 bg-clip-text text-transparent">
+                      MD
+                    </span>
                   </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 font-bold uppercase">
-                    tnxmd.io.vn
+
+                  <span className="inline-flex items-center gap-1 px-2 py-[3px] rounded-full bg-gradient-to-r from-cyan-500/15 via-sky-500/10 to-blue-600/15 border border-cyan-400/35 shadow-[0_0_12px_rgba(0,212,255,0.18)]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_#00f0ff]" />
+                    <span className="font-brand font-extrabold text-[8.5px] sm:text-[9.5px] tracking-[0.12em] text-cyan-200 leading-none">
+                      IO.VN
+                    </span>
                   </span>
                 </div>
-                <span className="text-xs text-gray-400 font-medium">
-                  Kiến Trúc & Nền Tảng Gaming Thế Hệ Mới
-                </span>
+
+                <div className="flex items-center gap-1.5 mt-1.5">
+                  <span className="w-3 sm:w-4 h-[1.5px] rounded-full bg-gradient-to-r from-cyan-400 via-sky-400 to-transparent shrink-0" />
+                  <span className="text-[9.5px] sm:text-[10.5px] font-semibold uppercase tracking-[0.16em] bg-gradient-to-r from-sky-200/90 via-slate-300/85 to-cyan-200/75 bg-clip-text text-transparent leading-none">
+                    Nền Tảng Gaming Cao Cấp
+                  </span>
+                </div>
               </div>
             </div>
 
