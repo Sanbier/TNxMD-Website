@@ -1123,12 +1123,12 @@ export const GAMES: Game[] = [
       "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/2a/84/62/2a846232-f000-dad9-0ef2-8e3506913c5b/2_IPHONE_65.png/800x1200bb.jpg",
       "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/af/ae/2a/afae2af0-8021-d8e7-6fb3-77c842cf9d9d/3_IPHONE_65.png/800x1200bb.jpg"
     ],
-    "isHot": true,
+    "isHot": false,
     "rating": 4.8,
     "version": "v3.3.5",
-    "releaseDate": "Mới Cập Nhật",
+    "releaseDate": "Đang Bảo Trì",
     "developer": "Com2uS Holdings Corporation",
-    "status": "HOT",
+    "status": "Bảo Trì",
     "features": [
       "Bất Tử (Khóa Máu & Bất Bại Trận Đấu)",
       "Kỹ Năng Không Hồi Chiêu (0s Cooldown & 100% MP)",

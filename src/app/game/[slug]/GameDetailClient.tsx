@@ -18,6 +18,7 @@ import {
   Apple,
   ChevronLeft,
   ChevronRight,
+  Wrench,
 } from "lucide-react";
 import { Game } from "@/types/game";
 import { Badge } from "@/components/Badge";
@@ -41,6 +42,7 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
   const [contactOpen, setContactOpen] = useState<boolean>(false);
   const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
   const { showToast } = useToast();
+  const isMaintenance = game.status === "Bảo Trì";
   const allImages = game.gallery && game.gallery.length > 0 ? game.gallery : [game.coverImage];
   const activeImageIndex = Math.max(0, allImages.indexOf(selectedImage));
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -91,9 +93,9 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
         {/* Banner Overlay Content: Game Title & Meta */}
         <div className="absolute bottom-6 left-4 sm:left-8 right-4 sm:right-8 z-10 max-w-7xl mx-auto">
           <div className="flex items-center gap-2 flex-wrap mb-2">
-            {game.isHot && <Badge variant="hot">GAME HOT</Badge>}
+            {!isMaintenance && game.isHot && <Badge variant="hot">GAME HOT</Badge>}
             <Badge variant="category">{game.category}</Badge>
-            <Badge variant="status">{game.status}</Badge>
+            <Badge variant={isMaintenance ? "maintenance" : "status"}>{game.status}</Badge>
           </div>
 
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white font-gaming tracking-tight">
@@ -122,6 +124,22 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
 
       {/* Main Content Area */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 sm:-mt-4 relative z-20">
+        {isMaintenance && (
+          <div className="mb-6 rounded-2xl bg-amber-950/35 border border-amber-500/50 p-4 sm:p-5 flex items-start sm:items-center gap-3.5 shadow-[0_0_24px_rgba(245,158,11,0.18)]">
+            <div className="p-2.5 rounded-xl bg-amber-500/15 border border-amber-500/40 shrink-0">
+              <Wrench className="w-5 h-5 text-amber-400 animate-pulse" />
+            </div>
+            <div>
+              <h3 className="text-sm sm:text-base font-bold text-amber-300 uppercase tracking-wide">
+                Thông Báo: Tựa Game Đang Bảo Trì Nâng Cấp
+              </h3>
+              <p className="text-xs sm:text-sm text-amber-100/80 mt-0.5">
+                Phiên bản tích hợp của <strong>{game.title}</strong> hiện đang tạm dừng để bảo trì và đồng bộ bản cập nhật mới. Vui lòng theo dõi nhóm Zalo / Telegram để nhận thông báo sớm nhất khi mở lại.
+              </p>
+            </div>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left 2 Cols: Gallery, Description, Features, Specs */}
           <div className="lg:col-span-2 space-y-8">
@@ -345,7 +363,11 @@ export const GameDetailClient: React.FC<GameDetailClientProps> = ({
                         className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute top-2 left-2 flex items-center gap-1">
-                        {rg.isHot && <Badge variant="hot">HOT</Badge>}
+                        {rg.status === "Bảo Trì" ? (
+                          <Badge variant="maintenance">BẢO TRÌ</Badge>
+                        ) : (
+                          rg.isHot && <Badge variant="hot">HOT</Badge>
+                        )}
                       </div>
                     </div>
                     <div className="flex items-center justify-between text-xs text-purple-300 mb-1">

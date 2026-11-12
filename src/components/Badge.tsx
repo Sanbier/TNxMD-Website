@@ -1,9 +1,9 @@
 import React from "react";
-import { Flame, Sparkles, CheckCircle2 } from "lucide-react";
+import { Flame, Sparkles, Wrench } from "lucide-react";
 
 interface BadgeProps {
   children: React.ReactNode;
-  variant?: "hot" | "platform" | "category" | "status" | "neon";
+  variant?: "hot" | "platform" | "category" | "status" | "neon" | "maintenance";
   size?: "sm" | "md";
   className?: string;
 }
@@ -46,6 +46,17 @@ export const Badge: React.FC<BadgeProps> = ({
         className={`inline-flex items-center gap-1 rounded-full bg-purple-950/70 border border-purple-500/50 text-purple-300 shadow-[0_0_10px_rgba(168,85,247,0.3)] ${sizeClasses} ${className}`}
       >
         <Sparkles className="w-3 h-3 text-cyan-400" />
+        {children}
+      </span>
+    );
+  }
+
+  if (variant === "maintenance") {
+    return (
+      <span
+        className={`inline-flex items-center gap-1 rounded-full bg-amber-950/85 border border-amber-500/60 text-amber-300 font-bold shadow-[0_0_12px_rgba(245,158,11,0.45)] ${sizeClasses} ${className}`}
+      >
+        <Wrench className="w-3 h-3 text-amber-400 animate-pulse" />
         {children}
       </span>
     );

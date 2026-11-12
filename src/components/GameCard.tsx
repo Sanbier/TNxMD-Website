@@ -16,6 +16,7 @@ interface GameCardProps {
 export const GameCard: React.FC<GameCardProps> = ({ game }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const { showToast } = useToast();
+  const isMaintenance = game.status === "Bảo Trì";
 
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -29,7 +30,13 @@ export const GameCard: React.FC<GameCardProps> = ({ game }) => {
 
   return (
     <>
-      <div className="group relative rounded-2xl bg-[#0b0b13] border border-white/[0.08] hover:border-purple-500/50 p-3 sm:p-3.5 transition-all duration-300 hover:shadow-[0_8px_30px_-6px_rgba(0,0,0,0.8),0_0_20px_rgba(168,85,247,0.22)] hover:-translate-y-0.5 active:scale-[0.99]">
+      <div
+        className={`group relative rounded-2xl bg-[#0b0b13] border p-3 sm:p-3.5 transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.99] ${
+          isMaintenance
+            ? "border-amber-500/35 hover:border-amber-400/60 hover:shadow-[0_8px_30px_-6px_rgba(0,0,0,0.8),0_0_20px_rgba(245,158,11,0.2)]"
+            : "border-white/[0.08] hover:border-purple-500/50 hover:shadow-[0_8px_30px_-6px_rgba(0,0,0,0.8),0_0_20px_rgba(168,85,247,0.22)]"
+        }`}
+      >
         {/* Subtle hover gradient accent */}
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-600/[0.03] via-transparent to-cyan-500/[0.03] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
@@ -44,20 +51,30 @@ export const GameCard: React.FC<GameCardProps> = ({ game }) => {
               alt={game.title}
               fill
               sizes="(max-width: 640px) 96px, 144px"
-              className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+              className={`object-cover object-center group-hover:scale-105 transition-transform duration-500 ${
+                isMaintenance ? "opacity-75 grayscale-[30%]" : ""
+              }`}
               priority={game.isHot}
             />
 
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
 
-            {/* Top Hot Badge */}
-            {game.isHot && (
+            {/* Top Status / Hot Badge */}
+            {isMaintenance ? (
               <div className="absolute top-1.5 left-1.5">
-                <Badge variant="hot" size="sm" className="text-[10px] px-1.5 py-0.2">
-                  HOT
+                <Badge variant="maintenance" size="sm" className="text-[10px] px-1.5 py-0.2">
+                  BẢO TRÌ
                 </Badge>
               </div>
+            ) : (
+              game.isHot && (
+                <div className="absolute top-1.5 left-1.5">
+                  <Badge variant="hot" size="sm" className="text-[10px] px-1.5 py-0.2">
+                    HOT
+                  </Badge>
+                </div>
+              )
             )}
 
             {/* Bottom Version on Image */}
@@ -81,6 +98,12 @@ export const GameCard: React.FC<GameCardProps> = ({ game }) => {
                   <Smartphone className="w-3 h-3 text-cyan-400" />
                   iOS
                 </span>
+                {isMaintenance && (
+                  <span className="inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-amber-950/80 border border-amber-500/60 text-amber-300">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                    Đang Bảo Trì
+                  </span>
+                )}
                 <span className="text-xs text-purple-300/90 font-medium truncate max-w-[200px] sm:max-w-none">
                   {game.genre}
                 </span>
@@ -101,7 +124,9 @@ export const GameCard: React.FC<GameCardProps> = ({ game }) => {
                   {game.developer}
                 </span>
                 <span>•</span>
-                <span className="text-purple-400 font-medium">{game.releaseDate}</span>
+                <span className={isMaintenance ? "text-amber-400 font-semibold" : "text-purple-400 font-medium"}>
+                  {game.releaseDate}
+                </span>
                 {game.views && (
                   <>
                     <span className="hidden sm:inline">•</span>

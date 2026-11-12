@@ -41,7 +41,7 @@ export interface Game {
   version: string;
   releaseDate: string;
   developer: string;
-  status: "Đang Hoạt Động" | "Mới Cập Nhật" | "Nổi Bật" | "HOT";
+  status: "Đang Hoạt Động" | "Mới Cập Nhật" | "Nổi Bật" | "HOT" | "Bảo Trì";
   features: string[];
   systemRequirements?: SystemRequirements;
   contactUrl?: string;
